@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Mis XV Años - Debanhi</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --rose-gold-dark: #703342;
@@ -36,18 +36,36 @@
             background: radial-gradient(circle at center, #f5cad6 0%, var(--pale-pink) 100%);
         }
 
+        /* Partículas */
         .particle, .particle-card {
             position: absolute;
             background: white;
             border-radius: 50%;
             pointer-events: none;
-            opacity: 0.4;
+            opacity: 0.8;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
         }
 
         @keyframes float {
             0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            50% { opacity: 0.6; }
+            20% { opacity: 0.8; }
+            80% { opacity: 0.8; }
             100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Fondo Glitter Optimizado */
+        .glitter-section {
+            position: relative;
+            width: 100%;
+            background-image: url('https://github.com/kezelvi/invitaciones/blob/main/xv.debanhi/glitter.jpg?raw=true');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        @media (max-width: 1024px) {
+            .glitter-section { background-attachment: scroll; }
         }
 
         .glass-card {
@@ -88,6 +106,24 @@
         .corner-br { bottom: 15px; right: 15px; transform: rotate(0deg); }
         .corner-bl { bottom: 15px; left: 15px; transform: rotate(90deg); }
 
+        /* Adornos de Títulos */
+        .title-ornament {
+            width: 200px;
+            height: 50px;
+            margin: 0 auto;
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: center;
+            -webkit-mask-size: contain;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            background-color: currentColor;
+            mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/xv.debanhi/limite%20de%20seccion.png');
+            -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/xv.debanhi/limite%20de%20seccion.png');
+        }
+        
+        .ornament-bottom { transform: rotate(180deg); }
+
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -99,22 +135,14 @@
             transform: translateY(0);
         }
 
-        .gold-text {
-            background: linear-gradient(135deg, var(--rose-gold-dark) 0%, var(--rose-gold-main) 50%, var(--rose-gold-dark) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-            filter: drop-shadow(0px 1px 2px rgba(112, 51, 66, 0.15));
-            font-weight: 400; 
-        }
-
         .btn-gold {
-            background: linear-gradient(135deg, #8e4a59 0%, var(--rose-gold-main) 100%);
+            background: linear-gradient(135deg, var(--rose-gold-dark) 0%, var(--rose-gold-main) 100%);
             background-size: 200% auto;
             transition: 0.5s;
             color: white;
             font-weight: 600;
             box-shadow: 0 4px 15px rgba(112, 51, 66, 0.2);
+            border: none;
         }
 
         .btn-gold:hover {
@@ -122,6 +150,31 @@
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(112, 51, 66, 0.3);
         }
+
+        .music-btn {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--rose-gold-dark) 0%, var(--rose-gold-main) 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(112, 51, 66, 0.3);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            z-index: 50;
+        }
+        .music-btn:active { transform: scale(0.9); }
+        .music-btn.playing { animation: pulse-music 2s infinite; }
+        @keyframes pulse-music {
+            0% { box-shadow: 0 0 0 0 rgba(183, 110, 121, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(183, 110, 121, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(183, 110, 121, 0); }
+        }
+        .music-btn svg { width: 28px; height: 28px; fill: currentColor; }
 
         .custom-icon {
             display: inline-block;
@@ -136,27 +189,18 @@
             -webkit-mask-position: center;
         }
 
-        .timeline-item {
-            position: relative;
-            padding-left: 40px;
-            margin-bottom: 30px;
-        }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 0; top: 0; width: 2px; height: 100%;
-            background: linear-gradient(to bottom, var(--rose-gold-main), transparent);
-        }
-        .timeline-dot {
-            position: absolute; left: -6px; top: 0; width: 14px; height: 14px;
-            background: var(--rose-gold-dark); border-radius: 50%;
+        .gallery-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            width: 100%;
         }
 
-        .gallery-img {
-            width: 100%; aspect-ratio: 1/1; object-fit: cover;
-            border-radius: 12px; border: 2px solid white;
-            transition: 0.5s ease; cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        .gallery-img-full {
+            width: 100%;
+            height: auto;
+            display: block;
+            cursor: pointer;
         }
 
         #lightbox {
@@ -171,7 +215,6 @@
             width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;
             overflow: hidden; position: relative; cursor: grab;
         }
-        #lightbox-img-container:active { cursor: grabbing; }
 
         #lightbox-img { 
             max-width: 95%; max-height: 85vh; 
@@ -185,17 +228,6 @@
             mask-image: linear-gradient(to top, transparent 0%, black 60%);
             -webkit-mask-image: linear-gradient(to top, transparent 0%, black 60%);
         }
-        
-        .border-gold-sep {
-            border-color: rgba(112, 51, 66, 0.2);
-        }
-
-        .swipe-hint {
-            position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
-            color: white; font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
-            opacity: 0.5; animation: pulse 2s infinite;
-        }
-        @keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.7; } }
     </style>
 </head>
 <body>
@@ -217,24 +249,33 @@
         <img src="https://github.com/kezelvi/invitaciones/blob/main/invitacion1.jpg?raw=true" 
              class="w-full h-full object-cover main-photo-mask" alt="Debanhi Portada">
         <div class="absolute bottom-0 left-0 w-full pb-10 text-center reveal">
-            <h2 class="text-sm tracking-[0.6em] font-serif uppercase mb-2">Mis XV Años</h2>
-            <h1 class="text-7xl md:text-[9rem] font-accent gold-text leading-tight drop-shadow-md">Debanhi</h1>
-            <p class="text-xs md:text-lg tracking-[0.4em] uppercase opacity-90 mt-4">Una noche mágica para brillar</p>
+            <h2 class="text-sm tracking-[0.6em] font-serif uppercase mb-2 text-white drop-shadow-lg">Mis XV Años</h2>
+            <h1 class="text-7xl md:text-[9rem] font-accent text-white leading-tight drop-shadow-2xl">Debanhi</h1>
+            <p class="text-xs md:text-lg tracking-[0.4em] uppercase opacity-100 text-white mt-4 drop-shadow-md">Una noche mágica para brillar</p>
         </div>
     </section>
 
-    <!-- 2. RECUADRO FECHA -->
+    <!-- 2. RECUADRO FECHA + MÚSICA -->
     <section class="max-w-4xl mx-auto px-6 py-20 text-center">
-        <!-- TEXTO DE ADVERTENCIA -->
+        
+        <audio id="bg-music" loop preload="auto">
+            <source src="https://raw.githubusercontent.com/kezelvi/invitaciones/main/xv.debanhi/musica.mp3" type="audio/mpeg">
+        </audio>
+        
+        <div class="music-btn" id="music-toggle-btn" onclick="toggleMusic()">
+            <svg id="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <svg id="pause-icon" class="hidden" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </div>
+
         <p class="text-sm md:text-lg font-bold uppercase tracking-widest text-[var(--rose-gold-dark)] mb-6 animate-pulse">
             ESTA INVITACION TODAVIA NO ESTÁ LISTA PARA ENVIARSE
         </p>
 
         <div class="glass-card reveal" data-particles="true">
-            <div class="corner-decoration corner-tl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
-            <div class="corner-decoration corner-tr" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
-            <div class="corner-decoration corner-br" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
-            <div class="corner-decoration corner-bl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+            <div class="corner-decoration corner-tl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+            <div class="corner-decoration corner-tr" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+            <div class="corner-decoration corner-br" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+            <div class="corner-decoration corner-bl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
             <div class="card-content">
                 <p class="text-lg italic mb-12 font-light opacity-80">"Un día para recordar, una noche para soñar."</p>
                 <div class="flex flex-col items-center justify-center gap-8 md:gap-12 overflow-visible">
@@ -247,17 +288,17 @@
         </div>
     </section>
 
-    <!-- 3. FRASE Y BENDICIÓN CON GLITTER -->
-    <section class="relative w-full py-16 text-center" style="background-image: url('https://github.com/kezelvi/invitaciones/blob/main/xv.debanhi/glitter.jpg?raw=true'); background-size: cover; background-position: center; background-attachment: fixed;">
+    <!-- 3. FRASE Y BENDICIÓN -->
+    <section class="glitter-section py-16 text-center">
         <div class="absolute inset-0 bg-black/10"></div>
         <div class="max-w-4xl mx-auto px-6 relative z-10">
             <div class="glass-card glass-card-over-glitter reveal margin-0" data-particles="true">
-                <div class="corner-decoration corner-tl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
-                <div class="corner-decoration corner-tr" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
-                <div class="corner-decoration corner-br" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
-                <div class="corner-decoration corner-bl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+                <div class="corner-decoration corner-tl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+                <div class="corner-decoration corner-tr" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+                <div class="corner-decoration corner-br" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+                <div class="corner-decoration corner-bl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
                 <div class="card-content">
-                    <p class="text-xl md:text-3xl font-light mb-12 leading-relaxed italic text-center">
+                    <p class="text-xl md:text-3xl font-light mb-12 leading-relaxed italic text-center text-gray-800">
                         "Hoy guardo mis juguetes y extiendo mis alas para volar hacia un nuevo horizonte. Dejo atrás una hermosa etapa de mi vida para comenzar el camino que me convertirá en la mujer que sueño ser..."
                     </p>
                     <div class="flex flex-col items-center space-y-2 tracking-[0.2em] uppercase font-light">
@@ -271,28 +312,16 @@
         </div>
     </section>
 
-    <!-- 4. CUENTA REGRESIVA -->
-    <section class="py-20 text-center reveal">
-        <h3 class="font-serif text-xl mb-8 tracking-widest uppercase opacity-60">La magia comienza en</h3>
-        <div id="countdown" class="flex justify-center gap-6">
-            <div class="w-20"><span id="days" class="text-4xl font-serif gold-text block">00</span><span class="text-[10px] uppercase opacity-60">Días</span></div>
-            <div class="w-20"><span id="hours" class="text-4xl font-serif gold-text block">00</span><span class="text-[10px] uppercase opacity-60">Hrs</span></div>
-            <div class="w-20"><span id="minutes" class="text-4xl font-serif gold-text block">00</span><span class="text-[10px] uppercase opacity-60">Min</span></div>
-            <div class="w-20"><span id="seconds" class="text-4xl font-serif gold-text block">00</span><span class="text-[10px] uppercase opacity-60">Seg</span></div>
-        </div>
-    </section>
-
-    <!-- 5. UBICACIONES -->
+    <!-- 4. UBICACIONES -->
     <section class="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-8">
-        <!-- Ceremonia -->
         <div class="glass-card text-center reveal" data-particles="true">
-            <div class="corner-decoration corner-tl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
-            <div class="corner-decoration corner-tr" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
-            <div class="corner-decoration corner-br" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
-            <div class="corner-decoration corner-bl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+            <div class="corner-decoration corner-tl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+            <div class="corner-decoration corner-tr" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+            <div class="corner-decoration corner-br" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+            <div class="corner-decoration corner-bl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
             <div class="card-content">
                 <div class="mb-4">
-                    <span class="custom-icon" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/xv.debanhi/icono%20iglesia.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/xv.debanhi/icono%20iglesia.png');"></span>
+                    <span class="custom-icon" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/xv.debanhi/icono%20iglesia.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/xv.debanhi/icono%20iglesia.png');"></span>
                 </div>
                 <h3 class="font-serif text-2xl mb-4 uppercase tracking-widest opacity-80">Ceremonia</h3>
                 <p class="text-sm font-semibold mb-1">Capilla Nuestra Sra de la Candelaria</p>
@@ -301,15 +330,14 @@
                 <a href="https://maps.app.goo.gl/vf3nJ6f6RzsDzoLz8" target="_blank" class="btn-gold inline-block px-10 py-4 rounded-full text-xs uppercase tracking-widest">Ver Mapa</a>
             </div>
         </div>
-        <!-- Recepción -->
         <div class="glass-card text-center reveal" data-particles="true">
-            <div class="corner-decoration corner-tl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
-            <div class="corner-decoration corner-tr" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
-            <div class="corner-decoration corner-br" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
-            <div class="corner-decoration corner-bl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+            <div class="corner-decoration corner-tl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+            <div class="corner-decoration corner-tr" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+            <div class="corner-decoration corner-br" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+            <div class="corner-decoration corner-bl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
             <div class="card-content">
                 <div class="mb-4">
-                    <span class="custom-icon" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/xv.debanhi/icono%20copas.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/xv.debanhi/icono%20copas.png');"></span>
+                    <span class="custom-icon" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/xv.debanhi/icono%20copas.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/xv.debanhi/icono%20copas.png');"></span>
                 </div>
                 <h3 class="font-serif text-2xl mb-4 uppercase tracking-widest opacity-80">Recepción</h3>
                 <p class="text-sm font-semibold mb-1">Mision del Campanario</p>
@@ -320,53 +348,95 @@
         </div>
     </section>
 
-    <!-- 6. ITINERARIO -->
-    <section class="max-w-4xl mx-auto px-6 py-20">
-        <h2 class="text-center font-serif text-3xl gold-text mb-16 reveal uppercase tracking-widest">Itinerario</h2>
-        <div class="grid md:grid-cols-2 gap-10 reveal">
-            <div class="space-y-2">
-                <div class="timeline-item"><div class="timeline-dot"></div><h4 class="font-serif text-lg">Llegada de invitados</h4><p class="text-xs opacity-60">19:30 HRS</p></div>
-                <div class="timeline-item"><div class="timeline-dot"></div><h4 class="font-serif text-lg">Presentación</h4><p class="text-xs opacity-60">20:00 HRS</p></div>
-                <div class="timeline-item"><div class="timeline-dot"></div><h4 class="font-serif text-lg">Vals</h4><p class="text-xs opacity-60">21:00 HRS</p></div>
-            </div>
-            <div class="space-y-2">
-                <div class="timeline-item"><div class="timeline-dot"></div><h4 class="font-serif text-lg">Cena</h4><p class="text-xs opacity-60">21:30 HRS</p></div>
-                <div class="timeline-item"><div class="timeline-dot"></div><h4 class="font-serif text-lg">DJ</h4><p class="text-xs opacity-60">22:30 HRS</p></div>
-                <div class="timeline-item" style="border: none;"><div class="timeline-dot"></div><h4 class="font-serif text-lg">Fin</h4><p class="text-xs opacity-60">01:00 HRS</p></div>
-            </div>
+    <!-- 5. ITINERARIO -->
+    <section class="w-full text-center">
+        <div class="flex flex-col items-center justify-center py-24 text-[var(--rose-gold-main)]">
+            <div class="title-ornament"></div>
+            <h2 class="font-serif text-3xl py-6 reveal uppercase tracking-[0.3em] font-bold">Itinerario</h2>
+            <div class="title-ornament ornament-bottom"></div>
         </div>
-    </section>
-
-    <!-- 7. CÓDIGO DE VESTIMENTA -->
-    <section class="max-w-xl mx-auto px-6 py-20 text-center">
-        <div class="glass-card reveal" data-particles="true">
-            <div class="corner-decoration corner-tl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
-            <div class="corner-decoration corner-tr" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
-            <div class="corner-decoration corner-br" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
-            <div class="corner-decoration corner-bl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
-            <div class="card-content">
-                <h3 class="font-serif text-xl gold-text mb-4 uppercase tracking-widest">Código de Vestimenta</h3>
-                <div class="mb-4">
-                    <span class="custom-icon" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/xv.debanhi/icono%20traje.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/xv.debanhi/icono%20traje.png'); width: 60px; height: 72px;"></span>
+        <div class="grid grid-cols-2 w-full gap-0">
+            <div class="relative aspect-square overflow-hidden group">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800" class="w-full h-full object-cover" alt="Llegada">
+                <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center p-4">
+                    <span class="text-[10px] uppercase tracking-widest text-white/80 mb-1">19:30 HRS</span>
+                    <h4 class="font-serif text-sm md:text-lg text-white uppercase tracking-wider text-center">Llegada invitados</h4>
                 </div>
-                <p class="text-2xl font-light tracking-wide uppercase">Formal o semi-formal</p>
-                <p class="text-[11px] md:text-xs mt-3 opacity-70 italic font-semibold">Color azul reservado para la quinceañera</p>
+            </div>
+            <div class="relative aspect-square overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=800" class="w-full h-full object-cover" alt="Presentación">
+                <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center p-4">
+                    <span class="text-[10px] uppercase tracking-widest text-white/80 mb-1">20:00 HRS</span>
+                    <h4 class="font-serif text-sm md:text-lg text-white uppercase tracking-wider text-center">Presentación</h4>
+                </div>
+            </div>
+            <div class="relative aspect-square overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1545128485-c400e7702796?q=80&w=800" class="w-full h-full object-cover" alt="Vals">
+                <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center p-4">
+                    <span class="text-[10px] uppercase tracking-widest text-white/80 mb-1">21:00 HRS</span>
+                    <h4 class="font-serif text-sm md:text-lg text-white uppercase tracking-wider text-center">Vals</h4>
+                </div>
+            </div>
+            <div class="relative aspect-square overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=800" class="w-full h-full object-cover" alt="Cena">
+                <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center p-4">
+                    <span class="text-[10px] uppercase tracking-widest text-white/80 mb-1">21:30 HRS</span>
+                    <h4 class="font-serif text-sm md:text-lg text-white uppercase tracking-wider text-center">Cena</h4>
+                </div>
+            </div>
+            <div class="relative aspect-square overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=800" class="w-full h-full object-cover" alt="DJ">
+                <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center p-4">
+                    <span class="text-[10px] uppercase tracking-widest text-white/80 mb-1">22:30 HRS</span>
+                    <h4 class="font-serif text-sm md:text-lg text-white uppercase tracking-wider text-center">DJ</h4>
+                </div>
+            </div>
+            <div class="relative aspect-square overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1530103043960-ef38714abb15?q=80&w=800" class="w-full h-full object-cover" alt="Fin">
+                <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center p-4">
+                    <span class="text-[10px] uppercase tracking-widest text-white/80 mb-1">01:00 HRS</span>
+                    <h4 class="font-serif text-sm md:text-lg text-white uppercase tracking-wider text-center">Fin</h4>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- 8. RSVP -->
+    <!-- 6. CÓDIGO DE VESTIMENTA -->
+    <section class="max-w-xl mx-auto px-6 py-32 text-center text-white">
+        <div class="glass-card reveal" data-particles="true">
+            <div class="corner-decoration corner-tl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+            <div class="corner-decoration corner-tr" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+            <div class="corner-decoration corner-br" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+            <div class="corner-decoration corner-bl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+            <div class="card-content flex flex-col items-center">
+                <div class="title-ornament" style="color: var(--rose-gold-dark);"></div>
+                <h3 class="font-serif text-xl my-4 uppercase tracking-widest text-[var(--rose-gold-dark)] font-bold">Código de Vestimenta</h3>
+                <div class="title-ornament ornament-bottom" style="color: var(--rose-gold-dark);"></div>
+                
+                <div class="my-6">
+                    <span class="custom-icon" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/xv.debanhi/icono%20traje.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/xv.debanhi/icono%20traje.png'); width: 60px; height: 72px;"></span>
+                </div>
+                <p class="text-lg md:text-xl font-bold tracking-wide leading-relaxed text-[var(--rose-gold-main)] drop-shadow-sm">
+                    Evitar usar tonalidades en <u><b class="font-[900]">azul</b></u>, queda reservado para la quinceañera.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. RSVP PERSONALIZADO -->
     <section class="max-w-2xl mx-auto px-6 py-20 text-center">
         <div class="glass-card reveal" data-particles="true">
-            <div class="corner-decoration corner-tl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
-            <div class="corner-decoration corner-tr" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
-            <div class="corner-decoration corner-br" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
-            <div class="corner-decoration corner-bl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+            <div class="corner-decoration corner-tl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+            <div class="corner-decoration corner-tr" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+            <div class="corner-decoration corner-br" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+            <div class="corner-decoration corner-bl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
             <div class="card-content">
                 <h3 class="font-serif text-2xl gold-text mb-4">Confirmar Asistencia</h3>
                 <div id="personalization-box" class="mb-8 border-b border-gold-sep pb-6">
-                    <p class="text-lg font-light">Estimada <span id="family-name" class="font-serif italic font-bold">Familia Especial</span></p>
-                    <p class="text-sm opacity-60 mt-1">Hemos reservado <span id="pass-count" class="font-bold">---</span> pases para ustedes.</p>
+                    <!-- Cabecera dinámica -->
+                    <p class="text-lg font-light">Estimada <span id="family-name" class="font-serif italic font-bold">Invitado Especial</span></p>
+                    <!-- Mensaje dinámico de pases -->
+                    <p id="pass-message" class="text-sm opacity-60 mt-1">Esperamos contar con tu presencia.</p>
                 </div>
                 <form id="rsvp-form" class="space-y-4 text-left">
                     <div>
@@ -380,24 +450,27 @@
         </div>
     </section>
 
-    <!-- 9. GALERÍA CON FONDO GLITTER -->
-    <section class="relative w-full py-20 pb-40 text-center" style="background-image: url('https://github.com/kezelvi/invitaciones/blob/main/xv.debanhi/glitter.jpg?raw=true'); background-size: cover; background-position: center; background-attachment: fixed;">
+    <!-- 8. GALERÍA -->
+    <section class="glitter-section text-center">
         <div class="absolute inset-0 bg-black/10"></div>
-        <div class="max-w-6xl mx-auto px-6 relative z-10">
-            <h2 class="font-serif text-2xl text-white drop-shadow-md mb-10 reveal uppercase tracking-widest">Galería</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 reveal">
-                <img src="https://github.com/kezelvi/invitaciones/blob/main/invitacion2.jpg?raw=true" class="gallery-img" onclick="openLightbox(0)">
-                <img src="https://github.com/kezelvi/invitaciones/blob/main/invitacion3.jpg?raw=true" class="gallery-img" onclick="openLightbox(1)">
-                <img src="https://github.com/kezelvi/invitaciones/blob/main/invitacion4.jpg?raw=true" class="gallery-img" onclick="openLightbox(2)">
-                <img src="https://github.com/kezelvi/invitaciones/blob/main/invitacion5.jpg?raw=true" class="gallery-img" onclick="openLightbox(3)">
+        <div class="relative z-10 w-full">
+            <div class="flex flex-col items-center justify-center py-24 text-white">
+                <div class="title-ornament"></div>
+                <h2 class="font-serif text-2xl py-6 drop-shadow-md uppercase tracking-[0.3em] font-bold">Galería</h2>
+                <div class="title-ornament ornament-bottom"></div>
+            </div>
+            <div class="gallery-container">
+                <img src="https://github.com/kezelvi/invitaciones/blob/main/invitacion2.jpg?raw=true" class="gallery-img-full block cursor-pointer" onclick="openLightbox(0)">
+                <img src="https://github.com/kezelvi/invitaciones/blob/main/invitacion3.jpg?raw=true" class="gallery-img-full block cursor-pointer" onclick="openLightbox(1)">
+                <img src="https://github.com/kezelvi/invitaciones/blob/main/invitacion4.jpg?raw=true" class="gallery-img-full block cursor-pointer" onclick="openLightbox(2)">
+                <img src="https://github.com/kezelvi/invitaciones/blob/main/invitacion5.jpg?raw=true" class="gallery-img-full block cursor-pointer" onclick="openLightbox(3)">
             </div>
         </div>
     </section>
 
-    <!-- PIE DE PÁGINA ACTUALIZADO -->
-    <footer class="py-10 text-center opacity-40 text-[10px] tracking-[0.3em] uppercase">
-        <div class="mb-2">Debanhi — XV Años — 2026</div>
-        <a href="https://www.instagram.com/kezelvi/" target="_blank" class="hover:underline hover:opacity-100 transition-opacity">Designed by Kezelvi</a>
+    <footer class="py-20 text-center bg-black/20 text-white/40 text-[10px] tracking-[0.3em] uppercase">
+        <div class="mb-2 text-white/60">Debanhi — XV Años — 2026</div>
+        <a href="https://www.instagram.com/kezelvi/" target="_blank" class="hover:underline hover:text-white transition-all">Designed by Kezelvi</a>
     </footer>
 
     <script>
@@ -407,151 +480,83 @@
             "https://github.com/kezelvi/invitaciones/blob/main/invitacion4.jpg?raw=true",
             "https://github.com/kezelvi/invitaciones/blob/main/invitacion5.jpg?raw=true"
         ];
-        let currentIdx = 0;
-        let isZoomed = false;
-        let touchStartX = 0, touchStartY = 0, lastTouchX = 0, lastTouchY = 0;
-        let panX = 0, panY = 0;
+        let currentIdx = 0, isZoomed = false, touchStartX = 0, touchStartY = 0, lastTouchX = 0, lastTouchY = 0, panX = 0, panY = 0;
 
-        function updateImageTransform() {
-            const img = document.getElementById('lightbox-img');
-            const scale = isZoomed ? 2.5 : 1;
-            img.style.transform = `scale(${scale}) translate(${panX / scale}px, ${panY / scale}px)`;
-        }
-
-        function handleTouchStart(e) {
-            touchStartX = e.changedTouches[0].screenX;
-            touchStartY = e.changedTouches[0].screenY;
-            lastTouchX = touchStartX;
-            lastTouchY = touchStartY;
-        }
-
-        function handleTouchMove(e) {
-            if (!isZoomed) return;
-            const currentX = e.changedTouches[0].screenX;
-            const currentY = e.changedTouches[0].screenY;
-            panX += currentX - lastTouchX;
-            panY += currentY - lastTouchY;
-            const limit = 400;
-            panX = Math.max(Math.min(panX, limit), -limit);
-            panY = Math.max(Math.min(panY, limit), -limit);
-            lastTouchX = currentX;
-            lastTouchY = currentY;
-            updateImageTransform();
-        }
-
-        function handleTouchEnd(e) {
-            if (isZoomed) return;
-            const endX = e.changedTouches[0].screenX;
-            if (endX < touchStartX - 50) changeImage(1);
-            else if (endX > touchStartX + 50) changeImage(-1);
-        }
-
-        let lastTap = 0;
-        function handleImageClick(e) {
-            e.stopPropagation();
-            const now = new Date().getTime();
-            if (now - lastTap < 300) toggleZoom();
-            lastTap = now;
-        }
-
-        function toggleZoom() {
-            isZoomed = !isZoomed;
-            if (!isZoomed) { panX = 0; panY = 0; }
-            updateImageTransform();
-            document.getElementById('lightbox-img').style.cursor = isZoomed ? "zoom-out" : "zoom-in";
-        }
-
-        function openLightbox(i) {
-            currentIdx = i;
-            const img = document.getElementById('lightbox-img');
-            img.src = galleryImgs[i];
-            isZoomed = false; panX = 0; panY = 0; updateImageTransform();
-            document.getElementById('lightbox').classList.add('active');
-            document.body.style.overflow = 'hidden';
-            if (window.innerWidth < 768) {
-                const hint = document.getElementById('touch-hint');
-                if(hint) hint.classList.remove('hidden');
-                setTimeout(() => { if(hint) hint.classList.add('hidden'); }, 4000);
+        function toggleMusic() {
+            const audio = document.getElementById('bg-music'), playI = document.getElementById('play-icon'), pauseI = document.getElementById('pause-icon'), btn = document.getElementById('music-toggle-btn');
+            if (audio.paused) { 
+                audio.play().then(() => { playI.classList.add('hidden'); pauseI.classList.remove('hidden'); btn.classList.add('playing'); }).catch(err => console.error(err)); 
+            } else { 
+                audio.pause(); playI.classList.remove('hidden'); pauseI.classList.add('hidden'); btn.classList.remove('playing'); 
             }
         }
 
-        function closeLightbox() { 
-            document.getElementById('lightbox').classList.remove('active'); 
-            document.body.style.overflow = 'auto'; isZoomed = false;
+        function updateImageTransform() { 
+            const img = document.getElementById('lightbox-img'); 
+            if(!img) return; 
+            const scale = isZoomed ? 2.5 : 1; 
+            img.style.transform = `scale(${scale}) translate(${panX / scale}px, ${panY / scale}px)`; 
         }
 
-        function changeImage(step, e) {
-            if (e) e.stopPropagation();
-            isZoomed = false; panX = 0; panY = 0;
-            currentIdx = (currentIdx + step + galleryImgs.length) % galleryImgs.length;
-            document.getElementById('lightbox-img').src = galleryImgs[currentIdx];
-            updateImageTransform();
-        }
+        function handleTouchStart(e) { touchStartX = e.changedTouches[0].screenX; touchStartY = e.changedTouches[0].screenY; lastTouchX = touchStartX; lastTouchY = touchStartY; }
+        function handleTouchMove(e) { if (!isZoomed) return; const curX = e.changedTouches[0].screenX, curY = e.changedTouches[0].screenY; panX += curX - lastTouchX; panY += curY - lastTouchY; const limit = 400; panX = Math.max(Math.min(panX, limit), -limit); panY = Math.max(Math.min(panY, limit), -limit); lastTouchX = curX; lastTouchY = curY; updateImageTransform(); }
+        function handleTouchEnd(e) { if (isZoomed) return; const endX = e.changedTouches[0].screenX; if (endX < touchStartX - 50) changeImage(1); else if (endX > touchStartX + 50) changeImage(-1); }
+        let lastTap = 0;
+        function handleImageClick(e) { e.stopPropagation(); const now = Date.now(); if (now - lastTap < 300) toggleZoom(); lastTap = now; }
+        function toggleZoom() { isZoomed = !isZoomed; if (!isZoomed) { panX = 0; panY = 0; } updateImageTransform(); document.getElementById('lightbox-img').style.cursor = isZoomed ? "zoom-out" : "zoom-in"; }
+        function openLightbox(i) { currentIdx = i; document.getElementById('lightbox-img').src = galleryImgs[i]; isZoomed = false; panX = 0; panY = 0; updateImageTransform(); document.getElementById('lightbox').classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); document.body.style.overflow = 'auto'; isZoomed = false; }
+        function changeImage(step, e) { if (e) e.stopPropagation(); isZoomed = false; panX = 0; panY = 0; currentIdx = (currentIdx + step + galleryImgs.length) % galleryImgs.length; document.getElementById('lightbox-img').src = galleryImgs[currentIdx]; updateImageTransform(); }
 
+        // DINÁMICA DE PERSONALIZACIÓN
         function checkPersonalization() {
             const params = new URLSearchParams(window.location.search);
-            const f = params.get('f'), p = params.get('p');
-            if (f) document.getElementById('family-name').innerText = "Familia " + f;
-            document.getElementById('pass-count').innerText = p || "sus";
-        }
+            const family = params.get('f'); // Nombre o Familia
+            const passes = params.get('p'); // Número de pases
 
-        function addParticles(container, count, isCard = false) {
-            if(!container) return;
-            for (let i = 0; i < count; i++) {
-                const p = document.createElement('div');
-                p.className = isCard ? 'particle-card' : 'particle';
-                const s = Math.random() * 3 + 1;
-                p.style.width = p.style.height = `${s}px`;
-                p.style.left = `${Math.random() * 100}%`;
-                p.style.bottom = isCard ? "-10%" : `${Math.random() * 100}%`;
-                p.style.animation = `float ${isCard ? (6+Math.random()*4) : (10+Math.random()*10)}s infinite linear`;
-                p.style.animationDelay = `${Math.random() * 5}s`;
-                const c = ['#ffffff', '#fce4ec', '#b76e79', '#f8bbd0'];
-                p.style.backgroundColor = c[Math.floor(Math.random()*c.length)];
-                p.style.boxShadow = `0 0 8px ${p.style.backgroundColor}`;
-                container.appendChild(p);
+            const nameEl = document.getElementById('family-name');
+            const msgEl = document.getElementById('pass-message');
+
+            if (family && nameEl) {
+                nameEl.innerText = family;
             }
-        }
 
-        function startCountdown() {
-            const date = new Date('May 30, 2026 17:00:00').getTime();
-            setInterval(() => {
-                const dist = date - new Date().getTime();
-                if (dist < 0) return;
-                document.getElementById('days').innerText = Math.floor(dist / 86400000).toString().padStart(2,'0');
-                document.getElementById('hours').innerText = Math.floor((dist % 86400000) / 3600000).toString().padStart(2,'0');
-                document.getElementById('minutes').innerText = Math.floor((dist % 3600000) / 60000).toString().padStart(2,'0');
-                document.getElementById('seconds').innerText = Math.floor((dist % 60000) / 1000).toString().padStart(2,'0');
-            }, 1000);
+            if (passes && msgEl) {
+                if (passes === '1') {
+                    msgEl.innerHTML = "Esta es una invitación <b>individual</b>.";
+                } else {
+                    msgEl.innerHTML = `Hemos reservado <span class="font-bold">${passes}</span> pases para ustedes.`;
+                }
+            }
         }
 
         window.onload = () => {
             checkPersonalization();
-            addParticles(document.getElementById('particles-container'), 50);
+            const container = document.getElementById('particles-container');
+            if (container) {
+                for (let i = 0; i < 60; i++) {
+                    const p = document.createElement('div'); p.className = 'particle';
+                    const s = Math.random() * 4 + 4; p.style.width = p.style.height = `${s}px`;
+                    p.style.left = `${Math.random() * 100}%`; p.style.bottom = `${Math.random() * 100}%`;
+                    p.style.animation = `float ${10+Math.random()*10}s infinite linear`;
+                    const c = ['#ffffff', '#fff5f7', '#f8bbd0']; p.style.backgroundColor = c[Math.floor(Math.random()*3)];
+                    container.appendChild(p);
+                }
+            }
             document.querySelectorAll('[data-particles="true"]').forEach(c => {
-                const innerParticles = 12;
-                for (let i = 0; i < innerParticles; i++) {
-                    const p = document.createElement('div');
-                    p.className = 'particle-card';
-                    const s = Math.random() * 3 + 1;
-                    p.style.width = p.style.height = `${s}px`;
-                    p.style.left = `${Math.random() * 100}%`;
-                    p.style.bottom = "-10%";
-                    p.style.animation = `float 8s infinite linear`;
-                    p.style.animationDelay = `${Math.random() * 5}s`;
-                    p.style.backgroundColor = '#ffffff';
-                    p.style.opacity = '0.3';
+                for (let i = 0; i < 15; i++) {
+                    const p = document.createElement('div'); p.className = 'particle-card';
+                    const s = Math.random() * 3 + 3; p.style.width = p.style.height = `${s}px`;
+                    p.style.left = `${Math.random() * 100}%`; p.style.bottom = "-10%";
+                    p.style.animation = `float ${8 + Math.random() * 4}s infinite linear`;
+                    p.style.backgroundColor = '#ffffff'; p.style.opacity = '0.8';
                     c.appendChild(p);
                 }
             });
-            startCountdown();
             const obs = new IntersectionObserver(ents => ents.forEach(e => {if(e.isIntersecting) e.target.classList.add('active')}), {threshold:0.1});
-            document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-        };
-
-        document.getElementById('rsvp-form').onsubmit = (e) => {
-            e.preventDefault(); e.target.classList.add('hidden');
-            document.getElementById('form-msg').classList.remove('hidden');
+            document.querySelectorAll('.reveal').forEach(el => {
+                if(!el.classList.contains('gallery-img-full')) { obs.observe(el); }
+            });
         };
     </script>
 </body>
