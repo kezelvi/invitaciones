@@ -53,7 +53,7 @@
             100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
 
-        /* Fondo Glitter Optimizado */
+        /* Fondo Glitter */
         .glitter-section {
             position: relative;
             width: 100%;
@@ -423,18 +423,18 @@
         </div>
     </section>
 
-    <!-- 7. RSVP PERSONALIZADO -->
+    <!-- 7. RSVP PERSONALIZADO DINÁMICO -->
     <section class="max-w-2xl mx-auto px-6 py-20 text-center">
         <div class="glass-card reveal" data-particles="true">
-            <div class="corner-decoration corner-tl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
-            <div class="corner-decoration corner-tr" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
-            <div class="corner-decoration corner-br" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
-            <div class="corner-decoration corner-bl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+            <div class="corner-decoration corner-tl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+            <div class="corner-decoration corner-tr" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+            <div class="corner-decoration corner-br" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+            <div class="corner-decoration corner-bl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
             <div class="card-content">
                 <h3 class="font-serif text-2xl gold-text mb-4">Confirmar Asistencia</h3>
                 <div id="personalization-box" class="mb-8 border-b border-gold-sep pb-6">
                     <!-- Cabecera dinámica -->
-                    <p class="text-lg font-light">Estimada <span id="family-name" class="font-serif italic font-bold">Invitado Especial</span></p>
+                    <p class="text-lg font-light"><span id="greeting-gender">Estimado</span> <span id="family-name" class="font-serif italic font-bold">Invitado Especial</span></p>
                     <!-- Mensaje dinámico de pases -->
                     <p id="pass-message" class="text-sm opacity-60 mt-1">Esperamos contar con tu presencia.</p>
                 </div>
@@ -484,20 +484,11 @@
 
         function toggleMusic() {
             const audio = document.getElementById('bg-music'), playI = document.getElementById('play-icon'), pauseI = document.getElementById('pause-icon'), btn = document.getElementById('music-toggle-btn');
-            if (audio.paused) { 
-                audio.play().then(() => { playI.classList.add('hidden'); pauseI.classList.remove('hidden'); btn.classList.add('playing'); }).catch(err => console.error(err)); 
-            } else { 
-                audio.pause(); playI.classList.remove('hidden'); pauseI.classList.add('hidden'); btn.classList.remove('playing'); 
-            }
+            if (audio.paused) { audio.play().then(() => { playI.classList.add('hidden'); pauseI.classList.remove('hidden'); btn.classList.add('playing'); }).catch(err => console.error(err)); } 
+            else { audio.pause(); playI.classList.remove('hidden'); pauseI.classList.add('hidden'); btn.classList.remove('playing'); }
         }
 
-        function updateImageTransform() { 
-            const img = document.getElementById('lightbox-img'); 
-            if(!img) return; 
-            const scale = isZoomed ? 2.5 : 1; 
-            img.style.transform = `scale(${scale}) translate(${panX / scale}px, ${panY / scale}px)`; 
-        }
-
+        function updateImageTransform() { const img = document.getElementById('lightbox-img'); if(!img) return; const scale = isZoomed ? 2.5 : 1; img.style.transform = `scale(${scale}) translate(${panX / scale}px, ${panY / scale}px)`; }
         function handleTouchStart(e) { touchStartX = e.changedTouches[0].screenX; touchStartY = e.changedTouches[0].screenY; lastTouchX = touchStartX; lastTouchY = touchStartY; }
         function handleTouchMove(e) { if (!isZoomed) return; const curX = e.changedTouches[0].screenX, curY = e.changedTouches[0].screenY; panX += curX - lastTouchX; panY += curY - lastTouchY; const limit = 400; panX = Math.max(Math.min(panX, limit), -limit); panY = Math.max(Math.min(panY, limit), -limit); lastTouchX = curX; lastTouchY = curY; updateImageTransform(); }
         function handleTouchEnd(e) { if (isZoomed) return; const endX = e.changedTouches[0].screenX; if (endX < touchStartX - 50) changeImage(1); else if (endX > touchStartX + 50) changeImage(-1); }
@@ -508,20 +499,37 @@
         function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); document.body.style.overflow = 'auto'; isZoomed = false; }
         function changeImage(step, e) { if (e) e.stopPropagation(); isZoomed = false; panX = 0; panY = 0; currentIdx = (currentIdx + step + galleryImgs.length) % galleryImgs.length; document.getElementById('lightbox-img').src = galleryImgs[currentIdx]; updateImageTransform(); }
 
-        // DINÁMICA DE PERSONALIZACIÓN
+        // DINÁMICA DE PERSONALIZACIÓN MEJORADA
         function checkPersonalization() {
             const params = new URLSearchParams(window.location.search);
-            const family = params.get('f'); // Nombre o Familia
+            const rawFamily = params.get('f'); // Nombre o Familia
             const passes = params.get('p'); // Número de pases
 
             const nameEl = document.getElementById('family-name');
             const msgEl = document.getElementById('pass-message');
+            const greetingEl = document.getElementById('greeting-gender');
 
-            if (family && nameEl) {
-                nameEl.innerText = family;
+            if (rawFamily) {
+                // Convertir a Mayúsculas la Primera Letra de Cada Palabra (Title Case)
+                const formattedName = rawFamily.toLowerCase().split(' ').map(word => 
+                    word.charAt(0).toUpperCase() + word.slice(1)
+                ).join(' ');
+                
+                nameEl.innerText = formattedName;
+                
+                // Ajustar género del saludo basado en si contiene "Familia"
+                if (formattedName.toLowerCase().includes('familia')) {
+                    greetingEl.innerText = "Estimada";
+                } else {
+                    greetingEl.innerText = "Estimado/a";
+                }
+            } else {
+                // Default si no hay parámetro f
+                nameEl.innerText = "Invitado Especial";
+                greetingEl.innerText = "Estimado";
             }
 
-            if (passes && msgEl) {
+            if (passes) {
                 if (passes === '1') {
                     msgEl.innerHTML = "Esta es una invitación <b>individual</b>.";
                 } else {
