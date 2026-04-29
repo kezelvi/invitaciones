@@ -75,31 +75,13 @@
             border-radius: 32px;
             box-shadow: 0 15px 45px -10px rgba(112, 51, 66, 0.2);
             overflow: hidden;
-            padding: 3.5rem 2rem;
+            padding: 4rem 2.5rem;
             margin-bottom: 2rem;
         }
 
-        .card-content { position: relative; z-index: 10; }
+        .card-content { position: relative; z-index: 10; width: 100%; }
 
-        .corner-decoration {
-            position: absolute;
-            width: 75px;
-            height: 75px;
-            background-color: var(--rose-gold-main);
-            mask-size: contain;
-            mask-repeat: no-repeat;
-            -webkit-mask-size: contain;
-            -webkit-mask-repeat: no-repeat;
-            z-index: 5;
-            opacity: 0.4;
-            pointer-events: none;
-        }
-        
-        .corner-tl { top: 15px; left: 15px; transform: rotate(180deg); }
-        .corner-tr { top: 15px; right: 15px; transform: rotate(270deg); }
-        .corner-br { bottom: 15px; right: 15px; transform: rotate(0deg); }
-        .corner-bl { bottom: 15px; left: 15px; transform: rotate(90deg); }
-
+        /* Estilo base para los adornos de títulos */
         .title-ornament {
             width: 200px;
             height: 45px;
@@ -110,12 +92,33 @@
             -webkit-mask-size: contain;
             -webkit-mask-repeat: no-repeat;
             -webkit-mask-position: center;
-            background-color: currentColor;
+            background-color: var(--rose-gold-main); 
             mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/xv.debanhi/limite%20de%20seccion.png');
             -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/xv.debanhi/limite%20de%20seccion.png');
+            display: block;
+            z-index: 20;
         }
         
         .ornament-bottom { transform: rotate(180deg); }
+
+        .corner-decoration {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            background-color: var(--rose-gold-main);
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            -webkit-mask-size: contain;
+            -webkit-mask-repeat: no-repeat;
+            z-index: 5;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        
+        .corner-tl { top: 12px; left: 12px; transform: rotate(180deg); }
+        .corner-tr { top: 12px; right: 12px; transform: rotate(270deg); }
+        .corner-br { bottom: 12px; right: 12px; transform: rotate(0deg); }
+        .corner-bl { bottom: 12px; left: 12px; transform: rotate(90deg); }
 
         .gold-text {
             background: linear-gradient(135deg, var(--rose-gold-dark) 0%, var(--rose-gold-main) 50%, var(--rose-gold-dark) 100%);
@@ -157,7 +160,6 @@
             position: relative;
             z-index: 50;
         }
-        .music-btn.playing { animation: pulse-music 2s infinite; }
 
         .custom-icon {
             display: inline-block;
@@ -224,7 +226,6 @@
 
     <!-- 2. RECUADRO FECHA + MÚSICA -->
     <section class="max-w-4xl mx-auto px-6 py-20 text-center">
-        
         <audio id="bg-music" loop preload="auto">
             <source src="https://raw.githubusercontent.com/kezelvi/invitaciones/main/xv.debanhi/musica.mp3" type="audio/mpeg">
         </audio>
@@ -244,17 +245,12 @@
             <div class="corner-decoration corner-br" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
             <div class="corner-decoration corner-bl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
             
-            <div class="card-content">
-                <p class="text-lg italic mb-12 font-light opacity-80">"Un día para recordar, una noche para soñar."</p>
-                <div class="flex flex-col items-center justify-center gap-6 overflow-visible">
-                    <div class="text-2xl md:text-4xl font-serif tracking-[0.4em] uppercase opacity-70">SÁBADO</div>
-                    
-                    <div class="title-ornament gold-text w-[180px] md:w-[280px]"></div>
-                    <div class="text-4xl md:text-8xl font-serif gold-text leading-tight whitespace-nowrap">
-                        30 | Mayo | 2026
-                    </div>
-                    <div class="title-ornament ornament-bottom gold-text w-[180px] md:w-[280px]"></div>
-                </div>
+            <div class="card-content flex flex-col items-center">
+                <p class="text-lg italic mb-10 font-light opacity-80 px-4">"Un día para recordar, una noche para soñar."</p>
+                <div class="text-2xl md:text-4xl font-serif tracking-[0.4em] uppercase opacity-70 mb-4">SÁBADO</div>
+                <div class="title-ornament w-[180px] md:w-[280px]"></div>
+                <div class="text-4xl md:text-8xl font-serif gold-text leading-tight whitespace-nowrap py-6">30 | Mayo | 2026</div>
+                <div class="title-ornament ornament-bottom w-[180px] md:w-[280px]"></div>
             </div>
         </div>
     </section>
@@ -268,7 +264,7 @@
                 <div class="corner-decoration corner-tr" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
                 <div class="corner-decoration corner-br" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
                 <div class="corner-decoration corner-bl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
-                <div class="card-content">
+                <div class="card-content px-4 md:px-16">
                     <p class="text-xl md:text-3xl font-light mb-12 leading-relaxed italic text-center text-gray-800">
                         "Hoy guardo mis juguetes y extiendo mis alas para volar hacia un nuevo horizonte. Dejo atrás una hermosa etapa de mi vida para comenzar el camino que me convertirá en la mujer que sueño ser..."
                     </p>
@@ -319,7 +315,7 @@
         </div>
     </section>
 
-    <!-- 5. ITINERARIO -->
+    <!-- 5. ITINERARIO (ACTUALIZADO: TEXTOS MÁS GRANDES Y HORA MÁS GRUESA) -->
     <section class="w-full text-center">
         <div class="flex flex-col items-center justify-center py-24 text-[var(--rose-gold-main)]">
             <div class="title-ornament"></div>
@@ -328,45 +324,45 @@
         </div>
         <div class="grid grid-cols-2 w-full gap-0">
             <div class="relative aspect-square overflow-hidden group">
-                <img src="https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/xv.debanhi/llegada.jpg" class="w-full h-full object-cover" alt="Llegada">
-                <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center p-4">
-                    <span class="text-[10px] uppercase tracking-widest text-white/80 mb-1">19:30 HRS</span>
-                    <h4 class="font-serif text-sm md:text-lg text-white uppercase tracking-wider text-center">Llegada invitados</h4>
+                <img src="https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/xv.debanhi/llegada.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Llegada">
+                <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center p-4">
+                    <span class="text-base md:text-xl font-black tracking-[0.2em] text-white mb-2 drop-shadow-md">19:30 HRS</span>
+                    <h4 class="font-serif text-lg md:text-3xl text-white uppercase tracking-widest text-center leading-tight drop-shadow-lg">Llegada invitados</h4>
                 </div>
             </div>
-            <div class="relative aspect-square overflow-hidden">
-                <img src="https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/xv.debanhi/presentacion.jpg" class="w-full h-full object-cover" alt="Presentación">
-                <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center p-4">
-                    <span class="text-[10px] uppercase tracking-widest text-white/80 mb-1">20:00 HRS</span>
-                    <h4 class="font-serif text-sm md:text-lg text-white uppercase tracking-wider text-center">Presentación</h4>
+            <div class="relative aspect-square overflow-hidden group">
+                <img src="https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/xv.debanhi/presentacion.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Presentación">
+                <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center p-4">
+                    <span class="text-base md:text-xl font-black tracking-[0.2em] text-white mb-2 drop-shadow-md">20:00 HRS</span>
+                    <h4 class="font-serif text-lg md:text-3xl text-white uppercase tracking-widest text-center leading-tight drop-shadow-lg">Presentación</h4>
                 </div>
             </div>
-            <div class="relative aspect-square overflow-hidden">
-                <img src="https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/xv.debanhi/vals.jpg" class="w-full h-full object-cover" alt="Vals">
-                <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center p-4">
-                    <span class="text-[10px] uppercase tracking-widest text-white/80 mb-1">21:00 HRS</span>
-                    <h4 class="font-serif text-sm md:text-lg text-white uppercase tracking-wider text-center">Vals</h4>
+            <div class="relative aspect-square overflow-hidden group">
+                <img src="https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/xv.debanhi/vals.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Vals">
+                <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center p-4">
+                    <span class="text-base md:text-xl font-black tracking-[0.2em] text-white mb-2 drop-shadow-md">21:00 HRS</span>
+                    <h4 class="font-serif text-lg md:text-3xl text-white uppercase tracking-widest text-center leading-tight drop-shadow-lg">Vals</h4>
                 </div>
             </div>
-            <div class="relative aspect-square overflow-hidden">
-                <img src="https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/xv.debanhi/cena.jpg" class="w-full h-full object-cover" alt="Cena">
-                <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center p-4">
-                    <span class="text-[10px] uppercase tracking-widest text-white/80 mb-1">21:30 HRS</span>
-                    <h4 class="font-serif text-sm md:text-lg text-white uppercase tracking-wider text-center">Cena</h4>
+            <div class="relative aspect-square overflow-hidden group">
+                <img src="https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/xv.debanhi/cena.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Cena">
+                <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center p-4">
+                    <span class="text-base md:text-xl font-black tracking-[0.2em] text-white mb-2 drop-shadow-md">21:30 HRS</span>
+                    <h4 class="font-serif text-lg md:text-3xl text-white uppercase tracking-widest text-center leading-tight drop-shadow-lg">Cena</h4>
                 </div>
             </div>
-            <div class="relative aspect-square overflow-hidden">
-                <img src="https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/xv.debanhi/dj.jpg" class="w-full h-full object-cover" alt="DJ">
-                <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center p-4">
-                    <span class="text-[10px] uppercase tracking-widest text-white/80 mb-1">22:30 HRS</span>
-                    <h4 class="font-serif text-sm md:text-lg text-white uppercase tracking-wider text-center">DJ</h4>
+            <div class="relative aspect-square overflow-hidden group">
+                <img src="https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/xv.debanhi/dj.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="DJ">
+                <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center p-4">
+                    <span class="text-base md:text-xl font-black tracking-[0.2em] text-white mb-2 drop-shadow-md">22:30 HRS</span>
+                    <h4 class="font-serif text-lg md:text-3xl text-white uppercase tracking-widest text-center leading-tight drop-shadow-lg">DJ</h4>
                 </div>
             </div>
-            <div class="relative aspect-square overflow-hidden">
-                <img src="https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/xv.debanhi/fin.jpg" class="w-full h-full object-cover" alt="Fin">
-                <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center p-4">
-                    <span class="text-[10px] uppercase tracking-widest text-white/80 mb-1">01:00 HRS</span>
-                    <h4 class="font-serif text-sm md:text-lg text-white uppercase tracking-wider text-center">Fin</h4>
+            <div class="relative aspect-square overflow-hidden group">
+                <img src="https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/xv.debanhi/fin.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Fin">
+                <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center p-4">
+                    <span class="text-base md:text-xl font-black tracking-[0.2em] text-white mb-2 drop-shadow-md">01:00 HRS</span>
+                    <h4 class="font-serif text-lg md:text-3xl text-white uppercase tracking-widest text-center leading-tight drop-shadow-lg">Fin</h4>
                 </div>
             </div>
         </div>
@@ -379,16 +375,13 @@
             <div class="corner-decoration corner-tr" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
             <div class="corner-decoration corner-br" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
             <div class="corner-decoration corner-bl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
-            
-            <div class="card-content flex flex-col items-center">
-                <div class="title-ornament" style="color: var(--rose-gold-dark);"></div>
+            <div class="card-content flex flex-col items-center px-4">
+                <div class="title-ornament"></div>
                 <h3 class="font-serif text-xl my-4 uppercase tracking-widest text-[var(--rose-gold-dark)] font-bold">Código de Vestimenta</h3>
-                <div class="title-ornament ornament-bottom" style="color: var(--rose-gold-dark);"></div>
-                
+                <div class="title-ornament ornament-bottom"></div>
                 <div class="my-6">
                     <span class="custom-icon" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/xv.debanhi/icono%20traje.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/xv.debanhi/icono%20traje.png');"></span>
                 </div>
-                
                 <h4 class="text-2xl md:text-3xl font-serif uppercase tracking-widest text-[var(--rose-gold-dark)] mb-4 font-bold">Formal</h4>
                 <p class="text-lg md:text-xl font-bold tracking-wide leading-relaxed text-[var(--rose-gold-main)] drop-shadow-sm">
                     Evitar usar tonalidades en <u><b class="font-[900]">azul</b></u>, queda reservado para la quinceañera.
@@ -397,17 +390,15 @@
         </div>
     </section>
 
-    <!-- NUEVA SECCIÓN: LLUVIA DE SOBRES -->
+    <!-- LLUVIA DE SOBRES -->
     <section class="max-w-xl mx-auto px-6 py-10 text-center">
         <div class="glass-card" data-particles="true">
             <div class="corner-decoration corner-tl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
             <div class="corner-decoration corner-tr" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
             <div class="corner-decoration corner-br" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
             <div class="corner-decoration corner-bl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
-            
-            <div class="card-content flex flex-col items-center">
+            <div class="card-content flex flex-col items-center px-4">
                 <div class="mb-6">
-                    <!-- Icono de Sobre usando SVG Path para asegurar visibilidad -->
                     <span class="custom-icon" style="mask-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><path d=%22M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z%22/></svg>'); -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><path d=%22M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z%22/></svg>');"></span>
                 </div>
                 <h3 class="font-serif text-2xl gold-text mb-4 uppercase tracking-widest">Lluvia de Sobres</h3>
@@ -425,8 +416,7 @@
             <div class="corner-decoration corner-tr" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
             <div class="corner-decoration corner-br" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
             <div class="corner-decoration corner-bl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
-            
-            <div class="card-content">
+            <div class="card-content px-4">
                 <h3 class="font-serif text-2xl gold-text mb-4">Confirmar Asistencia</h3>
                 <div id="personalization-box" class="mb-8 border-b border-gold-sep pb-6">
                     <p class="text-lg font-light text-gray-700">
@@ -441,19 +431,18 @@
                     </div>
                     <button type="submit" class="w-full py-5 rounded-xl btn-gold uppercase tracking-widest text-xs">Enviar Confirmación</button>
                 </form>
-                <div id="form-msg" class="hidden mt-6 gold-text font-serif text-lg animate-pulse">¡Registro recibido! Los esperamos. ✨</div>
             </div>
         </div>
     </section>
 
-    <!-- 8. GALERÍA -->
+    <!-- 8. GALERÍA (ORNAMENTOS BLANCOS) -->
     <section class="glitter-section text-center">
         <div class="absolute inset-0 bg-black/10"></div>
         <div class="relative z-10 w-full">
             <div class="flex flex-col items-center justify-center py-24 text-white">
-                <div class="title-ornament"></div>
+                <div class="title-ornament" style="background-color: white;"></div>
                 <h2 class="font-serif text-2xl py-6 drop-shadow-md uppercase tracking-[0.3em] font-bold">Galería</h2>
-                <div class="title-ornament ornament-bottom"></div>
+                <div class="title-ornament ornament-bottom" style="background-color: white;"></div>
             </div>
             <div class="gallery-container">
                 <img src="https://github.com/kezelvi/invitaciones/blob/main/invitacion2.jpg?raw=true" class="gallery-img-full block cursor-pointer" onclick="openLightbox(0)">
