@@ -426,7 +426,7 @@
                 </div>
                 <form id="rsvp-form" class="space-y-4 text-left">
                     <div id="names-container" class="space-y-4">
-                        <!-- Inputs dinámicos -->
+                        <!-- Inputs dinámicos solo si pases > 1 -->
                     </div>
                     <button type="submit" class="w-full py-4 mt-6 rounded-xl btn-gold uppercase tracking-widest text-xs">Enviar Confirmación</button>
                 </form>
@@ -521,7 +521,7 @@
             greetingEl.innerText = isFemale ? "Estimada" : "Estimado";
 
             globalPassCount = parseInt(pasesStr) || 1;
-            if (pasesStr === "1") {
+            if (globalPassCount === 1) {
                 msgEl.innerHTML = "Esta es una invitación <b>individual</b>.";
             } else if (pasesStr !== "") {
                 msgEl.innerHTML = `Hemos reservado <span class="font-bold">${globalPassCount}</span> pases para ustedes.`;
@@ -533,17 +533,27 @@
         function generateInputs(count) {
             const container = document.getElementById('names-container');
             container.innerHTML = "";
-            for (let i = 1; i <= count; i++) {
-                const div = document.createElement('div');
-                div.innerHTML = `
-                    <label class="text-[10px] uppercase tracking-widest opacity-60 ml-1 font-bold">Nombre del invitado ${count > 1 ? i : ''}</label>
-                    <input type="text" required placeholder="Nombre completo" class="rsvp-input w-full bg-white/40 border border-pink-300/50 rounded-xl p-3 outline-none focus:border-pink-500 transition-colors text-[var(--dark-pink)] text-sm placeholder-pink-900/30 shadow-inner">
+            
+            // Requisito: Solo mostrar recuadros si la invitación NO es individual (pases > 1)
+            if (count > 1) {
+                for (let i = 1; i <= count; i++) {
+                    const div = document.createElement('div');
+                    div.innerHTML = `
+                        <label class="text-[10px] uppercase tracking-widest opacity-60 ml-1 font-bold">Nombre del invitado ${i}</label>
+                        <input type="text" required placeholder="Nombre completo" class="rsvp-input w-full bg-white/40 border border-pink-300/50 rounded-xl p-3 outline-none focus:border-pink-500 transition-colors text-[var(--dark-pink)] text-sm placeholder-pink-900/30 shadow-inner">
+                    `;
+                    container.appendChild(div);
+                }
+            } else {
+                // Mensaje sutil si es individual
+                container.innerHTML = `
+                    <div class="text-center py-2">
+                        <p class="text-xs italic opacity-60">Confirmación lista para: <br><span class="font-bold">${displayedName}</span></p>
+                    </div>
                 `;
-                container.appendChild(div);
             }
         }
 
-        // Manejo del formulario y WhatsApp
         document.getElementById('rsvp-form').onsubmit = (e) => {
             e.preventDefault();
             
@@ -556,13 +566,11 @@
             let message = "";
             
             if (globalPassCount > 1) {
-                // Plural
                 message = `¡Hola!, si estaremos presentes en ese dia tan especial, nos vemos el ${dateStr}!\n\nAtentamente: ${displayedName}\n`;
                 attendees.forEach(name => {
                     message += `-${name}\n`;
                 });
             } else {
-                // Individual
                 message = `¡Hola!, si estaré presente en ese dia tan especial, nos vemos el ${dateStr}!\n\nAtentamente: ${displayedName}`;
             }
 
