@@ -75,13 +75,12 @@
             border-radius: 32px;
             box-shadow: 0 15px 45px -10px rgba(112, 51, 66, 0.2);
             overflow: hidden;
-            padding: 4rem 2.5rem;
-            margin-bottom: 2rem;
+            padding: 3rem 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .card-content { position: relative; z-index: 10; width: 100%; }
 
-        /* Estilo base para los adornos de títulos */
         .title-ornament {
             width: 200px;
             height: 45px;
@@ -192,9 +191,7 @@
             justify-content: center; align-items: center;
         }
 
-        #lightbox-img { 
-            max-width: 95%; max-height: 85vh; 
-        }
+        #lightbox-img { max-width: 95%; max-height: 85vh; }
 
         .main-photo-mask {
             mask-image: linear-gradient(to top, transparent 0%, black 60%);
@@ -217,7 +214,7 @@
     <section class="relative w-full aspect-square overflow-hidden bg-[var(--pale-pink)]">
         <img src="https://github.com/kezelvi/invitaciones/blob/main/invitacion1.jpg?raw=true" 
              class="w-full h-full object-cover main-photo-mask" alt="Debanhi Portada">
-        <div class="absolute bottom-0 left-0 w-full pb-10 text-center">
+        <div class="absolute bottom-0 left-0 w-full pb-8 text-center">
             <h2 class="text-sm tracking-[0.6em] font-serif uppercase mb-2 text-white drop-shadow-lg">Mis XV Años</h2>
             <h1 class="text-7xl md:text-[9rem] font-accent text-white leading-tight drop-shadow-2xl">Debanhi</h1>
             <p class="text-xs md:text-lg tracking-[0.4em] uppercase opacity-100 text-white mt-4 drop-shadow-md">Una noche mágica para brillar</p>
@@ -225,7 +222,7 @@
     </section>
 
     <!-- 2. RECUADRO FECHA + MÚSICA -->
-    <section class="max-w-4xl mx-auto px-6 py-20 text-center">
+    <section class="max-w-4xl mx-auto px-6 py-10 text-center">
         <audio id="bg-music" loop preload="auto">
             <source src="https://raw.githubusercontent.com/kezelvi/invitaciones/main/xv.debanhi/musica.mp3" type="audio/mpeg">
         </audio>
@@ -235,7 +232,7 @@
             <svg id="pause-icon" class="hidden w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
         </div>
 
-        <p class="text-sm md:text-lg font-bold uppercase tracking-widest text-[var(--rose-gold-dark)] mb-6 animate-pulse">
+        <p class="text-sm md:text-lg font-bold uppercase tracking-widest text-[var(--rose-gold-dark)] mb-4 animate-pulse">
             ESTA INVITACION TODAVIA NO ESTÁ LISTA PARA ENVIARSE
         </p>
 
@@ -246,17 +243,17 @@
             <div class="corner-decoration corner-bl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
             
             <div class="card-content flex flex-col items-center">
-                <p class="text-lg italic mb-10 font-light opacity-80 px-4">"Un día para recordar, una noche para soñar."</p>
-                <div class="text-2xl md:text-4xl font-serif tracking-[0.4em] uppercase opacity-70 mb-4">SÁBADO</div>
+                <p class="text-lg italic mb-6 font-light opacity-80 px-4">"Un día para recordar, una noche para soñar."</p>
+                <div class="text-2xl md:text-4xl font-serif tracking-[0.4em] uppercase opacity-70 mb-2">SÁBADO</div>
                 <div class="title-ornament w-[180px] md:w-[280px]"></div>
-                <div class="text-4xl md:text-8xl font-serif gold-text leading-tight whitespace-nowrap py-6">30 | Mayo | 2026</div>
+                <div class="text-4xl md:text-8xl font-serif gold-text leading-tight whitespace-nowrap py-4">30 | Mayo | 2026</div>
                 <div class="title-ornament ornament-bottom w-[180px] md:w-[280px]"></div>
             </div>
         </div>
     </section>
 
     <!-- 3. FRASE Y BENDICIÓN -->
-    <section class="glitter-section py-16 text-center">
+    <section class="glitter-section py-10 text-center">
         <div class="absolute inset-0 bg-black/10"></div>
         <div class="max-w-4xl mx-auto px-6 relative z-10">
             <div class="glass-card" data-particles="true">
@@ -265,13 +262,13 @@
                 <div class="corner-decoration corner-br" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
                 <div class="corner-decoration corner-bl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
                 <div class="card-content px-4 md:px-16">
-                    <p class="text-xl md:text-3xl font-light mb-12 leading-relaxed italic text-center text-gray-800">
+                    <p class="text-xl md:text-3xl font-light mb-8 leading-relaxed italic text-center text-gray-800">
                         "Hoy guardo mis juguetes y extiendo mis alas para volar hacia un nuevo horizonte. Dejo atrás una hermosa etapa de mi vida para comenzar el camino que me convertirá en la mujer que sueño ser..."
                     </p>
-                    <div class="flex flex-col items-center space-y-2 tracking-[0.2em] uppercase font-light">
-                        <p class="text-xs md:text-sm mb-4 opacity-70">con la bendición de mis padres</p>
+                    <div class="flex flex-col items-center space-y-1 tracking-[0.2em] uppercase font-light">
+                        <p class="text-xs md:text-sm mb-3 opacity-70">con la bendición de mis padres</p>
                         <p class="gold-text font-serif text-2xl md:text-4xl">Francisco García</p>
-                        <p class="gold-text font-serif text-3xl md:text-5xl my-2">&</p>
+                        <p class="gold-text font-serif text-3xl md:text-5xl my-1">&</p>
                         <p class="gold-text font-serif text-2xl md:text-4xl">Nora Domínguez</p>
                     </div>
                 </div>
@@ -280,7 +277,7 @@
     </section>
 
     <!-- 4. UBICACIONES -->
-    <section class="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-8">
+    <section class="max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-6">
         <div class="glass-card text-center" data-particles="true">
             <div class="corner-decoration corner-tl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
             <div class="corner-decoration corner-tr" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
@@ -290,11 +287,11 @@
                 <div class="mb-4">
                     <span class="custom-icon" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/xv.debanhi/icono%20iglesia.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/xv.debanhi/icono%20iglesia.png');"></span>
                 </div>
-                <h3 class="font-serif text-2xl mb-4 uppercase tracking-widest opacity-80">Ceremonia</h3>
+                <h3 class="font-serif text-2xl mb-3 uppercase tracking-widest opacity-80">Ceremonia</h3>
                 <p class="text-sm font-semibold mb-1">Capilla Nuestra Sra de la Candelaria</p>
-                <p class="text-xs opacity-70 mb-6">Calle Jaén # 510, Col. Andalucia<br>San Nicolas de los Garza</p>
-                <p class="font-serif text-4xl mb-8 text-[var(--dark-pink)] font-bold">5:00 PM</p>
-                <a href="https://maps.app.goo.gl/vf3nJ6f6RzsDzoLz8" target="_blank" class="btn-gold inline-block px-10 py-4 rounded-full text-xs uppercase tracking-widest">Ver Mapa</a>
+                <p class="text-xs opacity-70 mb-4">Calle Jaén # 510, Col. Andalucia<br>San Nicolas de los Garza</p>
+                <p class="font-serif text-4xl mb-6 text-[var(--dark-pink)] font-bold">5:00 PM</p>
+                <a href="https://maps.app.goo.gl/vf3nJ6f6RzsDzoLz8" target="_blank" class="btn-gold inline-block px-8 py-3 rounded-full text-xs uppercase tracking-widest">Ver Mapa</a>
             </div>
         </div>
         <div class="glass-card text-center" data-particles="true">
@@ -306,20 +303,20 @@
                 <div class="mb-4">
                     <span class="custom-icon" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/xv.debanhi/icono%20copas.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/xv.debanhi/icono%20copas.png');"></span>
                 </div>
-                <h3 class="font-serif text-2xl mb-4 uppercase tracking-widest opacity-80">Recepción</h3>
+                <h3 class="font-serif text-2xl mb-3 uppercase tracking-widest opacity-80">Recepción</h3>
                 <p class="text-sm font-semibold mb-1">Mision del Campanario</p>
-                <p class="text-xs opacity-70 mb-6">Blvd. Julian Treviño Elizondo # 300, Col. El Milagro<br>Apodaca N.L</p>
-                <p class="font-serif text-4xl mb-8 text-[var(--dark-pink)] font-bold">7:30 PM</p>
-                <a href="https://www.google.com/maps/search/?api=1&query=Misión+del+Campanario+Blvd+Julian+Treviño+Elizondo+300+Apodaca" target="_blank" class="btn-gold inline-block px-10 py-4 rounded-full text-xs uppercase tracking-widest">Ver Mapa</a>
+                <p class="text-xs opacity-70 mb-4">Blvd. Julian Treviño Elizondo # 300, Col. El Milagro<br>Apodaca N.L</p>
+                <p class="font-serif text-4xl mb-6 text-[var(--dark-pink)] font-bold">7:30 PM</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Misión+del+Campanario+Blvd+Julian+Treviño+Elizondo+300+Apodaca" target="_blank" class="btn-gold inline-block px-8 py-3 rounded-full text-xs uppercase tracking-widest">Ver Mapa</a>
             </div>
         </div>
     </section>
 
-    <!-- 5. ITINERARIO (ACTUALIZADO: TEXTOS MÁS GRANDES Y HORA MÁS GRUESA) -->
+    <!-- 5. ITINERARIO -->
     <section class="w-full text-center">
-        <div class="flex flex-col items-center justify-center py-24 text-[var(--rose-gold-main)]">
+        <div class="flex flex-col items-center justify-center py-12 text-[var(--rose-gold-main)]">
             <div class="title-ornament"></div>
-            <h2 class="font-serif text-3xl py-6 uppercase tracking-[0.3em] font-bold">Itinerario</h2>
+            <h2 class="font-serif text-3xl py-4 uppercase tracking-[0.3em] font-bold">Itinerario</h2>
             <div class="title-ornament ornament-bottom"></div>
         </div>
         <div class="grid grid-cols-2 w-full gap-0">
@@ -369,20 +366,21 @@
     </section>
 
     <!-- 6. CÓDIGO DE VESTIMENTA -->
-    <section class="max-w-xl mx-auto px-6 py-32 text-center text-white">
+    <section class="max-w-xl mx-auto px-6 py-16 text-center text-white">
         <div class="glass-card" data-particles="true">
             <div class="corner-decoration corner-tl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
             <div class="corner-decoration corner-tr" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
             <div class="corner-decoration corner-br" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
             <div class="corner-decoration corner-bl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+            
             <div class="card-content flex flex-col items-center px-4">
                 <div class="title-ornament"></div>
                 <h3 class="font-serif text-xl my-4 uppercase tracking-widest text-[var(--rose-gold-dark)] font-bold">Código de Vestimenta</h3>
                 <div class="title-ornament ornament-bottom"></div>
-                <div class="my-6">
+                <div class="my-4">
                     <span class="custom-icon" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/xv.debanhi/icono%20traje.png'); -webkit-mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/xv.debanhi/icono%20traje.png');"></span>
                 </div>
-                <h4 class="text-2xl md:text-3xl font-serif uppercase tracking-widest text-[var(--rose-gold-dark)] mb-4 font-bold">Formal</h4>
+                <h4 class="text-2xl md:text-3xl font-serif uppercase tracking-widest text-[var(--rose-gold-dark)] mb-2 font-bold">Formal</h4>
                 <p class="text-lg md:text-xl font-bold tracking-wide leading-relaxed text-[var(--rose-gold-main)] drop-shadow-sm">
                     Evitar usar tonalidades en <u><b class="font-[900]">azul</b></u>, queda reservado para la quinceañera.
                 </p>
@@ -391,17 +389,18 @@
     </section>
 
     <!-- LLUVIA DE SOBRES -->
-    <section class="max-w-xl mx-auto px-6 py-10 text-center">
+    <section class="max-w-xl mx-auto px-6 py-6 text-center">
         <div class="glass-card" data-particles="true">
             <div class="corner-decoration corner-tl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
             <div class="corner-decoration corner-tr" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
             <div class="corner-decoration corner-br" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
             <div class="corner-decoration corner-bl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+            
             <div class="card-content flex flex-col items-center px-4">
-                <div class="mb-6">
+                <div class="mb-4">
                     <span class="custom-icon" style="mask-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><path d=%22M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z%22/></svg>'); -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><path d=%22M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z%22/></svg>');"></span>
                 </div>
-                <h3 class="font-serif text-2xl gold-text mb-4 uppercase tracking-widest">Lluvia de Sobres</h3>
+                <h3 class="font-serif text-2xl gold-text mb-3 uppercase tracking-widest">Lluvia de Sobres</h3>
                 <p class="text-sm md:text-base leading-relaxed italic text-gray-700 max-w-sm">
                     "Tu presencia es mi mejor regalo, pero si deseas tener un detalle conmigo, cuento con la modalidad de lluvia de sobres el día del evento."
                 </p>
@@ -409,39 +408,40 @@
         </div>
     </section>
 
-    <!-- 7. RSVP PERSONALIZADO -->
-    <section class="max-w-2xl mx-auto px-6 py-20 text-center">
+    <!-- 7. RSVP PERSONALIZADO (DINÁMICO) -->
+    <section class="max-w-2xl mx-auto px-6 py-10 text-center">
         <div class="glass-card" data-particles="true">
             <div class="corner-decoration corner-tl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
             <div class="corner-decoration corner-tr" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
             <div class="corner-decoration corner-br" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
             <div class="corner-decoration corner-bl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
+            
             <div class="card-content px-4">
-                <h3 class="font-serif text-2xl gold-text mb-4">Confirmar Asistencia</h3>
-                <div id="personalization-box" class="mb-8 border-b border-gold-sep pb-6">
+                <h3 class="font-serif text-2xl gold-text mb-3">Confirmar Asistencia</h3>
+                <div id="personalization-box" class="mb-6 border-b border-gold-sep pb-4">
                     <p class="text-lg font-light text-gray-700">
                         <span id="greeting-gender">Estimado</span> <span id="family-name" class="font-serif italic font-bold">Invitado Especial</span>
                     </p>
                     <p id="pass-message" class="text-sm opacity-60 mt-1">Esperamos contar con tu presencia.</p>
                 </div>
                 <form id="rsvp-form" class="space-y-4 text-left">
-                    <div>
-                        <label class="text-[10px] uppercase tracking-widest opacity-60 ml-1 font-bold">Nombres de quienes asisten</label>
-                        <textarea required placeholder="Ej: Juan, Maria y Luis" class="w-full bg-white/40 border border-pink-300/50 rounded-xl p-4 outline-none focus:border-pink-500 transition-colors text-[var(--dark-pink)] text-sm placeholder-pink-900/30 shadow-inner" rows="3"></textarea>
+                    <!-- Contenedor dinámico de nombres -->
+                    <div id="names-container" class="space-y-4">
+                        <!-- Los inputs se generan aquí vía JavaScript -->
                     </div>
-                    <button type="submit" class="w-full py-5 rounded-xl btn-gold uppercase tracking-widest text-xs">Enviar Confirmación</button>
+                    <button type="submit" class="w-full py-4 mt-6 rounded-xl btn-gold uppercase tracking-widest text-xs">Enviar Confirmación</button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- 8. GALERÍA (ORNAMENTOS BLANCOS) -->
+    <!-- 8. GALERÍA -->
     <section class="glitter-section text-center">
         <div class="absolute inset-0 bg-black/10"></div>
         <div class="relative z-10 w-full">
-            <div class="flex flex-col items-center justify-center py-24 text-white">
+            <div class="flex flex-col items-center justify-center py-12 text-white">
                 <div class="title-ornament" style="background-color: white;"></div>
-                <h2 class="font-serif text-2xl py-6 drop-shadow-md uppercase tracking-[0.3em] font-bold">Galería</h2>
+                <h2 class="font-serif text-2xl py-4 drop-shadow-md uppercase tracking-[0.3em] font-bold">Galería</h2>
                 <div class="title-ornament ornament-bottom" style="background-color: white;"></div>
             </div>
             <div class="gallery-container">
@@ -453,7 +453,7 @@
         </div>
     </section>
 
-    <footer class="py-20 text-center bg-black/20 text-white/40 text-[10px] tracking-[0.3em] uppercase">
+    <footer class="py-10 text-center bg-black/20 text-white/40 text-[10px] tracking-[0.3em] uppercase">
         <div class="mb-2 text-white/60">Debanhi — XV Años — 2026</div>
         <a href="https://www.instagram.com/kezelvi/" target="_blank" class="hover:underline hover:text-white transition-all">Designed by Kezelvi</a>
     </footer>
@@ -484,20 +484,22 @@
             const nameEl = document.getElementById('family-name');
             const msgEl = document.getElementById('pass-message');
             const greetingEl = document.getElementById('greeting-gender');
+            const namesContainer = document.getElementById('names-container');
 
             if (!rawData) {
                 greetingEl.innerText = "Estimado";
                 nameEl.innerText = "Invitado Especial";
+                generateInputs(1);
                 return;
             }
 
             let parts = rawData.split('.');
-            let pases = "";
+            let pasesStr = "";
             let genderOverride = null;
             let nameParts = [];
 
             parts.forEach(p => {
-                if (!isNaN(p)) pases = p;
+                if (!isNaN(p)) pasesStr = p;
                 else if (p.toLowerCase() === 'm' || p.toLowerCase() === 'f') genderOverride = p.toLowerCase();
                 else nameParts.push(p);
             });
@@ -516,10 +518,26 @@
 
             greetingEl.innerText = isFemale ? "Estimada" : "Estimado";
 
-            if (pases === "1") {
+            const numPases = parseInt(pasesStr) || 1;
+            if (pasesStr === "1") {
                 msgEl.innerHTML = "Esta es una invitación <b>individual</b>.";
-            } else if (pases !== "") {
-                msgEl.innerHTML = `Hemos reservado <span class="font-bold">${pases}</span> pases para ustedes.`;
+            } else if (pasesStr !== "") {
+                msgEl.innerHTML = `Hemos reservado <span class="font-bold">${numPases}</span> pases para ustedes.`;
+            }
+
+            generateInputs(numPases);
+        }
+
+        function generateInputs(count) {
+            const container = document.getElementById('names-container');
+            container.innerHTML = "";
+            for (let i = 1; i <= count; i++) {
+                const div = document.createElement('div');
+                div.innerHTML = `
+                    <label class="text-[10px] uppercase tracking-widest opacity-60 ml-1 font-bold">Nombre del invitado ${count > 1 ? i : ''}</label>
+                    <input type="text" required placeholder="Ingresa el nombre aquí" class="w-full bg-white/40 border border-pink-300/50 rounded-xl p-3 outline-none focus:border-pink-500 transition-colors text-[var(--dark-pink)] text-sm placeholder-pink-900/30 shadow-inner">
+                `;
+                container.appendChild(div);
             }
         }
 
