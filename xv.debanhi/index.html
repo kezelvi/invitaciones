@@ -233,7 +233,7 @@
         </div>
 
         <p class="text-sm md:text-lg font-bold uppercase tracking-widest text-[var(--rose-gold-dark)] mb-4 animate-pulse">
-            ESTA INVITACION TODAVIA NO ESTÁ LISTA PARA ENVIARSE
+            ESTA INVITACIÓN TODAVÍA NO ESTÁ LISTA PARA ENVIARSE
         </p>
 
         <div class="glass-card" data-particles="true">
@@ -408,7 +408,7 @@
         </div>
     </section>
 
-    <!-- 7. RSVP PERSONALIZADO (DINÁMICO + WHATSAPP) -->
+    <!-- 7. RSVP PERSONALIZADO -->
     <section class="max-w-2xl mx-auto px-6 py-10 text-center">
         <div class="glass-card" data-particles="true">
             <div class="corner-decoration corner-tl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
@@ -428,7 +428,7 @@
                     <div id="names-container" class="space-y-4">
                         <!-- Inputs dinámicos solo si pases > 1 -->
                     </div>
-                    <button type="submit" class="w-full py-4 mt-6 rounded-xl btn-gold uppercase tracking-widest text-xs">Enviar Confirmación</button>
+                    <button type="submit" class="w-full py-4 mt-2 rounded-xl btn-gold uppercase tracking-widest text-xs">Enviar Confirmación</button>
                 </form>
             </div>
         </div>
@@ -534,7 +534,6 @@
             const container = document.getElementById('names-container');
             container.innerHTML = "";
             
-            // Requisito: Solo mostrar recuadros si la invitación NO es individual (pases > 1)
             if (count > 1) {
                 for (let i = 1; i <= count; i++) {
                     const div = document.createElement('div');
@@ -545,12 +544,8 @@
                     container.appendChild(div);
                 }
             } else {
-                // Mensaje sutil si es individual
-                container.innerHTML = `
-                    <div class="text-center py-2">
-                        <p class="text-xs italic opacity-60">Confirmación lista para: <br><span class="font-bold">${displayedName}</span></p>
-                    </div>
-                `;
+                // Si es individual, el contenedor queda vacío por solicitud del usuario
+                container.innerHTML = "";
             }
         }
 
