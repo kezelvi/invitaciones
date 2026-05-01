@@ -5,17 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Mis XV Años - Debanhi</title>
     
-    <!-- ETIQUETAS DE VISTA PREVIA (OPEN GRAPH) -->
+    <!-- ETIQUETAS DE VISTA PREVIA (OPEN GRAPH) PARA WHATSAPP / INSTAGRAM -->
     <meta property="og:title" content="Mis XV Años - Debanhi">
-    <meta property="og:description" content="Te invito a celebrar conmigo esta noche mágica.">
-    <meta property="og:image" content="https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/xv.debanhi/Flyer.png">
+    <meta property="og:description" content="Te invito a celebrar conmigo esta noche mágica. ¡No faltes!">
+    <!-- Se usa el enlace directo al archivo para asegurar que WhatsApp lo detecte -->
+    <meta property="og:image" content="https://raw.githubusercontent.com/kezelvi/invitaciones/main/xv.debanhi/Flyer.png">
+    <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:type" content="website">
     
-    <!-- Twitter / Instagram Extra -->
+    <!-- Twitter / Instagram Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://raw.githubusercontent.com/kezelvi/invitaciones/refs/heads/main/xv.debanhi/Flyer.png">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/kezelvi/invitaciones/main/xv.debanhi/Flyer.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
@@ -395,7 +397,7 @@
         </div>
     </section>
 
-    <!-- LLUVIA DE SOBRES MINIMALISTA -->
+    <!-- LLUVIA DE SOBRES -->
     <section class="max-w-xl mx-auto px-6 py-6 text-center">
         <div class="glass-card" data-particles="true" style="padding-top: 2rem; padding-bottom: 2rem;">
             <div class="corner-decoration corner-tl" style="mask-image: url('https://raw.githubusercontent.com/kezelvi/invitaciones/main/f1dc11732a213f99b2a809ed6f69a4be-decoracion-floral-de-la-esquina-2.png');"></div>
@@ -474,10 +476,7 @@
         let displayedName = "Invitado Especial";
 
         function playAudio() {
-            const audio = document.getElementById('bg-music');
-            const playI = document.getElementById('play-icon');
-            const pauseI = document.getElementById('pause-icon');
-            const btn = document.getElementById('music-toggle-btn');
+            const audio = document.getElementById('bg-music'), playI = document.getElementById('play-icon'), pauseI = document.getElementById('pause-icon'), btn = document.getElementById('music-toggle-btn');
             audio.play().then(() => { playI.classList.add('hidden'); pauseI.classList.remove('hidden'); btn.classList.add('playing'); }).catch(() => {
                 const startOnInteraction = () => { playAudio(); document.removeEventListener('click', startOnInteraction); document.removeEventListener('touchstart', startOnInteraction); document.removeEventListener('scroll', startOnInteraction); };
                 document.addEventListener('click', startOnInteraction, { once: true }); document.addEventListener('touchstart', startOnInteraction, { once: true }); document.addEventListener('scroll', startOnInteraction, { once: true });
@@ -485,11 +484,8 @@
         }
 
         function toggleMusic() {
-            const audio = document.getElementById('bg-music');
-            const playI = document.getElementById('play-icon');
-            const pauseI = document.getElementById('pause-icon');
-            const btn = document.getElementById('music-toggle-btn');
-            if (audio.paused) { playAudio(); } else { audio.pause(); playI.classList.remove('hidden'); pauseI.classList.add('hidden'); btn.classList.remove('playing'); }
+            const audio = document.getElementById('bg-music'), playI = document.getElementById('play-icon'), pauseI = document.getElementById('pause-icon'), btn = document.getElementById('music-toggle-btn');
+            if (audio.paused) playAudio(); else { audio.pause(); playI.classList.remove('hidden'); pauseI.classList.add('hidden'); btn.classList.remove('playing'); }
         }
 
         function openLightbox(i) { currentIdx = i; document.getElementById('lightbox-img').src = galleryImgs[i]; document.getElementById('lightbox').style.display = 'flex'; document.body.style.overflow = 'hidden'; }
