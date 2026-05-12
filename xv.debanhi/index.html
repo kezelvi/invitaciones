@@ -170,8 +170,7 @@
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(112, 51, 66, 0.3);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            z-index: 50;
+            position: relative; z-index: 50;
         }
         .music-btn.playing { animation: pulse-music 2s infinite; }
         @keyframes pulse-music { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
@@ -492,7 +491,9 @@
         function closeLightbox() { document.getElementById('lightbox').style.display = 'none'; document.body.style.overflow = 'auto'; }
         
         function checkPersonalization() {
-            let rawData = window.location.hash.substring(1) || window.location.search.substring(1);
+            // ARREGLO: Se añade decodeURIComponent para procesar correctamente caracteres como la 'ñ'
+            let rawData = decodeURIComponent(window.location.hash.substring(1) || window.location.search.substring(1));
+            
             const nameEl = document.getElementById('family-name'), msgEl = document.getElementById('pass-message'), greetingEl = document.getElementById('greeting-gender');
             if (!rawData) { greetingEl.innerText = "Estimado"; nameEl.innerText = "Invitado Especial"; displayedName = "Invitado Especial"; generateInputs(1); return; }
             let parts = rawData.split('.'), pasesStr = "", genderOverride = null, nameParts = [];
