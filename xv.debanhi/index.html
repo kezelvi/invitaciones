@@ -170,7 +170,8 @@
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(112, 51, 66, 0.3);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative; z-index: 50;
+            position: relative;
+            z-index: 50;
         }
         .music-btn.playing { animation: pulse-music 2s infinite; }
         @keyframes pulse-music { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
@@ -491,14 +492,17 @@
         function closeLightbox() { document.getElementById('lightbox').style.display = 'none'; document.body.style.overflow = 'auto'; }
         
         function checkPersonalization() {
-            // ARREGLO: Se añade decodeURIComponent para procesar correctamente caracteres como la 'ñ'
+            // Decodificamos la URL para aceptar 'ñ' y acentos
             let rawData = decodeURIComponent(window.location.hash.substring(1) || window.location.search.substring(1));
             
             const nameEl = document.getElementById('family-name'), msgEl = document.getElementById('pass-message'), greetingEl = document.getElementById('greeting-gender');
             if (!rawData) { greetingEl.innerText = "Estimado"; nameEl.innerText = "Invitado Especial"; displayedName = "Invitado Especial"; generateInputs(1); return; }
             let parts = rawData.split('.'), pasesStr = "", genderOverride = null, nameParts = [];
             parts.forEach(p => { if (!isNaN(p)) pasesStr = p; else if (p.toLowerCase() === 'm' || p.toLowerCase() === 'f') genderOverride = p.toLowerCase(); else nameParts.push(p); });
-            let fullName = nameParts.join(' ').toLowerCase().replace(/\b\w/g, l => l.toUpperCase());
+            
+            // ARREGLO DE MAYÚSCULAS: Se cambia el replace por un mapeo de palabras para no romper con la 'ñ'
+            let fullName = nameParts.join(' ').toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+            
             if (fullName === "") fullName = "Invitado Especial";
             nameEl.innerText = fullName; displayedName = fullName;
             let isFemale = fullName.toLowerCase().includes('familia') || fullName.toLowerCase().endsWith('a');
