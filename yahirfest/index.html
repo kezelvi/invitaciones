@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#080713">
+<meta name="description" content="Yahir-fest · una noche de neón, alberca y buena música. 21 de noviembre, 7:00 PM.">
+<title>Yahir-fest · Private Pool Night</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="./supabase-config.js"></script><script src="./app.js" defer></script>
+</head>
+<body>
+<div class="ambient ambient-one" aria-hidden="true"></div><div class="ambient ambient-two" aria-hidden="true"></div>
+<button id="musicToggle" class="music-toggle" type="button" aria-label="Activar música" aria-pressed="false"><span class="music-symbol" aria-hidden="true">♫</span><span id="musicLabel">MÚSICA OFF</span></button>
+<header class="hero" id="inicio">
+  <div class="hero-topline"><span class="tiny-line"></span> UNA NOCHE · UNA QUINTA · CERO PRISA <span class="tiny-line"></span></div>
+  <div class="hero-content">
+    <p class="eyebrow">YOU'RE ON THE LIST</p>
+    <div class="title-lockup">
+      <svg class="palm palm-left" viewBox="0 0 100 130" role="img" aria-label="Palmera de neón"><defs><linearGradient id="palmA" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#5effe7"/><stop offset="1" stop-color="#b65cff"/></linearGradient></defs><g fill="none" stroke="url(#palmA)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M51 126 Q47 78 52 33"/><path d="M52 35 Q27 7 5 17 Q28 17 44 38"/><path d="M51 35 Q56 5 84 4 Q65 19 55 40"/><path d="M52 34 Q80 22 96 41 Q73 34 54 43"/><path d="M50 35 Q29 27 20 49 Q36 40 53 43"/><path d="M52 34 Q48 14 30 4 Q41 24 49 39"/><path d="M52 36 Q69 43 76 63 Q61 51 51 44"/></g></svg>
+      <h1><span>YAHIR</span><b>-FEST</b></h1>
+      <svg class="palm palm-right" viewBox="0 0 100 130" role="img" aria-label="Palmera de neón"><defs><linearGradient id="palmB" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff55d9"/><stop offset="1" stop-color="#7d72ff"/></linearGradient></defs><g fill="none" stroke="url(#palmB)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M51 126 Q47 78 52 33"/><path d="M52 35 Q27 7 5 17 Q28 17 44 38"/><path d="M51 35 Q56 5 84 4 Q65 19 55 40"/><path d="M52 34 Q80 22 96 41 Q73 34 54 43"/><path d="M50 35 Q29 27 20 49 Q36 40 53 43"/><path d="M52 34 Q48 14 30 4 Q41 24 49 39"/><path d="M52 36 Q69 43 76 63 Q61 51 51 44"/></g></svg>
+    </div>
+    <p class="hero-subtitle">PRIVATE POOL NIGHT <span>✦</span> NEON EDITION</p>
+    <p class="hero-copy">Una noche para brillar, sumergirse y bailar<br class="desktop-break"> hasta que las luces sean parte del recuerdo.</p>
+    <div class="hero-details"><span><i></i> 21 NOVIEMBRE 2026</span><span><i></i> 7:00 PM</span><span><i></i> QUINTA AZUCENA</span></div>
+    <a class="button button-primary hero-cta" href="#confirmar">CONFIRMAR ASISTENCIA <span aria-hidden="true">↗</span></a>
+  </div>
+  <a class="scroll-cue" href="#fecha" aria-label="Desplazarse a los detalles"><span></span> SCROLL TO ENTER</a>
+  <div class="hero-bottomline"><span>MONTERREY, N.L.</span><span>EST. 2026</span><span>DRESS TO GLOW</span></div>
+</header>
+<main>
+  <section class="section date-section" id="fecha">
+    <div class="section-index">01 <span></span> THE INVITATION</div>
+    <div class="date-card glass"><div class="date-glow" aria-hidden="true"></div><p class="section-kicker">RESERVA LA NOCHE</p><h2>El plan es <em>brillar.</em></h2>
+      <div class="date-display"><div class="date-day">21</div><div class="date-month"><span>SÁBADO</span><strong>NOVIEMBRE</strong><small>2026</small></div><div class="date-divider"></div><div class="date-time"><strong>7:00</strong><span>PM · HASTA QUE SE APAGUEN LAS LUCES</span></div></div>
+      <p class="date-note">Alberca, palmeras y una noche con energía de club privado.</p>
+    </div>
+  </section>
+  <section class="section countdown-section" id="cuenta-regresiva">
+    <div class="section-index">02 <span></span> THE COUNTDOWN</div><p class="section-kicker">EL RELOJ YA ESTÁ CORRIENDO</p><h2>Nos vemos en <em>la noche.</em></h2>
+    <div class="countdown" role="timer" aria-label="Cuenta regresiva para Yahir-fest">
+      <div class="count-unit"><strong id="days">00</strong><span>DÍAS</span></div><div class="count-colon">:</div>
+      <div class="count-unit"><strong id="hours">00</strong><span>HORAS</span></div><div class="count-colon">:</div>
+      <div class="count-unit"><strong id="minutes">00</strong><span>MINUTOS</span></div><div class="count-colon">:</div>
+      <div class="count-unit"><strong id="seconds">00</strong><span>SEGUNDOS</span></div>
+    </div>
+    <p class="countdown-caption" id="countdownCaption">21.11.2026 <span>·</span> 19:00 H · SAN NICOLÁS DE LOS GARZA</p>
+  </section>
+  <section class="section location-section" id="lugar">
+    <div class="section-index">03 <span></span> THE LOCATION</div>
+    <div class="location-layout"><div class="location-copy"><p class="section-kicker">TU PUNTO DE ENCUENTRO</p><h2>Quinta<br><em>Azucena.</em></h2>
+      <p class="location-description">Una quinta para cambiar la rutina por agua, luces de neón y buena compañía. Llega con tiempo y prepárate para la noche.</p>
+      <div class="address-line"><span class="pin-icon" aria-hidden="true">⌖</span><p>Laguna de Tamiahua 707<br>Tacuba, 66470 San Nicolás de los Garza, N.L.</p></div>
+      <a class="button button-outline" href="https://maps.app.goo.gl/AMLKbYGuxeukzPoBA" target="_blank" rel="noopener noreferrer">VER UBICACIÓN EN MAPS <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="pool-art" aria-label="Ilustración abstracta de una alberca iluminada" role="img"><div class="pool-moon"></div><div class="pool-sun"></div><div class="pool-edge"></div><div class="pool-water"></div><div class="pool-reflection reflection-one"></div><div class="pool-reflection reflection-two"></div><div class="pool-reflection reflection-three"></div><div class="pool-palm pool-palm-one"><span></span></div><div class="pool-palm pool-palm-two"><span></span></div><span class="pool-label">NIGHT / SWIM / REPEAT</span></div></div>
+  </section>
+  <section class="section rsvp-section" id="confirmar">
+    <div class="section-index">04 <span></span> THE GUEST LIST</div>
+    <div class="rsvp-card glass"><p class="section-kicker">SAVE YOUR SPOT</p><h2>¿Te vemos <em>ahí?</em></h2><p class="rsvp-intro">Confirma tu asistencia para entrar en la lista de Yahir-fest.</p>
+      <form id="rsvpForm" novalidate>
+        <div class="attendance-choice" role="group" aria-label="Selecciona tu asistencia"><button type="button" class="choice-button choice-yes" data-attending="true" aria-pressed="false"><span class="choice-icon">✦</span> SÍ VOY A IR</button><button type="button" class="choice-button choice-no" data-attending="false" aria-pressed="false"><span class="choice-icon">↗</span> NO PODRÉ IR</button></div>
+        <input type="hidden" id="attendingValue" name="attending">
+        <label class="field-label" for="guestName">ESCRIBE TU NOMBRE</label><input id="guestName" name="name" class="name-input" type="text" autocomplete="name" maxlength="80" minlength="2" placeholder="Tu nombre completo" required>
+        <label class="reminder-row" for="reminder"><input id="reminder" name="reminder" type="checkbox"><span class="custom-check" aria-hidden="true"></span><span><strong>Activar recordatorio</strong><small>Quiero que me recuerden un día antes.</small></span></label>
+        <button class="button button-primary submit-button" id="submitRsvp" type="submit">GUARDAR RESPUESTA <span aria-hidden="true">↗</span></button>
+        <p id="rsvpStatus" class="form-status" role="status" aria-live="polite"></p><p class="privacy-note">Tu respuesta se usa únicamente para organizar la lista de invitados.</p>
+      </form>
+    </div>
+    <p class="closing-note">GOOD PEOPLE. GOOD MUSIC. ONE NIGHT. <span>✦</span></p>
+  </section>
+</main>
+<footer class="site-footer"><span>YAHIR-FEST © 2026</span><span>MADE FOR THE NIGHT <b>✦</b></span><a href="#inicio">VOLVER ARRIBA ↑</a></footer>
+<noscript><p class="noscript-message">Activa JavaScript para ver la cuenta regresiva y utilizar la confirmación de asistencia.</p></noscript>
+</body></html>
