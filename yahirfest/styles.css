@@ -194,3 +194,7 @@ body{max-width:100%;overflow-x:hidden;touch-action:pan-x pan-y}
   .countdown-section h2{font-size:clamp(2.1rem,7vw,3rem)}
   .rsvp-pool-photo{aspect-ratio:4/3;min-height:145px}
 }
+
+
+/* El ángulo lo actualiza app.js con requestAnimationFrame para que rote también en Chrome. */
+.date-card,.date-card::before,.date-card::after{animation:none!important}
