@@ -1,43 +1,30 @@
-# Yahir-fest — invitación y lista de invitados
-
-La invitación y el administrador están bajo esta estructura:
+# Yahir-fest — invitación digital
 
 - Invitación: https://kezinvites.site/yahirfest/
-- Administrador: https://kezinvites.site/yahirfest/administrador/
-- Código fuente: https://github.com/kezelvi/invitaciones/tree/main/yahirfest
+- Administración: https://kezinvites.site/yahirfest/administrador/
+- Código: https://github.com/kezelvi/invitaciones/tree/main/yahirfest
 
-## Incluye
-- Diseño adaptable para móvil y escritorio, palmeras de neón y estética nocturna premium con referencias visuales a una alberca.
-- Cuenta regresiva para el 21 de noviembre de 2026 a las 7:00 PM (hora de Monterrey).
-- Google Maps con la dirección indicada.
-- Música electrónica ambiental generada con Web Audio; comienza con la primera interacción ajena al botón de música y se pausa al ocultar la pestaña o salir.
-- Confirmación Sí voy a ir / No podré ir, nombre y casilla de recordatorio.
-- Panel administrativo con autenticación, lista, totales, búsqueda y avisos en vivo mientras el panel está abierto.
-- SQL con RLS: visitantes pueden insertar respuestas, solo usuarios autenticados leen la lista.
+## Archivos multimedia
+Coloca estos archivos en esta carpeta:
+- foto_antro.jpg: fotografía que aparecerá en la sección del lugar.
+- musica_yahirfest.mp3: música de fondo que se repite continuamente.
 
-## Conectar la lista compartida (necesario para usarla entre dispositivos)
-GitHub Pages sirve archivos estáticos. No puede guardar respuestas en un archivo del repositorio desde el navegador de un invitado de forma segura; la lista compartida utiliza Supabase.
+Estos dos archivos no aparecen actualmente en el árbol de archivos de GitHub. El HTML ya los referencia, pero es necesario subirlos para que se vean y suenen. No se sustituyó la música por otra pista ni se inventó una fotografía.
 
-1. Crea un proyecto gratuito en https://supabase.com/.
-2. Abre SQL Editor y ejecuta todo el contenido de schema.sql.
-3. En Authentication, desactiva los registros públicos (Sign-ups). Crea el usuario administrador manualmente desde Authentication / Users / Add user con un correo y contraseña que controles.
-4. En Project Settings / API, copia Project URL y la clave pública anon/publishable.
-5. Edita supabase-config.js en GitHub y pega los valores en supabaseUrl y supabaseAnonKey. La clave anon es pública por diseño; nunca pegues una service_role key, contraseña ni token privado.
-6. Espera a que GitHub Pages publique el cambio. Abre el administrador e inicia sesión con el usuario administrador creado.
-7. Asegúrate de que Realtime esté activo para public.yahirfest_rsvps. El SQL intenta agregar la tabla a la publicación supabase_realtime; si la consola muestra un error o los avisos no llegan, activa su replicación desde Database / Publications.
+## Lista compartida
+GitHub Pages sirve archivos estáticos y no puede escribir respuestas de forma segura directamente en el repositorio desde el navegador del invitado. La lista compartida usa Supabase.
 
-Las políticas RLS impiden que visitantes anónimos lean la lista. No habilites acceso público de lectura para intentar arreglar el panel.
+1. Crea un proyecto en https://supabase.com/.
+2. Ejecuta schema.sql desde SQL Editor.
+3. Desactiva los registros públicos en Authentication y crea un usuario administrador manualmente.
+4. En Project Settings / API copia Project URL y la clave pública anon/publishable.
+5. Edita supabase-config.js y pega esos valores. No pegues claves service_role ni contraseñas.
+6. Inicia sesión en el panel de administración y comprueba que Realtime esté activo para public.yahirfest_rsvps.
 
-## Antes de conectar Supabase
-El formulario guarda una respuesta de demostración en el almacenamiento local de ese navegador y el panel puede mostrarla en ese mismo navegador. No es una lista compartida; otras personas y dispositivos no verán esas pruebas.
+El SQL elimina la columna antigua de recordatorio si existía. Los visitantes solo pueden añadir respuestas; la lista completa solo está disponible para usuarios autenticados.
 
-## Límites de las notificaciones
-- Avisos al administrador: la actualización en vivo y las notificaciones del navegador funcionan si el panel está abierto y ya se concedió permiso. No pueden despertar un navegador totalmente cerrado.
-- Recordatorio de invitados: el checkbox guarda la preferencia en la lista compartida. La notificación local de prueba requiere que el invitado use el mismo navegador, conceda permiso y mantenga la página abierta alrededor de la hora programada. Los navegadores no garantizan temporizadores ni avisos si la página está cerrada.
-- Para enviar recordatorios push fiables aunque la página esté cerrada hace falta un servicio push, un service worker suscrito por cada invitado y una función de servidor programada (por ejemplo, Supabase Edge Functions con un cron). Eso no se activa solo con HTML estático y no se presenta aquí como si ya estuviera funcionando.
-- Si una persona registra un recordatorio en otro dispositivo, el navegador del anfitrión no puede notificar su teléfono sin autorización de notificaciones en ese dispositivo.
+## Música en Safari / iPhone
+La etiqueta de audio usa reproducción en bucle. Safari iOS bloquea la reproducción automática hasta que detecta una interacción; por eso el código intenta arrancar directamente desde touchstart, touchmove, pointerdown y wheel, y mantiene el botón fijo para el control manual. Si Safari rechaza el primer intento, toca la página o usa el botón. Al ocultar la página o salir de ella, el audio se pausa.
 
-## Fecha y música
-La fecha está fijada a 2026-11-21T19:00:00-06:00. Si cambia, actualiza EVENT_DATE en app.js y el texto de fecha en las páginas.
-
-La música es un loop generativo original de Web Audio (bombo, hi-hat, bajo y sintetizadores), sin MP3 externo. Los navegadores bloquean la reproducción automática sin interacción, así que comienza en la primera interacción y puede pausarse desde el botón fijo.
+## Protección de la fotografía
+Se deshabilita el menú contextual, el arrastre y la selección de la fotografía en navegadores compatibles. Esto reduce el menú al mantener pulsada la foto, pero HTML no puede impedir por completo capturas de pantalla ni métodos externos para copiarla.
