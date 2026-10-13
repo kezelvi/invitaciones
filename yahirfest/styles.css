@@ -833,3 +833,63 @@ body::before, body::after { content: none !important; display: none !important; 
   background-image: none !important;
   box-shadow: none !important;
 }
+
+
+/* === FIX FINAL DE SECCIONES QUE CONSERVABAN FOTOGRAFÍAS OSCURAS === */
+.countdown-section,
+.countdown-section::before,
+.countdown-section::after {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
+  content: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+.countdown-section {
+  display: block !important;
+  isolation: auto !important;
+}
+.countdown-section > * {
+  background: transparent !important;
+  background-image: none !important;
+}
+.countdown-section .section-kicker,
+.countdown-section .section-index,
+.countdown-section .countdown-caption,
+.countdown-section .countdown-caption span,
+.countdown-section .count-unit span {
+  color: #111111 !important;
+  text-shadow: none !important;
+}
+.countdown-section h2,
+.countdown-section h2 *,
+.countdown-section .section-index span {
+  color: #e00024 !important;
+  -webkit-text-fill-color: #e00024 !important;
+  text-shadow: 0 0 5px rgba(224,0,36,.48), 0 0 14px rgba(224,0,36,.24) !important;
+}
+.countdown-section .count-unit strong {
+  color: #e00024 !important;
+  -webkit-text-fill-color: #e00024 !important;
+  background: none !important;
+  background-image: none !important;
+  text-shadow: 0 0 5px rgba(224,0,36,.45), 0 0 12px rgba(224,0,36,.22) !important;
+}
+.countdown-section .count-colon { color: #e00024 !important; }
+.countdown-section .countdown {
+  background: #ffffff !important;
+  background-image: none !important;
+}
+.location-copy h2, .location-copy h2 *,
+.rsvp-card h2, .rsvp-card h2 * {
+  color: #e00024 !important;
+  -webkit-text-fill-color: #e00024 !important;
+  text-shadow: 0 0 5px rgba(224,0,36,.48), 0 0 14px rgba(224,0,36,.24) !important;
+}
+.location-description, .address-line, .address-line p,
+.rsvp-intro, .field-label, .privacy-note, .closing-note,
+.reminder-row strong, .reminder-row small, .site-footer {
+  color: #111111 !important;
+  text-shadow: none !important;
+}
