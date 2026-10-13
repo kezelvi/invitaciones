@@ -340,3 +340,107 @@ body{max-width:100%;overflow-x:hidden;touch-action:pan-x pan-y}
 @media(prefers-reduced-motion:reduce){
   .date-card::before,.date-card::after{animation:none!important}
 }
+
+
+/* Correcciones finales solicitadas: tarjeta de fecha, banner full-bleed y foto de alberca. */
+@property --yahir-final-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes yahir-final-neon {
+  to { --yahir-final-angle: 360deg; }
+}
+.date-card {
+  position: relative !important;
+  isolation: isolate !important;
+  border: 3px solid transparent !important;
+  border-radius: 12px !important;
+  background:
+    linear-gradient(145deg, #111d38 0%, #081329 58%, #060e20 100%) padding-box,
+    conic-gradient(from var(--yahir-final-angle), #35e7ff, #4775ff, #a34cff, #ff4388, #ffe36b, #35e7ff) border-box !important;
+  animation: yahir-final-neon 4.5s linear infinite !important;
+  box-shadow: 0 12px 40px rgba(0,0,0,.34), 0 0 20px rgba(53,157,255,.18) !important;
+}
+.date-card::before,
+.date-card::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Banner de láseres a todo el ancho, sin oscurecer la fotografía. */
+.countdown-section {
+  box-sizing: border-box !important;
+  width: 100vw !important;
+  max-width: none !important;
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: 0 !important;
+  left: auto !important;
+  transform: none !important;
+  border-radius: 0 !important;
+  min-height: clamp(390px, 43vw, 570px) !important;
+  max-height: 620px !important;
+  overflow: hidden !important;
+}
+.countdown-section::before {
+  background:
+    linear-gradient(90deg, rgba(3,9,22,.12), rgba(3,10,24,.04) 50%, rgba(3,9,22,.12)),
+    url("./foto_lasers.jpg") center center / cover no-repeat !important;
+  filter: brightness(1.22) saturate(1.16) !important;
+  transform: none !important;
+}
+.countdown-section::after {
+  background: linear-gradient(180deg, rgba(3,9,22,.02), rgba(3,9,22,.08)) !important;
+}
+.countdown-section .section-kicker,
+.countdown-section h2,
+.countdown-section .countdown-caption {
+  text-shadow: 0 1px 5px rgba(0,0,0,.82), 0 0 14px rgba(0,24,70,.55) !important;
+}
+
+/* La alberca queda centrada y contenida en el marco de asistencia, especialmente en móvil. */
+.rsvp-pool-photo {
+  position: relative !important;
+  width: min(100%, 360px) !important;
+  max-width: 360px !important;
+  height: clamp(150px, 42vw, 210px) !important;
+  min-height: 0 !important;
+  aspect-ratio: auto !important;
+  margin: 24px auto 6px !important;
+  overflow: hidden !important;
+  display: block !important;
+  border-radius: 8px !important;
+}
+.rsvp-pool-photo img {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  margin: 0 auto !important;
+}
+@media (max-width: 680px) {
+  .countdown-section {
+    width: 100vw !important;
+    margin-left: calc(50% - 50vw) !important;
+    min-height: 390px !important;
+    max-height: 560px !important;
+    padding: 54px 12px !important;
+  }
+  .countdown-section::before {
+    background:
+      linear-gradient(90deg, rgba(3,9,22,.08), rgba(3,10,24,.02) 50%, rgba(3,9,22,.08)),
+      url("./foto_lasers.jpg") center center / cover no-repeat !important;
+    filter: brightness(1.25) saturate(1.16) !important;
+  }
+  .rsvp-pool-photo {
+    width: min(100%, 340px) !important;
+    max-width: 340px !important;
+    height: clamp(150px, 45vw, 190px) !important;
+    margin: 22px auto 4px !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .date-card { animation: none !important; }
+}
