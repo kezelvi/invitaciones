@@ -15,3 +15,16 @@
 .stat-yes span{color:#8dd0ff!important}
 .stat-no span{color:#ff929f!important}
 @media(max-width:450px){.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+
+
+/* Mayor contraste para las etiquetas de asistencia sobre fondo blanco */
+.attendance-badge.yes {
+  color: #123f78 !important;
+  border-color: rgba(18,63,120,.42) !important;
+  background: rgba(18,63,120,.08) !important;
+  box-shadow: none !important;
+}
+.stat-yes strong, .stat-yes span {
+  color: #123f78 !important;
+  text-shadow: none !important;
+}
