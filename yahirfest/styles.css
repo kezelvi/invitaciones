@@ -1239,3 +1239,55 @@ body::before, body::after { content: none !important; display: none !important; 
   .title-lockup h1 { font-size: 2.45rem !important; letter-spacing: -.11em !important; }
   .title-lockup .palm { width: 29px !important; }
 }
+
+
+/* === TRANSPARENCIA TOTAL DEL LOGOTIPO: NO TAPAR EL CÍRCULO === */
+.hero-content,
+.title-lockup,
+.title-lockup h1,
+.title-lockup h1 span,
+.title-lockup h1 b,
+.title-lockup .palm,
+.hero .scroll-cue,
+.hero .scroll-cue .scroll-copy,
+.hero .scroll-cue .scroll-arrow {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+.title-lockup::before,
+.title-lockup::after,
+.title-lockup h1::before,
+.title-lockup h1::after,
+.title-lockup .palm::before,
+.title-lockup .palm::after,
+.hero .scroll-cue::before,
+.hero .scroll-cue::after,
+.hero .scroll-cue .scroll-copy::before,
+.hero .scroll-cue .scroll-copy::after {
+  content: none !important;
+  display: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.title-lockup h1,
+.title-lockup h1 span,
+.title-lockup h1 b {
+  color: #e00024 !important;
+  -webkit-text-fill-color: #e00024 !important;
+  text-shadow: 0 0 7px rgba(224,0,36,.24), 0 0 18px rgba(224,0,36,.12) !important;
+  filter: none !important;
+}
+.hero .scroll-cue,
+.hero .scroll-cue * {
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+}
