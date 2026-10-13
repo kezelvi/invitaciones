@@ -1,6 +1,6 @@
 (() => {
 "use strict";
-const EVENT_DATE=new Date("2026-11-21T19:00:00-06:00");
+const EVENT_DATE=new Date("2026-11-21T20:00:00-06:00");
 const DEMO_KEY="yahirfest-demo-rsvps";
 const CLIENT_ID_KEY="yahirfest-client-id-v1";
 const SUBMITTED_KEY="yahirfest-rsvp-submitted-v1";
