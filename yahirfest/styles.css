@@ -1160,3 +1160,82 @@ body::before, body::after { content: none !important; display: none !important; 
   .title-lockup .palm { width: 37px !important; }
   .hero-details span { font-size: 7px !important; }
 }
+
+
+/* === LIMPIAR PLACAS BLANCAS Y AMPLIAR YAHIR-FEST EN MÓVIL === */
+.title-lockup,
+.title-lockup h1,
+.title-lockup h1 span,
+.title-lockup h1 b,
+.title-lockup .palm,
+.hero .scroll-cue,
+.hero .scroll-cue::before,
+.hero .scroll-cue::after,
+.hero .scroll-cue .scroll-copy,
+.hero .scroll-cue .scroll-arrow {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  border: 0 !important;
+  outline: 0 !important;
+}
+.title-lockup h1,
+.title-lockup h1 span,
+.title-lockup h1 b {
+  -webkit-text-fill-color: #e00024 !important;
+  color: #e00024 !important;
+  box-shadow: none !important;
+}
+.hero .scroll-cue,
+.hero .scroll-cue * {
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+.hero .scroll-cue .scroll-copy,
+.hero .scroll-cue .scroll-arrow {
+  color: #e00024 !important;
+  -webkit-text-fill-color: #e00024 !important;
+  text-shadow: 0 0 7px rgba(224,0,36,.34) !important;
+}
+.title-lockup {
+  width: min(100%, calc(100vw - 28px)) !important;
+  max-width: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: clamp(5px, 1.4vw, 16px) !important;
+}
+.title-lockup h1 {
+  flex: 0 1 auto !important;
+  white-space: nowrap !important;
+  font-size: clamp(2.6rem, 10.2vw, 7rem) !important;
+  letter-spacing: -.095em !important;
+  line-height: .98 !important;
+  margin: 0 !important;
+}
+.title-lockup .palm {
+  flex: 0 0 auto !important;
+  width: clamp(35px, 8.4vw, 100px) !important;
+  height: auto !important;
+  max-height: 140px !important;
+}
+@media (max-width: 680px) {
+  .title-lockup {
+    width: calc(100vw - 20px) !important;
+    gap: 4px !important;
+  }
+  .title-lockup h1 {
+    font-size: clamp(2.55rem, 10.6vw, 4.8rem) !important;
+    letter-spacing: -.105em !important;
+  }
+  .title-lockup .palm {
+    width: clamp(32px, 8.2vw, 52px) !important;
+  }
+}
+@media (max-width: 370px) {
+  .title-lockup { width: calc(100vw - 12px) !important; gap: 2px !important; }
+  .title-lockup h1 { font-size: 2.45rem !important; letter-spacing: -.11em !important; }
+  .title-lockup .palm { width: 29px !important; }
+}
