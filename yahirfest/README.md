@@ -28,3 +28,13 @@ La etiqueta de audio usa reproducción en bucle. Safari iOS bloquea la reproducc
 
 ## Protección de la fotografía
 Se deshabilita el menú contextual, el arrastre y la selección de la fotografía en navegadores compatibles. Esto reduce el menú al mantener pulsada la foto, pero HTML no puede impedir por completo capturas de pantalla ni métodos externos para copiarla.
+
+## Cambios recientes
+- El panel muestra solo dos contadores: personas que sí asistirán (azul) y personas que no asistirán (rojo).
+- La tarjeta de fecha ahora tiene el texto "El plan es divertirnos", y su borde RGB se anima también desde JavaScript para mejorar compatibilidad en Chrome.
+- foto_lasers.jpg es el banner de fondo de la cuenta regresiva y foto_alberca.jpg aparece debajo del botón de confirmar asistencia.
+
+## Bloqueo de respuestas repetidas
+La invitación genera un client_id persistente por navegador. La base de datos mantiene un índice único y la interfaz bloquea el formulario después de guardar una respuesta. Para activar el control del lado del servidor, vuelve a ejecutar schema.sql desde Supabase SQL Editor; la migración agrega la columna client_id y el índice único de forma compatible con respuestas anteriores.
+
+Esta barrera impide repeticiones ordinarias desde el mismo navegador. No verifica legalmente la identidad de una persona: alguien que borre el almacenamiento del navegador o use otro dispositivo podría intentar responder de nuevo. Para impedirlo con más certeza, se necesitarían códigos únicos de invitación o verificación por teléfono/correo.
