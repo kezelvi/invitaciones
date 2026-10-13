@@ -1,0 +1,40 @@
+name: Generar imagen para compartir Yahir-fest
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "yahirfest/og-yahirfest.svg"
+      - ".github/workflows/generate-yahirfest-og.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  render-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obtener el repositorio
+        uses: actions/checkout@v4
+      - name: Instalar conversores de imagen
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y librsvg2-bin imagemagick
+      - name: Crear JPEG Open Graph 1200 x 630
+        run: |
+          rsvg-convert --width 1200 --height 630 --output /tmp/yahirfest-og.png yahirfest/og-yahirfest.svg
+          magick /tmp/yahirfest-og.png -strip -sampling-factor 4:2:0 -quality 82 yahirfest/og-yahirfest.jpg
+          test -s yahirfest/og-yahirfest.jpg
+          identify -format 'Dimensiones: %wx%h | Tamaño: %b\n' yahirfest/og-yahirfest.jpg
+      - name: Guardar imagen generada en GitHub
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add yahirfest/og-yahirfest.jpg
+          if git diff --cached --quiet; then
+            echo "La imagen no cambió."
+            exit 0
+          fi
+          git commit -m "Generate Yahir-fest Open Graph preview image"
+          git push
