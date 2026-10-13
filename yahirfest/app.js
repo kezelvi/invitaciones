@@ -92,11 +92,14 @@ if(heroCta){
     const delta=target.getBoundingClientRect().top;
     const duration=760;
     const began=performance.now();
+    const previousBehavior=document.documentElement.style.scrollBehavior;
+    document.documentElement.style.scrollBehavior="auto";
     const step=now=>{
       const progress=Math.min(1,(now-began)/duration);
       const eased=1-Math.pow(1-progress,3);
       window.scrollTo(0,start+delta*eased);
       if(progress<1)requestAnimationFrame(step);
+      else document.documentElement.style.scrollBehavior=previousBehavior;
     };
     requestAnimationFrame(step);
   });
