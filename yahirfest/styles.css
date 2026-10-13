@@ -647,3 +647,117 @@ h2 em { color: #d7193f !important; }
 .site-footer { border-top-color: #d7193f25 !important; }
 .site-footer a:hover { color: #d7193f !important; }
 #confirmar .rsvp-pool-photo { border: 1px solid #d7193f25 !important; }
+
+
+/* === CONTRASTE DEFINITIVO: BLANCO + NEGRO + ROJO NEÓN === */
+:root {
+  color-scheme: light !important;
+  --bg: #ffffff !important;
+  --ink: #111111 !important;
+  --muted: #333333 !important;
+  --pink: #e00024 !important;
+  --violet: #e00024 !important;
+  --cyan: #e00024 !important;
+  --yellow: #e00024 !important;
+  --line: rgba(224, 0, 36, .32) !important;
+}
+html, body, body::before, body::after,
+main, section, article, header, footer, nav,
+.hero, .hero-content, .hero-inner, .section, .section-inner,
+.glass, .date-card, .countdown, .countdown-wrap, .countdown-card,
+.location-card, .rsvp-card, .pool-art, .pool-scene,
+.attendance-choice, .choice-button, .name-input, .field,
+.reminder-row, .site-footer, .hero-details span {
+  background-color: #ffffff !important;
+  background-image: none !important;
+  color: #111111 !important;
+}
+html, body {
+  background: #ffffff !important;
+  color: #111111 !important;
+}
+body::before, body::after { opacity: 0 !important; }
+* { border-color: rgba(224, 0, 36, .28); }
+p, li, label, small, time, input, textarea, select,
+.hero-subtitle, .hero-copy, .hero-details span,
+.date-month span, .date-time span, .date-note,
+.count-unit span, .countdown-caption, .location-description,
+.address-line, .address-line p, .rsvp-intro, .field-label,
+.reminder-row strong, .reminder-row small, .privacy-note,
+.closing-note, .site-footer, .pool-label, .scroll-cue {
+  color: #111111 !important;
+  text-shadow: none !important;
+}
+h1, h2, h3, h4, h5, h6,
+.hero-title, .hero-title span, .hero-title em,
+.eyebrow, .section-index, .section-index span,
+.date-day, .date-month, .date-time strong,
+.count-unit strong, .location-copy h2, .rsvp-card h2,
+.date-card h2, .pool-title, .highlight, strong.highlight,
+a:not(.button-primary):not(.button-outline),
+.pin-icon, .count-colon {
+  color: #e00024 !important;
+  text-shadow: 0 0 5px rgba(224,0,36,.55),
+               0 0 12px rgba(224,0,36,.32),
+               0 0 24px rgba(224,0,36,.18) !important;
+}
+h1 *, h2 *, h3 *, h4 *, h5 *, h6 *,
+.hero-title *, .date-day *, .date-time strong *,
+.count-unit strong * {
+  color: #e00024 !important;
+  text-shadow: 0 0 5px rgba(224,0,36,.55),
+               0 0 12px rgba(224,0,36,.32) !important;
+}
+.glass, .date-card, .rsvp-card, .pool-art, .hero-details span,
+.attendance-choice .choice-button, .name-input, .custom-check,
+.button-outline {
+  border: 1px solid rgba(224,0,36,.42) !important;
+  border-radius: inherit;
+  box-shadow: 0 0 12px rgba(224,0,36,.10) !important;
+}
+.date-card {
+  border: 2px solid #e00024 !important;
+  box-shadow: 0 0 10px rgba(224,0,36,.35),
+              0 0 24px rgba(224,0,36,.20) !important;
+}
+.button-primary, .button-primary:hover,
+.reminder-row input:checked + .custom-check,
+.choice-yes[aria-pressed="true"], .choice-no[aria-pressed="true"] {
+  background: #e00024 !important;
+  background-image: none !important;
+  color: #ffffff !important;
+  border-color: #e00024 !important;
+  text-shadow: none !important;
+  box-shadow: 0 0 12px rgba(224,0,36,.45),
+              0 0 24px rgba(224,0,36,.25) !important;
+}
+.button-primary *, .reminder-row input:checked + .custom-check *,
+.choice-yes[aria-pressed="true"] *, .choice-no[aria-pressed="true"] * {
+  color: #ffffff !important;
+  text-shadow: none !important;
+}
+.button-outline {
+  background: #ffffff !important;
+  color: #e00024 !important;
+  text-shadow: 0 0 7px rgba(224,0,36,.4) !important;
+}
+input, textarea, select, .name-input {
+  background: #ffffff !important;
+  color: #111111 !important;
+  border-color: rgba(224,0,36,.55) !important;
+}
+input::placeholder, textarea::placeholder, .name-input::placeholder {
+  color: #666666 !important;
+}
+a:hover, button:hover { text-shadow: 0 0 10px rgba(224,0,36,.5) !important; }
+.date-divider, .section-index span, .hero-details i, .pool-edge,
+.pool-water, .pool-reflection, .pool-palm, .pool-palm:before,
+.pool-palm:after, .scroll-cue span {
+  background-color: #e00024 !important;
+  background-image: none !important;
+  border-color: #e00024 !important;
+  box-shadow: 0 0 10px rgba(224,0,36,.38) !important;
+}
+.pool-sun { background: #e00024 !important; }
+.pool-moon { background: #ffffff !important; }
+::selection { background: #e00024 !important; color: #ffffff !important; }
