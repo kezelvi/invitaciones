@@ -198,3 +198,145 @@ body{max-width:100%;overflow-x:hidden;touch-action:pan-x pan-y}
 
 /* El ángulo lo actualiza app.js con requestAnimationFrame para que rote también en Chrome. */
 .date-card,.date-card::before,.date-card::after{animation:none!important}
+
+
+/* Corrección final: relleno oscuro auténtico y borde RGB animado independiente. */
+@property --yahir-rgb-angle{
+  syntax:"<angle>";
+  inherits:false;
+  initial-value:0deg;
+}
+@keyframes yahir-rgb-rotate{
+  from{--yahir-rgb-angle:0deg}
+  to{--yahir-rgb-angle:360deg}
+}
+@keyframes yahir-rgb-glow{
+  0%{filter:blur(15px) saturate(1.5) hue-rotate(0deg);opacity:.72}
+  50%{filter:blur(19px) saturate(1.75) hue-rotate(180deg);opacity:.98}
+  100%{filter:blur(15px) saturate(1.5) hue-rotate(360deg);opacity:.72}
+}
+.date-card{
+  background:linear-gradient(145deg,#101d39 0%,#08132b 58%,#070f22 100%)!important;
+  border:0!important;
+  isolation:isolate!important;
+  overflow:visible!important;
+  box-shadow:0 12px 40px rgba(0,0,0,.32),inset 0 1px 0 rgba(190,225,255,.07)!important;
+}
+.date-card::before{
+  inset:-4px!important;
+  padding:4px!important;
+  border-radius:16px!important;
+  z-index:0!important;
+  background:conic-gradient(from var(--yahir-rgb-angle),#43e5ff,#4779ff,#9b4dff,#ff458e,#ffe56a,#35e9ff,#43e5ff)!important;
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0)!important;
+  -webkit-mask-composite:xor!important;
+  mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0)!important;
+  mask-composite:exclude!important;
+  --yahir-rgb-angle:0deg;
+  animation:yahir-rgb-rotate 4.8s linear infinite!important;
+}
+.date-card::after{
+  inset:-7px!important;
+  z-index:-1!important;
+  border-radius:18px!important;
+  background:conic-gradient(from var(--yahir-rgb-angle),#43e5ff,#4779ff,#9b4dff,#ff458e,#ffe56a,#35e9ff,#43e5ff)!important;
+  --yahir-rgb-angle:0deg;
+  animation:yahir-rgb-rotate 4.8s linear infinite,yahir-rgb-glow 3.2s ease-in-out infinite!important;
+  filter:blur(17px) saturate(1.6);
+  opacity:.85;
+}
+.date-card>.section-kicker,.date-card>h2,.date-card>.date-display{
+  position:relative;z-index:1;
+}
+.date-card .date-glow{display:none!important}
+
+/* El banner de la cuenta regresiva ocupa todo el ancho visible del dispositivo. */
+.countdown-section{
+  width:100vw!important;
+  max-width:none!important;
+  margin-top:42px!important;
+  margin-bottom:42px!important;
+  margin-left:0!important;
+  margin-right:0!important;
+  left:50%!important;
+  transform:translateX(-50%)!important;
+  min-height:clamp(390px,42vw,560px)!important;
+  max-height:620px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border-radius:0!important;
+  padding:clamp(58px,7vw,88px) clamp(16px,5vw,56px)!important;
+}
+.countdown-section::before{
+  background:
+    linear-gradient(90deg,rgba(3,9,22,.28) 0%,rgba(3,10,24,.13) 50%,rgba(3,9,22,.25) 100%),
+    linear-gradient(0deg,rgba(3,9,22,.18),rgba(3,9,22,.08)),
+    url("./foto_lasers.jpg") center center / cover no-repeat!important;
+  filter:brightness(1.12) saturate(1.12)!important;
+  transform:none!important;
+}
+.countdown-section::after{
+  content:"";
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(4,11,25,.04),rgba(4,11,25,.12));
+}
+.countdown-section>*{position:relative;z-index:1}
+.countdown-section .section-kicker,
+.countdown-section h2,
+.countdown-caption{
+  text-shadow:0 0 8px rgba(0,25,70,.9),0 0 18px rgba(0,28,86,.75)!important;
+}
+@media(max-width:680px){
+  .countdown-section{
+    width:100vw!important;max-width:none!important;
+    min-height:390px!important;max-height:560px!important;
+    margin-top:28px!important;margin-bottom:28px!important;
+    padding:54px 12px!important;
+    left:50%!important;transform:translateX(-50%)!important;
+    border-radius:0!important;
+  }
+  .countdown-section::before{
+    background:
+      linear-gradient(90deg,rgba(3,9,22,.23),rgba(3,10,24,.10) 50%,rgba(3,9,22,.20)),
+      linear-gradient(0deg,rgba(3,9,22,.12),rgba(3,9,22,.03)),
+      url("./foto_lasers.jpg") center center / cover no-repeat!important;
+    filter:brightness(1.17) saturate(1.13)!important;
+  }
+}
+
+/* La foto de la alberca queda centrada y con tamaño limitado dentro del formulario. */
+.rsvp-pool-photo{
+  width:min(100%,360px)!important;
+  max-width:360px!important;
+  height:clamp(150px,42vw,210px)!important;
+  min-height:0!important;
+  aspect-ratio:auto!important;
+  margin:24px auto 6px!important;
+  overflow:hidden!important;
+  display:grid!important;
+  place-items:center!important;
+  border-radius:8px!important;
+  background:#071326!important;
+}
+.rsvp-pool-photo img{
+  position:absolute!important;
+  inset:0!important;
+  display:block!important;
+  width:100%!important;height:100%!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+  margin:auto!important;
+}
+@media(max-width:680px){
+  .rsvp-pool-photo{
+    width:min(100%,340px)!important;
+    max-width:340px!important;
+    height:clamp(150px,45vw,190px)!important;
+    margin:22px auto 4px!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .date-card::before,.date-card::after{animation:none!important}
+}
