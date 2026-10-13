@@ -1320,112 +1320,155 @@ body::before, body::after { content: none !important; display: none !important; 
 }
 
 
-/* === PALETA ROJO Y BLANCO: CONTRASTE Y RESPONSIVE === */
+/* === PALETA ROJO / BLANCO: CONTRASTE CONSISTENTE === */
 :root {
-  --color-red: #e00024;
-  --accent: #ffffff;
-  --accent-red: #e00024;
+  color-scheme: light;
+  --bg-primary: #e00024;
+  --bg-deep: #b8001d;
+  --bg-card: #c90020;
+  --text-primary: #ffffff;
+  --text-secondary: #ffffff;
+  --accent-primary: #ffffff;
+  --accent-secondary: #ffffff;
+  --border-neon: rgba(255,255,255,.88);
+  --focus-ring: #ffffff;
+  --font: 'DM Sans', sans-serif;
+  --display: 'Space Grotesk', sans-serif;
 }
-/* Rojo solo en las superficies que deben destacar; no pintar toda la página */
+html { background: var(--bg-primary) !important; }
 body {
-  background: #e00024 !important;
-  color: #ffffff !important;
+  background: var(--bg-primary) !important;
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
 }
 body::before {
-  background: radial-gradient(ellipse at 50% 10%, rgba(255,255,255,.08), transparent 48%),
-              linear-gradient(180deg, #e00024 0%, #c90020 100%) !important;
+  background:
+    radial-gradient(ellipse at 50% 10%, rgba(255,255,255,.09), transparent 48%),
+    linear-gradient(165deg, #e00024 0%, #d00021 55%, #b8001d 100%) !important;
 }
-body, .site-shell, .section, .date-section, .location-section, .rsvp-section,
-.countdown-section, .closing-section, main {
+body::after { opacity: .09 !important; }
+main, .section, .date-section, .countdown-section, .location-section,
+.rsvp-section, .hero, .hero-content, .site-shell {
   background-color: transparent !important;
 }
-/* Tarjetas y controles con un rojo más profundo para separar visualmente las áreas */
-.date-card, .rsvp-card, .glass {
-  background: linear-gradient(135deg, #b9001e, #8f0018) !important;
-  color: #ffffff !important;
-  border-color: rgba(255,255,255,.82) !important;
+.ambient { opacity: .08 !important; background: #ffffff !important; }
+.glass, .date-card, .rsvp-card {
+  background: linear-gradient(135deg, #cf0021, #b9001d) !important;
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-neon) !important;
 }
-.date-display, .date-day, .date-month, .date-time, .address-line,
-.attendance-choice, .field-label, .privacy-note, .form-status,
-.hero-details span, .button-primary, .button-outline, .choice-button,
-.name-input, .music-toggle, .hero .scroll-cue {
-  background-color: transparent !important;
+.hero::before {
+  background: linear-gradient(180deg, rgba(184,0,29,.12), rgba(184,0,29,.2) 70%, var(--bg-primary)) !important;
 }
-/* Todos los textos legibles en blanco, incluyendo textos que antes eran rojos */
-body, body *, .site-footer, .site-footer *, .hero *, .section *,
-h1, h2, h3, h4, p, em, strong, small, span, label, a, button,
-.section-kicker, .eyebrow, .hero-details, .hero-details span,
-.hero-details i, .title-lockup h1, .title-lockup h1 span,
-.title-lockup h1 b, .hero .scroll-cue, .hero .scroll-cue *,
-.pin-icon, .address-line, .button, .button span, .music-toggle,
-.music-symbol, .choice-button, .choice-icon, .field-label,
-.privacy-note, .form-status, .closing-note, .closing-note span,
-.date-day, .date-month, .date-time, .date-divider, .countdown,
+.hero::after {
+  border-color: rgba(255,255,255,.55) !important;
+  box-shadow: 0 0 28px rgba(255,255,255,.18), inset 0 0 32px rgba(255,255,255,.06) !important;
+}
+/* Contraste global: ningún texto ni icono de fuente debe quedar rojo sobre rojo. */
+body, body :is(h1,h2,h3,h4,h5,h6,p,span,b,strong,em,small,label,a,li,dt,dd,
+  summary,figcaption,legend,output,time), .hero *, .section *, .site-footer *,
+.title-lockup h1, .title-lockup h1 span, .title-lockup h1 b,
+.section-kicker, .eyebrow, .hero-details span, .hero-details i,
+.date-day, .date-month, .date-time, .date-time span,
 .count-unit, .count-unit strong, .count-unit span, .count-colon,
-.countdown-caption {
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
+.countdown-caption, .address-line, .address-line p, .pin-icon,
+.field-label, .privacy-note, .form-status, .closing-note,
+.music-toggle, .music-symbol, .scroll-cue, .scroll-cue *,
+.creator-link, .site-footer {
+  color: var(--text-primary) !important;
+  -webkit-text-fill-color: var(--text-primary) !important;
 }
-/* Texto con degradado: desactivar relleno transparente para evitar que desaparezca */
 .title-lockup h1 b, .count-unit strong {
   background: none !important;
   background-image: none !important;
-  -webkit-background-clip: initial !important;
   background-clip: initial !important;
-}
-/* Brillos y bordes rojos pasan a blanco */
-.title-lockup h1, .title-lockup h1 span, .title-lockup h1 b,
-.hero .scroll-cue .scroll-copy, .hero .scroll-cue .scroll-arrow,
-h1, h2, h3, em, .section-kicker, .eyebrow, .date-day,
-.count-unit strong, .pin-icon, .choice-icon {
-  text-shadow: 0 0 7px rgba(255,255,255,.5), 0 0 18px rgba(255,255,255,.22) !important;
-}
-.hero::after {
-  border-color: #ffffff !important;
-  box-shadow: 0 0 9px rgba(255,255,255,.75), inset 0 0 9px rgba(255,255,255,.1) !important;
-}
-.date-card, .rsvp-card, .glass, .date-divider, .hero-details span,
-.button, .button-primary, .button-outline, .music-toggle,
-.choice-button, .name-input, .address-line, .site-footer {
-  border-color: rgba(255,255,255,.82) !important;
+  -webkit-background-clip: initial !important;
 }
 .title-lockup .palm stop { stop-color: #ffffff !important; }
-.hero-details span { background: rgba(120,0,20,.55) !important; }
-.button-primary, .button-outline, .choice-button, .music-toggle {
+.title-lockup h1, .title-lockup h1 span, .title-lockup h1 b,
+h1, h2, h3, em, .section-kicker, .eyebrow, .date-day,
+.count-unit strong, .pin-icon {
+  text-shadow: 0 0 8px rgba(255,255,255,.26) !important;
+}
+/* Botones: blanco sólido, texto rojo; incluye hover, selección y estados accesibles. */
+button, .button, .button-primary, .button-outline, .choice-button,
+.music-toggle, .submit-button, .hero-cta {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #c90020 !important;
+  -webkit-text-fill-color: #c90020 !important;
+  border: 1px solid rgba(255,255,255,.95) !important;
+  box-shadow: 0 5px 22px rgba(80,0,10,.16) !important;
+}
+button *, .button *, .music-toggle *, .choice-button * {
+  color: #c90020 !important;
+  -webkit-text-fill-color: #c90020 !important;
+}
+button:hover, .button:hover, .choice-button:hover, .music-toggle:hover {
+  background: #fff0f2 !important;
+  background-color: #fff0f2 !important;
+  border-color: #ffffff !important;
+}
+button:disabled, button[disabled], .button:disabled {
+  opacity: .62 !important;
+  cursor: not-allowed !important;
+}
+.choice-yes[aria-pressed="true"], .choice-no[aria-pressed="true"] {
+  background: #ffffff !important;
+  border: 2px solid #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(255,255,255,.25), 0 0 24px rgba(255,255,255,.22) !important;
+}
+.choice-yes[aria-pressed="true"] *, .choice-no[aria-pressed="true"] * {
+  color: #a9001b !important;
+  -webkit-text-fill-color: #a9001b !important;
+}
+/* Campos blancos con texto escrito rojo oscuro y placeholder legible. */
+input:not([type="hidden"]), textarea, select, .name-input {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #8f0018 !important;
+  -webkit-text-fill-color: #8f0018 !important;
+  border: 1px solid rgba(255,255,255,.96) !important;
+  caret-color: #8f0018 !important;
+}
+input::placeholder, textarea::placeholder, .name-input::placeholder {
+  color: #8f0018 !important;
+  -webkit-text-fill-color: #8f0018 !important;
+  opacity: .72 !important;
+}
+input:focus, textarea:focus, select:focus, button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #ffffff !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 4px rgba(255,255,255,.22) !important;
+}
+.hero-details span {
+  background: rgba(150,0,24,.62) !important;
+  border-color: rgba(255,255,255,.78) !important;
+}
+.date-divider, .date-card .date-divider {
+  background: linear-gradient(transparent, #ffffff, #ffffff, transparent) !important;
+}
+.site-footer {
   background: #a9001b !important;
   color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
+  border-color: rgba(255,255,255,.72) !important;
 }
-.name-input {
-  background: #8f0018 !important;
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
-}
-.name-input::placeholder {
-  color: rgba(255,255,255,.78) !important;
-  -webkit-text-fill-color: rgba(255,255,255,.78) !important;
-}
-.club-photo, .club-photo img, .rsvp-pool-photo, .rsvp-pool-photo img {
-  background-color: transparent !important;
-}
-.site-footer { background: #a9001b !important; color: #ffffff !important; }
-/* Ajustes para notebook y pantallas compactas: evitar desbordamientos en el encabezado */
+.club-photo, .rsvp-pool-photo { background-color: transparent !important; }
+.club-photo img, .rsvp-pool-photo img { background-color: transparent !important; }
+/* Mantener el encabezado proporcionado en notebook y móvil. */
 @media (min-width: 681px) {
   .hero { padding-left: 32px !important; padding-right: 32px !important; }
   .hero-content { width: min(100%, 1000px) !important; }
   .title-lockup { max-width: 100% !important; }
   .title-lockup h1 { font-size: clamp(3rem, 8.5vw, 7rem) !important; }
   .title-lockup .palm { width: clamp(42px, 7vw, 92px) !important; }
-  .hero-details { max-width: 100% !important; }
-}
-@media (max-width: 900px) {
-  .title-lockup { gap: clamp(4px, 1.2vw, 12px) !important; }
-  .title-lockup h1 { letter-spacing: -.09em !important; }
 }
 @media (max-width: 680px) {
-  .title-lockup h1 { font-size: clamp(2.45rem, 10.4vw, 4.7rem) !important; }
+  .title-lockup { gap: clamp(4px, 1.2vw, 12px) !important; }
+  .title-lockup h1 { font-size: clamp(2.45rem, 10.4vw, 4.7rem) !important; letter-spacing: -.09em !important; }
   .title-lockup .palm { width: clamp(31px, 8.2vw, 54px) !important; }
-  .hero-details span { background: rgba(120,0,20,.55) !important; }
 }
 @media (max-width: 370px) {
   .title-lockup h1 { font-size: 2.3rem !important; }
