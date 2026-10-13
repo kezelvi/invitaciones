@@ -25,6 +25,6 @@
  <text x="600" y="317" text-anchor="middle" font-family="Arial,sans-serif" font-size="116" font-weight="800" letter-spacing="-6" fill="#f7fbff" filter="url(#glowBlue)">YAHIR</text>
  <text x="600" y="414" text-anchor="middle" font-family="Arial,sans-serif" font-size="99" font-weight="800" letter-spacing="-2" fill="url(#titleBlue)" filter="url(#glowBlue)">-FEST</text>
  <path d="M440 453 H760" stroke="#ffe16b" stroke-opacity=".85" stroke-width="2" filter="url(#glowYellow)"/>
- <text x="600" y="493" fill="#f9fbff" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" letter-spacing="4">21 NOVIEMBRE 2026 · 7:00 P. M.</text>
+ <text x="600" y="493" fill="#f9fbff" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" letter-spacing="4">21 NOVIEMBRE 2026 · 8:00 P. M.</text>
  <text x="600" y="536" fill="#b4dbff" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="600" letter-spacing="3">QUINTA ALDAROS · MONTERREY</text>
 </g></svg>
