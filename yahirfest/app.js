@@ -51,12 +51,12 @@ audio?.addEventListener("pause",()=>updateMusicButton(false));
 document.addEventListener("visibilitychange",()=>{if(document.hidden&&audio){audio.pause();}});
 window.addEventListener("pagehide",()=>{if(audio){audio.pause();audio.currentTime=0;}updateMusicButton(false);},{once:true});
 
-const photo=$("#clubPhoto");
-if(photo){
- photo.addEventListener("contextmenu",e=>e.preventDefault());
- photo.addEventListener("dragstart",e=>e.preventDefault());
- photo.addEventListener("selectstart",e=>e.preventDefault());
-}
+const photo=$("#clubPhoto"), photoFrame=$(".club-photo");
+[photo,photoFrame].filter(Boolean).forEach(element=>{
+ element.addEventListener("contextmenu",e=>e.preventDefault());
+ element.addEventListener("dragstart",e=>e.preventDefault());
+ element.addEventListener("selectstart",e=>e.preventDefault());
+});
 
 function setStatus(message,error){status.textContent=message;status.classList.toggle("error",Boolean(error));}
 choices.forEach(button=>button.addEventListener("click",()=>{

@@ -9,7 +9,7 @@ Coloca estos archivos en esta carpeta:
 - foto_antro.jpg: fotografía que aparecerá en la sección del lugar.
 - musica_yahirfest.mp3: música de fondo que se repite continuamente.
 
-Estos dos archivos no aparecen actualmente en el árbol de archivos de GitHub. El HTML ya los referencia, pero es necesario subirlos para que se vean y suenen. No se sustituyó la música por otra pista ni se inventó una fotografía.
+Ambos archivos ya están en esta carpeta y la página usa sus rutas relativas. Conserva exactamente estos nombres al reemplazarlos por otras versiones. No se sustituyó la música por otra pista ni se inventó una fotografía.
 
 ## Lista compartida
 GitHub Pages sirve archivos estáticos y no puede escribir respuestas de forma segura directamente en el repositorio desde el navegador del invitado. La lista compartida usa Supabase.

@@ -54,3 +54,8 @@ h2 em{font-family:var(--display);font-style:normal;color:#9bcfff;font-weight:600
 .creator-link{color:inherit;font:inherit;letter-spacing:inherit}.creator-link:hover{color:inherit;opacity:.85}
 @media(max-width:680px){.club-photo,.club-photo img{min-height:310px}.scroll-cue{bottom:57px}}
 @media(prefers-reduced-motion:reduce){.date-card,.scroll-arrow{animation:none!important}}
+
+/* Ajuste específico para que el texto y la flecha mantengan su tamaño y brillo. */
+.scroll-cue .scroll-copy{display:block;width:auto;height:auto;background:none;animation:none;transform:none}
+.scroll-cue .scroll-arrow{display:block;width:auto;height:auto;background:none;animation:arrow-float 1.55s ease-in-out infinite}
+.club-photo{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
