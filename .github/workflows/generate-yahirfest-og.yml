@@ -24,7 +24,7 @@ jobs:
       - name: Crear JPEG Open Graph 1200 x 630
         run: |
           rsvg-convert --width 1200 --height 630 --output /tmp/yahirfest-og.png yahirfest/og-yahirfest.svg
-          magick /tmp/yahirfest-og.png -strip -sampling-factor 4:2:0 -quality 82 yahirfest/og-yahirfest.jpg
+          convert /tmp/yahirfest-og.png -strip -sampling-factor 4:2:0 -quality 82 yahirfest/og-yahirfest.jpg
           test -s yahirfest/og-yahirfest.jpg
           identify -format 'Dimensiones: %wx%h | Tamaño: %b\n' yahirfest/og-yahirfest.jpg
       - name: Guardar imagen generada en GitHub
