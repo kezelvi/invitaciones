@@ -507,3 +507,143 @@ body{max-width:100%;overflow-x:hidden;touch-action:pan-x pan-y}
     margin: 1.375rem 0 0.25rem !important;
   }
 }
+
+
+/* ==========================================================
+   PALETA GLOBAL BLANCO + ROJO — YAHIR-FEST
+   Sobrescribe los tonos oscuros y azules/morados anteriores.
+   ========================================================== */
+:root {
+  color-scheme: light;
+  --bg: #ffffff;
+  --ink: #b5122b;
+  --muted: #7d2937;
+  --pink: #d7193f;
+  --violet: #b5122b;
+  --cyan: #ed233f;
+  --yellow: #d7193f;
+  --line: rgba(215, 25, 63, .24);
+}
+html, body {
+  background: #fff !important;
+  color: #a90f29;
+}
+body:before {
+  background:
+    radial-gradient(ellipse at 15% 15%, rgba(237,35,63,.09), transparent 42%),
+    radial-gradient(ellipse at 92% 43%, rgba(215,25,63,.07), transparent 36%),
+    linear-gradient(165deg, #fff, #fff7f8 55%, #fff);
+}
+body:after { opacity: .035; }
+button:focus-visible, a:focus-visible, input:focus-visible {
+  outline-color: #d7193f;
+}
+.ambient-one, .ambient-two { background: #e21b3c; opacity: .08; }
+.music-toggle {
+  border-color: rgba(215,25,63,.38) !important;
+  background: rgba(255,255,255,.94) !important;
+  color: #a90f29 !important;
+  box-shadow: 0 4px 18px rgba(215,25,63,.08) !important;
+}
+.music-toggle:hover { background: #fff1f3 !important; border-color: #d7193f !important; }
+.music-symbol, .eyebrow, .section-kicker, .hero-subtitle span,
+.choice-icon, .closing-note span, .site-footer b { color: #d7193f !important; }
+.hero:before {
+  background: radial-gradient(ellipse at 50% 45%, rgba(215,25,63,.07), transparent 48%),
+    linear-gradient(180deg, #ffffff00, #fff4f6 75%, var(--bg));
+}
+.hero:after {
+  border-color: #d7193f2b !important;
+  box-shadow: 0 0 70px #d7193f0b, inset 0 0 70px #d7193f08 !important;
+}
+.hero-topline, .hero-bottomline, .section-index { color: #8e3445 !important; }
+.tiny-line { background: linear-gradient(90deg, transparent, #d7193f) !important; }
+.title-lockup h1 { color: #b5122b; text-shadow: 0 0 20px #d7193f14 !important; }
+.title-lockup h1 span { color: #b5122b !important; text-shadow: none !important; }
+.title-lockup h1 b {
+  background: linear-gradient(110deg, #ed233f 0%, #b5122b 100%) !important;
+  background-clip: text !important; -webkit-background-clip: text !important;
+}
+.palm { filter: none !important; }
+.hero-subtitle, .hero-copy, .hero-details span { color: #7d2937 !important; }
+.hero-details span {
+  border-color: #d7193f30 !important; background: #fff !important;
+}
+.hero-details i { background: #d7193f !important; box-shadow: 0 0 8px #d7193f35 !important; }
+.button-primary {
+  background: linear-gradient(110deg, #ed233f, #b5122b) !important;
+  color: #fff !important; box-shadow: 0 8px 26px #d7193f20 !important;
+}
+.button-primary:hover { box-shadow: 0 10px 32px #d7193f35 !important; }
+.scroll-cue { color: #96384a !important; }
+.scroll-cue span { background: linear-gradient(#d7193f, transparent) !important; }
+.section-index span { background: linear-gradient(90deg, #d7193f, #f49aa8) !important; }
+.glass {
+  border-color: #d7193f30 !important;
+  background: linear-gradient(135deg, rgba(255,255,255,.98), rgba(255,246,248,.98)) !important;
+  box-shadow: 0 18px 55px #b5122b0d, inset 0 1px 0 #fff !important;
+  backdrop-filter: blur(18px);
+}
+.date-card {
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    conic-gradient(from var(--yahir-final-angle, 0deg), #d7193f, #ff8b9d, #b5122b, #f5b0ba, #d7193f) border-box !important;
+  border: 2.5px solid transparent !important;
+  box-shadow: 0 12px 35px rgba(181,18,43,.10), 0 0 20px rgba(215,25,63,.08) !important;
+}
+.date-glow, .rsvp-card:before { background: radial-gradient(ellipse, #d7193f12, transparent 70%) !important; }
+h2, h2 em, .date-day, .date-time strong, .count-unit strong,
+.location-copy h2, .rsvp-card h2 { color: #a90f29 !important; text-shadow: none !important; }
+h2 em { color: #d7193f !important; }
+.date-month span, .date-time span, .date-note, .count-unit span,
+.countdown-caption, .location-description, .address-line,
+.address-line p, .rsvp-intro, .field-label, .reminder-row strong,
+.reminder-row small, .privacy-note, .closing-note, .site-footer,
+.pool-label { color: #7d2937 !important; }
+.date-divider { background: linear-gradient(transparent, #d7193f, #f49aa8, transparent) !important; }
+.count-unit strong {
+  background: linear-gradient(180deg, #d7193f, #a90f29) !important;
+  background-clip: text !important; -webkit-background-clip: text !important;
+  color: transparent !important;
+}
+.count-colon, .countdown-caption span, .pin-icon { color: #d7193f !important; }
+.button-outline {
+  border-color: #d7193f70 !important; background: #fff !important; color: #b5122b !important;
+}
+.button-outline:hover { border-color: #b5122b !important; box-shadow: 0 0 20px #d7193f12 !important; }
+.pool-art {
+  border-color: #d7193f38 !important;
+  background: radial-gradient(ellipse at 50% 10%, #f9cbd2, transparent 34%),
+    linear-gradient(160deg, #fff, #fff0f2 67%, #fff) !important;
+  box-shadow: 0 20px 45px #b5122b0c, inset 0 0 35px #d7193f08 !important;
+}
+.pool-art:before {
+  background: linear-gradient(90deg, transparent 49.7%, #d7193f0b 50%, transparent 50.3%),
+    linear-gradient(0deg, transparent 49.7%, #d7193f0b 50%, transparent 50.3%) !important;
+}
+.pool-moon { background: #fff !important; box-shadow: 0 0 24px #d7193f20, 0 0 65px #d7193f12 !important; }
+.pool-sun { background: linear-gradient(130deg, #ffb8c3, #d7193f) !important; opacity: .45 !important; }
+.pool-edge { border-top-color: #d7193f !important; border-bottom-color: #ed233f70 !important; box-shadow: 0 0 16px #d7193f12 !important; }
+.pool-water { background: linear-gradient(180deg, #f8cbd2a8, #fbe7eab8 48%, #fff9fa) !important; border-top-color: #d7193f70 !important; }
+.pool-reflection, .pool-palm span { background: #d7193f !important; box-shadow: 0 0 10px #d7193f22 !important; }
+.pool-palm, .pool-palm:before, .pool-palm:after { background-color: #d7193f !important; border-top-color: #d7193f !important; box-shadow: none !important; }
+.attendance-choice .choice-button, .name-input, .custom-check {
+  border-color: #d7193f35 !important; background: #fff !important; color: #a90f29 !important;
+}
+.choice-yes[aria-pressed=true] {
+  border-color: #d7193f !important; background: #fff0f2 !important;
+  box-shadow: inset 0 0 18px #d7193f08 !important; color: #a90f29 !important;
+}
+.choice-no[aria-pressed=true] {
+  border-color: #d7193f !important; background: #fff0f2 !important; box-shadow: 0 0 16px #d7193f0b !important;
+}
+.name-input::placeholder { color: #b87581 !important; }
+.name-input:focus { border-color: #d7193f !important; box-shadow: 0 0 0 3px #d7193f12 !important; }
+.custom-check { background: #fff !important; }
+.reminder-row input:checked + .custom-check { background: #d7193f !important; border-color: #d7193f !important; }
+.reminder-row input:checked + .custom-check:after { color: #fff !important; }
+.form-status { color: #b5122b !important; }
+.form-status.error, .noscript-message { color: #d7193f !important; }
+.site-footer { border-top-color: #d7193f25 !important; }
+.site-footer a:hover { color: #d7193f !important; }
+#confirmar .rsvp-pool-photo { border: 1px solid #d7193f25 !important; }
