@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"><meta name="theme-color" content="#e00024">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"><meta name="theme-color" content="#d90022">
 <meta name="description" content="Yahir-fest · 21 de noviembre de 2026, 8:00 p. m. · Quinta Aldaros, Monterrey.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="KezInvites">
@@ -13,7 +13,7 @@
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Yahir-fest con palmeras de neón azul y la fecha de la fiesta">
+<meta property="og:image:alt" content="Yahir-fest con palmeras de neón y la fecha de la fiesta">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Yahir-fest · Invitación">
 <meta name="twitter:description" content="21 de noviembre de 2026 · 8:00 p. m. · Quinta Aldaros, Monterrey.">
@@ -21,7 +21,7 @@
 <title>Yahir-fest · Invitación</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./styles.css?v=20261013-red-white-contrast">
+<link rel="stylesheet" href="./styles.css?v=20261013-fixed">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="./supabase-config.js"></script><script src="./app.js" defer></script>
 </head>
 <body>
@@ -29,13 +29,12 @@
 <audio id="backgroundMusic" src="./musica_yahirfest.mp3" preload="auto" loop playsinline></audio>
 <button id="musicToggle" class="music-toggle" type="button" aria-label="Activar música" aria-pressed="false"><span class="music-symbol" aria-hidden="true">♫</span><span id="musicLabel">MÚSICA PAUSADA</span></button>
 <header class="hero" id="inicio">
-  
   <div class="hero-content">
     <p class="eyebrow">ESTÁS INVITADO</p>
     <div class="title-lockup">
-      <svg class="palm palm-left" viewBox="0 0 100 130" role="img" aria-label="Palmera de neón"><defs><linearGradient id="palmA" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d7193f"/><stop offset="1" stop-color="#ff8b9d"/></linearGradient></defs><g fill="none" stroke="url(#palmA)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M51 126 Q47 78 52 33"/><path d="M52 35 Q27 7 5 17 Q28 17 44 38"/><path d="M51 35 Q56 5 84 4 Q65 19 55 40"/><path d="M52 34 Q80 22 96 41 Q73 34 54 43"/><path d="M50 35 Q29 27 20 49 Q36 40 53 43"/><path d="M52 34 Q48 14 30 4 Q41 24 49 39"/><path d="M52 36 Q69 43 76 63 Q61 51 51 44"/></g></svg>
+      <svg class="palm palm-left" viewBox="0 0 100 130" role="img" aria-label="Palmera de neón"><defs><linearGradient id="palmA" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#ffe0e5"/></linearGradient></defs><g fill="none" stroke="url(#palmA)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M51 126 Q47 78 52 33"/><path d="M52 35 Q27 7 5 17 Q28 17 44 38"/><path d="M51 35 Q56 5 84 4 Q65 19 55 40"/><path d="M52 34 Q80 22 96 41 Q73 34 54 43"/><path d="M50 35 Q29 27 20 49 Q36 40 53 43"/><path d="M52 34 Q48 14 30 4 Q41 24 49 39"/><path d="M52 36 Q69 43 76 63 Q61 51 51 44"/></g></svg>
       <h1><span>YAHIR</span><b>-FEST</b></h1>
-      <svg class="palm palm-right" viewBox="0 0 100 130" role="img" aria-label="Palmera de neón"><defs><linearGradient id="palmB" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d7193f"/><stop offset="1" stop-color="#ff8b9d"/></linearGradient></defs><g fill="none" stroke="url(#palmB)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M51 126 Q47 78 52 33"/><path d="M52 35 Q27 7 5 17 Q28 17 44 38"/><path d="M51 35 Q56 5 84 4 Q65 19 55 40"/><path d="M52 34 Q80 22 96 41 Q73 34 54 43"/><path d="M50 35 Q29 27 20 49 Q36 40 53 43"/><path d="M52 34 Q48 14 30 4 Q41 24 49 39"/><path d="M52 36 Q69 43 76 63 Q61 51 51 44"/></g></svg>
+      <svg class="palm palm-right" viewBox="0 0 100 130" role="img" aria-label="Palmera de neón"><defs><linearGradient id="palmB" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#ffe0e5"/></linearGradient></defs><g fill="none" stroke="url(#palmB)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M51 126 Q47 78 52 33"/><path d="M52 35 Q27 7 5 17 Q28 17 44 38"/><path d="M51 35 Q56 5 84 4 Q65 19 55 40"/><path d="M52 34 Q80 22 96 41 Q73 34 54 43"/><path d="M50 35 Q29 27 20 49 Q36 40 53 43"/><path d="M52 34 Q48 14 30 4 Q41 24 49 39"/><path d="M52 36 Q69 43 76 63 Q61 51 51 44"/></g></svg>
     </div>
 
     <div class="hero-details"><span><i></i> 21 NOVIEMBRE 2026</span><span><i></i> 8:00 PM</span><span><i></i> QUINTA ALDAROS</span></div>
@@ -48,7 +47,6 @@
   <section class="section date-section" id="fecha">
     <div class="date-card glass"><div class="date-glow" aria-hidden="true"></div><p class="section-kicker">RESERVA LA NOCHE</p><h2>El plan es <em>divertirnos.</em></h2>
       <div class="date-display"><div class="date-day">21</div><div class="date-month"><span>SÁBADO</span><strong>NOVIEMBRE</strong><small>2026</small></div><div class="date-divider"></div><div class="date-time"><strong>8:00</strong><span>PM · HASTA QUE SE APAGUEN LAS LUCES</span></div></div>
-      
     </div>
   </section>
   <section class="section countdown-section" id="cuenta-regresiva">
@@ -63,7 +61,6 @@
   </section>
   <section class="section location-section" id="lugar">
     <div class="location-layout"><div class="location-copy"><p class="section-kicker">TU PUNTO DE ENCUENTRO</p><h2>Quinta<br><em>Aldaros.</em></h2>
-      
       <div class="address-line"><span class="pin-icon" aria-hidden="true">⌖</span><p>Av. Alfonso Reyes 1676<br>Bernardo Reyes, 64280 Monterrey, N. L.</p></div>
       <a class="button button-outline" href="https://maps.app.goo.gl/F319cz17X3pEEpgz7" target="_blank" rel="noopener noreferrer">VER UBICACIÓN EN MAPS <span aria-hidden="true">↗</span></a>
     </div>
@@ -75,7 +72,7 @@
         <div class="attendance-choice" role="group" aria-label="Selecciona tu asistencia"><button type="button" class="choice-button choice-yes" data-attending="true" aria-pressed="false"><span class="choice-icon">✦</span> SÍ VOY A IR</button><button type="button" class="choice-button choice-no" data-attending="false" aria-pressed="false"><span class="choice-icon">↗</span> NO PODRÉ IR</button></div>
         <input type="hidden" id="attendingValue" name="attending">
         <label class="field-label" for="guestName">ESCRIBE TU NOMBRE</label><input id="guestName" name="name" class="name-input" type="text" autocomplete="name" maxlength="80" minlength="2" placeholder="Tu nombre completo" required>
-<button class="button button-primary submit-button" id="submitRsvp" type="submit">GUARDAR RESPUESTA <span aria-hidden="true">↗</span></button>
+        <button class="button button-primary submit-button" id="submitRsvp" type="submit">GUARDAR RESPUESTA <span aria-hidden="true">↗</span></button>
         <div class="rsvp-pool-photo"><img id="poolPhoto" src="./foto_alberca.jpg" alt="Alberca de Quinta Aldaros" draggable="false" loading="lazy" decoding="async"></div>
         <p id="rsvpStatus" class="form-status" role="status" aria-live="polite"></p><p class="privacy-note">Tu respuesta se usa únicamente para organizar la lista de invitados.</p>
       </form>
@@ -85,4 +82,5 @@
 </main>
 <footer class="site-footer"><span>YAHIR-FEST © 2026</span><a class="creator-link" href="https://www.instagram.com/kezelvi.raw/?hl=es-la" target="_blank" rel="noopener noreferrer">Hecho por Kezelvi</a><a href="#inicio">VOLVER ARRIBA ↑</a></footer>
 <noscript><p class="noscript-message">Activa JavaScript para ver la cuenta regresiva y utilizar la confirmación de asistencia.</p></noscript>
-</body></html>
+</body>
+</html>
