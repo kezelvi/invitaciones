@@ -18,7 +18,7 @@ async function loadRows(){if(isDemo){renderRows(readDemoRows());return;}const {d
 function renderRows(rows){
  currentRows=Array.isArray(rows)?rows:[];
  const yes=currentRows.filter(row=>row.attending===true).length,no=currentRows.filter(row=>row.attending===false).length;
- $("#totalCount").textContent=String(currentRows.length);$("#yesCount").textContent=String(yes);$("#noCount").textContent=String(no);
+ $("#yesCount").textContent=String(yes);$("#noCount").textContent=String(no);
  const filter=($("#searchGuests").value||"").trim().toLocaleLowerCase(),filtered=currentRows.filter(row=>String(row.name||"").toLocaleLowerCase().includes(filter));
  if(!filtered.length){guestRows.innerHTML='<tr><td colspan="3" class="empty-cell">'+(currentRows.length?"No hay coincidencias con esa búsqueda.":"Todavía no hay respuestas registradas.")+"</td></tr>";return;}
  guestRows.innerHTML=filtered.map(row=>{
