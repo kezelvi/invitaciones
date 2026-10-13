@@ -893,3 +893,77 @@ body::before, body::after { content: none !important; display: none !important; 
   color: #111111 !important;
   text-shadow: none !important;
 }
+
+
+/* === CUENTA REGRESIVA: FOTO ORIGINAL DE LÁSERES CON FILTRO ROJO === */
+.countdown-section {
+  position: relative !important;
+  isolation: isolate !important;
+  overflow: hidden !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
+}
+.countdown-section::before {
+  content: "" !important;
+  display: block !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  background:
+    linear-gradient(0deg, rgba(105, 0, 18, .52), rgba(224, 0, 36, .48)),
+    linear-gradient(135deg, rgba(255, 25, 55, .34), rgba(120, 0, 24, .22)),
+    url("./foto_lasers.jpg") center center / cover no-repeat !important;
+  filter: saturate(1.18) contrast(1.04) !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  pointer-events: none !important;
+}
+.countdown-section::after {
+  content: "" !important;
+  display: block !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  background: rgba(235, 0, 38, .12) !important;
+  opacity: 1 !important;
+  pointer-events: none !important;
+}
+.countdown-section > * {
+  position: relative !important;
+  z-index: 1 !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+.countdown-section .section-index,
+.countdown-section .section-kicker,
+.countdown-section .countdown-caption,
+.countdown-section .countdown-caption span,
+.countdown-section .count-unit span {
+  color: #ffffff !important;
+  text-shadow: 0 1px 4px rgba(80,0,10,.9), 0 0 10px rgba(224,0,36,.75) !important;
+}
+.countdown-section h2,
+.countdown-section h2 *,
+.countdown-section .section-index span {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  text-shadow: 0 0 6px rgba(224,0,36,.95), 0 0 16px rgba(224,0,36,.72) !important;
+}
+.countdown-section .countdown {
+  background: rgba(255,255,255,.94) !important;
+  background-image: none !important;
+  border: 1px solid rgba(224,0,36,.48) !important;
+  box-shadow: 0 0 18px rgba(224,0,36,.28) !important;
+}
+.countdown-section .count-unit strong,
+.countdown-section .count-colon {
+  color: #e00024 !important;
+  -webkit-text-fill-color: #e00024 !important;
+  background: none !important;
+  background-image: none !important;
+  text-shadow: 0 0 5px rgba(224,0,36,.36) !important;
+}
+.countdown-section .countdown-caption { color: #ffffff !important; }
