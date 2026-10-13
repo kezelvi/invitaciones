@@ -263,6 +263,11 @@ input:focus-visible {
   transform: translateY(-2px);
 }
 
+.button span,
+.choice-icon {
+  font-variant-emoji: text;
+}
+
 .button span {
   font-size: 17px;
   font-weight: 600;
@@ -461,25 +466,27 @@ h2 em {
   color: var(--text-soft);
 }
 
-/* Cuenta regresiva */
-.countdown-section {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  width: 100vw;
-  max-width: none;
-  margin-left: calc(50% - 50vw);
-  margin-top: 36px;
-  margin-bottom: 36px;
-  min-height: clamp(380px, 42vw, 540px);
-  padding: clamp(64px, 8vw, 96px) clamp(16px, 5vw, 56px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  border-top: 1.5px solid var(--border-light);
-  border-bottom: 1.5px solid var(--border-light);
+/* Cuenta regresiva: ancho completo garantizado en PC y móvil */
+.section.countdown-section {
+  position: relative !important;
+  isolation: isolate !important;
+  overflow: hidden !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 36px 0 !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+  border-radius: 0 !important;
+  min-height: clamp(380px, 42vw, 540px) !important;
+  padding: clamp(64px, 8vw, 96px) clamp(16px, 5vw, 56px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  border-top: 1.5px solid var(--border-strong) !important;
+  border-bottom: 1.5px solid var(--border-strong) !important;
 }
 
 .countdown-section::before {
@@ -488,7 +495,7 @@ h2 em {
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(180deg, rgba(145, 0, 22, 0.65), rgba(200, 0, 32, 0.58)),
+    linear-gradient(180deg, rgba(145, 0, 22, 0.62), rgba(200, 0, 32, 0.55)),
     url("./foto_lasers.jpg") center center / cover no-repeat;
   filter: saturate(1.15) contrast(1.05);
 }
@@ -603,7 +610,7 @@ h2 em {
   pointer-events: none;
 }
 
-/* Confirmación de Asistencia (RSVP) */
+/* Confirmación de Asistencia (RSVP) con resplandor en el trazo */
 .rsvp-section {
   padding-top: 80px;
   padding-bottom: 84px;
@@ -616,7 +623,12 @@ h2 em {
   padding: clamp(28px, 6vw, 54px);
   border-radius: 20px;
   text-align: center;
-  border: 2px solid var(--border-strong);
+  border: 2px solid #ffffff !important;
+  box-shadow:
+    0 0 8px rgba(255, 255, 255, 0.85),
+    0 0 20px rgba(255, 255, 255, 0.42),
+    inset 0 0 8px rgba(255, 255, 255, 0.55),
+    0 24px 60px rgba(70, 0, 10, 0.35) !important;
 }
 
 .swimsuit-note {
@@ -847,6 +859,12 @@ h2 em {
   .section {
     width: calc(100% - 32px);
     padding: 68px 0;
+  }
+  .section.countdown-section {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 28px 0 !important;
+    padding: 60px 16px !important;
   }
   .date-card {
     padding: 34px 18px;
