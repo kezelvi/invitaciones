@@ -46,11 +46,61 @@ document.addEventListener("wheel",startMusicFromGesture,{passive:true,capture:tr
 document.addEventListener("keydown",event=>{
  if(!["INPUT","TEXTAREA"].includes(document.activeElement?.tagName)&&!["Shift","Control","Alt","Meta"].includes(event.key))startMusicFromGesture(event);
 },{capture:true});
+
+function clearSystemMediaControls(){
+  try{
+    if("mediaSession" in navigator){
+      navigator.mediaSession.metadata=null;
+      navigator.mediaSession.playbackState="none";
+      ["play","pause","stop","seekbackward","seekforward","previoustrack","nexttrack"].forEach(action=>{
+        try{navigator.mediaSession.setActionHandler(action,null);}catch(_){}
+      });
+    }
+  }catch(_){}
+}
+function unloadAudioOnExit(){
+  if(audio){
+    try{audio.pause();audio.currentTime=0;audio.removeAttribute("src");audio.load();}catch(_){}
+  }
+  clearSystemMediaControls();
+  updateMusicButton(false);
+}
+function restoreAudioSource(){
+  if(audio&&!audio.getAttribute("src")){
+    audio.setAttribute("src","./musica_yahirfest.mp3");
+    audio.loop=true;
+    audio.load();
+  }
+}
+
 audio?.addEventListener("play",()=>updateMusicButton(true));
 audio?.addEventListener("pause",()=>updateMusicButton(false));
-document.addEventListener("visibilitychange",()=>{if(document.hidden&&audio){audio.pause();}});
-window.addEventListener("pagehide",()=>{if(audio){audio.pause();audio.currentTime=0;}updateMusicButton(false);},{once:true});
+document.addEventListener("visibilitychange",()=>{
+  if(document.hidden)unloadAudioOnExit();
+  else restoreAudioSource();
+});
+window.addEventListener("pagehide",unloadAudioOnExit);
+window.addEventListener("pageshow",restoreAudioSource);
 
+const heroCta=document.querySelector(".hero-cta");
+if(heroCta){
+  heroCta.addEventListener("click",event=>{
+    const target=document.querySelector("#confirmar");
+    if(!target)return;
+    event.preventDefault();
+    const start=window.scrollY;
+    const delta=target.getBoundingClientRect().top;
+    const duration=760;
+    const began=performance.now();
+    const step=now=>{
+      const progress=Math.min(1,(now-began)/duration);
+      const eased=1-Math.pow(1-progress,3);
+      window.scrollTo(0,start+delta*eased);
+      if(progress<1)requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  });
+}
 const photo=$("#clubPhoto"), photoFrame=$(".club-photo");
 [photo,photoFrame].filter(Boolean).forEach(element=>{
  element.addEventListener("contextmenu",e=>e.preventDefault());
