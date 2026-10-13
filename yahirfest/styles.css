@@ -444,3 +444,30 @@ body{max-width:100%;overflow-x:hidden;touch-action:pan-x pan-y}
 @media (prefers-reduced-motion: reduce) {
   .date-card { animation: none !important; }
 }
+
+
+/* Ajustes solicitados: alberca al ancho interior de asistencia y relleno azul oscuro sólido. */
+.date-card {
+  background: linear-gradient(145deg, #061a3b 0%, #06142f 55%, #040d21 100%) padding-box,
+    conic-gradient(from var(--yahir-final-angle), #35e7ff, #4775ff, #a34cff, #ff4388, #ffe36b, #35e7ff) border-box !important;
+}
+.rsvp-pool-photo {
+  width: 100% !important;
+  max-width: none !important;
+  height: clamp(170px, 48vw, 260px) !important;
+  margin: 24px auto 6px !important;
+}
+.rsvp-pool-photo img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center !important;
+}
+@media (max-width: 680px) {
+  .rsvp-pool-photo {
+    width: 100% !important;
+    max-width: none !important;
+    height: clamp(160px, 52vw, 230px) !important;
+    margin: 22px auto 4px !important;
+  }
+}
