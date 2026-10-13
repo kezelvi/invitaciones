@@ -1320,151 +1320,114 @@ body::before, body::after { content: none !important; display: none !important; 
 }
 
 
-/* === INVERSIÓN GLOBAL DE PALETA: ROJO Y BLANCO === */
+/* === PALETA ROJO Y BLANCO: CONTRASTE Y RESPONSIVE === */
 :root {
   --color-red: #e00024;
   --accent: #ffffff;
   --accent-red: #e00024;
 }
-/* Fondos blancos y superficies claras pasan a rojo */
-body,
-.site-shell,
-.section,
-.date-section,
-.location-section,
-.rsvp-section,
-.closing-section,
-.site-footer,
-.date-card,
-.rsvp-card,
-.glass,
-.date-display,
-.date-day,
-.date-month,
-.date-time,
-.address-line,
-.attendance-choice,
-.choice-button,
-.name-input,
-.field-label,
-.privacy-note,
-.form-status,
-.hero-details span,
-.button-primary,
-.button-outline,
-.music-toggle,
-.hero .scroll-cue {
-  background-color: #e00024 !important;
+/* Rojo solo en las superficies que deben destacar; no pintar toda la página */
+body {
+  background: #e00024 !important;
+  color: #ffffff !important;
 }
-/* Mantener las fotografías y el banner láser intactos */
-.club-photo,
-.club-photo img,
-.rsvp-pool-photo,
-.rsvp-pool-photo img,
-.countdown-section,
-.countdown-section::before,
-.countdown-section::after {
+body::before {
+  background: radial-gradient(ellipse at 50% 10%, rgba(255,255,255,.08), transparent 48%),
+              linear-gradient(180deg, #e00024 0%, #c90020 100%) !important;
+}
+body, .site-shell, .section, .date-section, .location-section, .rsvp-section,
+.countdown-section, .closing-section, main {
   background-color: transparent !important;
 }
-/* El texto y los iconos rojos pasan a blanco */
-body,
-.site-shell,
-.section,
-.site-footer,
-.site-footer a,
-.section-kicker,
-.eyebrow,
-.hero-details,
-.hero-details span,
-.hero-details i,
-.title-lockup h1,
-.title-lockup h1 span,
-.title-lockup h1 b,
-.hero .scroll-cue,
-.hero .scroll-cue *,
-h1, h2, h3, h4, p, em, strong, small, span, label,
-.pin-icon,
-.address-line,
-.button,
-.button span,
-.music-toggle,
-.music-symbol,
-.choice-button,
-.choice-icon,
-.field-label,
-.privacy-note,
-.form-status,
-.closing-note,
-.closing-note span,
-.date-day,
-.date-month,
-.date-time,
-.date-divider,
-.countdown,
-.count-unit,
-.count-colon,
+/* Tarjetas y controles con un rojo más profundo para separar visualmente las áreas */
+.date-card, .rsvp-card, .glass {
+  background: linear-gradient(135deg, #b9001e, #8f0018) !important;
+  color: #ffffff !important;
+  border-color: rgba(255,255,255,.82) !important;
+}
+.date-display, .date-day, .date-month, .date-time, .address-line,
+.attendance-choice, .field-label, .privacy-note, .form-status,
+.hero-details span, .button-primary, .button-outline, .choice-button,
+.name-input, .music-toggle, .hero .scroll-cue {
+  background-color: transparent !important;
+}
+/* Todos los textos legibles en blanco, incluyendo textos que antes eran rojos */
+body, body *, .site-footer, .site-footer *, .hero *, .section *,
+h1, h2, h3, h4, p, em, strong, small, span, label, a, button,
+.section-kicker, .eyebrow, .hero-details, .hero-details span,
+.hero-details i, .title-lockup h1, .title-lockup h1 span,
+.title-lockup h1 b, .hero .scroll-cue, .hero .scroll-cue *,
+.pin-icon, .address-line, .button, .button span, .music-toggle,
+.music-symbol, .choice-button, .choice-icon, .field-label,
+.privacy-note, .form-status, .closing-note, .closing-note span,
+.date-day, .date-month, .date-time, .date-divider, .countdown,
+.count-unit, .count-unit strong, .count-unit span, .count-colon,
 .countdown-caption {
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff !important;
 }
-/* Resplandores rojos se vuelven blancos */
-.title-lockup h1,
-.title-lockup h1 span,
-.title-lockup h1 b,
-.hero .scroll-cue .scroll-copy,
-.hero .scroll-cue .scroll-arrow,
-h1, h2, h3, em,
-.section-kicker,
-.eyebrow,
-.date-day,
-.count-unit strong,
-.pin-icon,
-.choice-icon {
-  text-shadow: 0 0 7px rgba(255,255,255,.55), 0 0 18px rgba(255,255,255,.28) !important;
+/* Texto con degradado: desactivar relleno transparente para evitar que desaparezca */
+.title-lockup h1 b, .count-unit strong {
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
 }
-/* Contornos, divisores y ornamentos rojos pasan a blanco */
-.hero::after,
-.date-card,
-.rsvp-card,
-.glass,
-.date-display,
-.date-divider,
-.hero-details span,
-.button,
-.button-primary,
-.button-outline,
-.music-toggle,
-.choice-button,
-.name-input,
-.address-line,
-.site-footer,
-.section::before,
-.section::after {
-  border-color: rgba(255,255,255,.85) !important;
+/* Brillos y bordes rojos pasan a blanco */
+.title-lockup h1, .title-lockup h1 span, .title-lockup h1 b,
+.hero .scroll-cue .scroll-copy, .hero .scroll-cue .scroll-arrow,
+h1, h2, h3, em, .section-kicker, .eyebrow, .date-day,
+.count-unit strong, .pin-icon, .choice-icon {
+  text-shadow: 0 0 7px rgba(255,255,255,.5), 0 0 18px rgba(255,255,255,.22) !important;
 }
-/* Palmera SVG: sustituir gradientes rojos por blanco */
-.title-lockup .palm stop {
-  stop-color: #ffffff !important;
-}
-/* Inputs y botones conservan contraste legible sobre rojo */
-.name-input,
-.name-input::placeholder {
-  background: #e00024 !important;
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
-  border-color: rgba(255,255,255,.85) !important;
-}
-.name-input::placeholder { opacity: .78 !important; }
-.button-primary,
-.button-outline,
-.choice-button,
-.music-toggle {
-  background: #e00024 !important;
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
-}
-/* Círculo hero y detalles de neón blancos */
 .hero::after {
   border-color: #ffffff !important;
-  box-shadow: 0 0 9px rgba(255,255,255,.8), inset 0 0 9px rgba(255,255,255,.12) !important;
+  box-shadow: 0 0 9px rgba(255,255,255,.75), inset 0 0 9px rgba(255,255,255,.1) !important;
+}
+.date-card, .rsvp-card, .glass, .date-divider, .hero-details span,
+.button, .button-primary, .button-outline, .music-toggle,
+.choice-button, .name-input, .address-line, .site-footer {
+  border-color: rgba(255,255,255,.82) !important;
+}
+.title-lockup .palm stop { stop-color: #ffffff !important; }
+.hero-details span { background: rgba(120,0,20,.55) !important; }
+.button-primary, .button-outline, .choice-button, .music-toggle {
+  background: #a9001b !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+.name-input {
+  background: #8f0018 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+.name-input::placeholder {
+  color: rgba(255,255,255,.78) !important;
+  -webkit-text-fill-color: rgba(255,255,255,.78) !important;
+}
+.club-photo, .club-photo img, .rsvp-pool-photo, .rsvp-pool-photo img {
+  background-color: transparent !important;
+}
+.site-footer { background: #a9001b !important; color: #ffffff !important; }
+/* Ajustes para notebook y pantallas compactas: evitar desbordamientos en el encabezado */
+@media (min-width: 681px) {
+  .hero { padding-left: 32px !important; padding-right: 32px !important; }
+  .hero-content { width: min(100%, 1000px) !important; }
+  .title-lockup { max-width: 100% !important; }
+  .title-lockup h1 { font-size: clamp(3rem, 8.5vw, 7rem) !important; }
+  .title-lockup .palm { width: clamp(42px, 7vw, 92px) !important; }
+  .hero-details { max-width: 100% !important; }
+}
+@media (max-width: 900px) {
+  .title-lockup { gap: clamp(4px, 1.2vw, 12px) !important; }
+  .title-lockup h1 { letter-spacing: -.09em !important; }
+}
+@media (max-width: 680px) {
+  .title-lockup h1 { font-size: clamp(2.45rem, 10.4vw, 4.7rem) !important; }
+  .title-lockup .palm { width: clamp(31px, 8.2vw, 54px) !important; }
+  .hero-details span { background: rgba(120,0,20,.55) !important; }
+}
+@media (max-width: 370px) {
+  .title-lockup h1 { font-size: 2.3rem !important; }
+  .title-lockup .palm { width: 27px !important; }
 }
