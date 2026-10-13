@@ -4,3 +4,14 @@
 .admin-heading h1 em,.login-card h2 em,.list-heading h2 em{font-family:var(--display);font-style:normal}
 .stat-no strong{color:#ffe16b}
 .attendance-badge.no{border-color:rgba(255,225,107,.3);color:#ffe99b;background:rgba(255,225,107,.06)}
+
+
+/* Solo dos indicadores: azul para asistencia confirmada y rojo para quien no asistirá. */
+.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;max-width:620px}
+.stat-yes strong{color:#329dff!important;text-shadow:0 0 12px rgba(50,157,255,.4)}
+.stat-no strong{color:#ff465c!important;text-shadow:0 0 12px rgba(255,70,92,.4)}
+.attendance-badge.yes{border-color:rgba(50,157,255,.46)!important;color:#8dd0ff!important;background:rgba(50,157,255,.1)!important;box-shadow:0 0 12px rgba(50,157,255,.08)}
+.attendance-badge.no{border-color:rgba(255,70,92,.48)!important;color:#ff929f!important;background:rgba(255,70,92,.1)!important;box-shadow:0 0 12px rgba(255,70,92,.08)}
+.stat-yes span{color:#8dd0ff!important}
+.stat-no span{color:#ff929f!important}
+@media(max-width:450px){.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
