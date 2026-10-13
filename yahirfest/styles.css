@@ -761,3 +761,75 @@ a:hover, button:hover { text-shadow: 0 0 10px rgba(224,0,36,.5) !important; }
 .pool-sun { background: #e00024 !important; }
 .pool-moon { background: #ffffff !important; }
 ::selection { background: #e00024 !important; color: #ffffff !important; }
+
+
+/* === FIX REAL DEL HERO: ELIMINAR FOTO OSCURA, CAPAS Y CÍRCULO === */
+body, html { background: #fff !important; }
+body::before, body::after { content: none !important; display: none !important; }
+.hero {
+  background: #fff !important;
+  background-image: none !important;
+}
+.hero::before {
+  content: none !important;
+  display: none !important;
+  background: #fff !important;
+  background-image: none !important;
+  filter: none !important;
+  opacity: 0 !important;
+}
+.hero::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  opacity: 0 !important;
+}
+.ambient, .ambient-one, .ambient-two {
+  display: none !important;
+  background: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+}
+.music-toggle {
+  background: #fff !important;
+  color: #e00024 !important;
+  border: 1px solid #e00024 !important;
+  box-shadow: 0 0 12px rgba(224,0,36,.18) !important;
+  backdrop-filter: none !important;
+}
+.music-toggle *, .music-symbol { color: #e00024 !important; }
+.hero-topline, .hero-bottomline, .hero-subtitle, .hero-copy,
+.scroll-cue, .scroll-cue .scroll-copy {
+  color: #111 !important;
+  text-shadow: none !important;
+}
+.title-lockup h1, .title-lockup h1 span, .title-lockup h1 b,
+.hero .eyebrow, .hero .section-kicker {
+  color: #e00024 !important;
+  background: none !important;
+  -webkit-text-fill-color: #e00024 !important;
+  text-shadow: 0 0 5px rgba(224,0,36,.55),
+               0 0 14px rgba(224,0,36,.30) !important;
+}
+.palm { filter: none !important; }
+.hero-details span {
+  background: #fff !important;
+  color: #111 !important;
+  border: 1px solid rgba(224,0,36,.45) !important;
+  box-shadow: none !important;
+}
+.hero-details i { background: #e00024 !important; box-shadow: 0 0 8px rgba(224,0,36,.5) !important; }
+.hero-bottomline span, .hero-bottomline * { color: #111 !important; text-shadow: none !important; }
+.scroll-cue span, .scroll-cue .scroll-arrow {
+  color: #e00024 !important;
+  background: none !important;
+  text-shadow: 0 0 8px rgba(224,0,36,.5) !important;
+}
+.club-photo, .rsvp-pool-photo {
+  background: #fff !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
