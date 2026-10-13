@@ -1291,3 +1291,30 @@ body::before, body::after { content: none !important; display: none !important; 
   outline: 0 !important;
   box-shadow: none !important;
 }
+
+
+/* LOGOTIPO YAHIRFEST: aumentar únicamente texto y palmeras */
+.title-lockup h1 {
+  font-size: clamp(3rem, 11.4vw, 7.8rem) !important;
+}
+.title-lockup .palm {
+  width: clamp(43px, 9.6vw, 112px) !important;
+  max-height: 155px !important;
+}
+@media (max-width: 680px) {
+  .title-lockup h1 {
+    font-size: clamp(2.7rem, 11.8vw, 5.25rem) !important;
+  }
+  .title-lockup .palm {
+    width: clamp(36px, 9.8vw, 60px) !important;
+    max-height: 100px !important;
+  }
+}
+@media (max-width: 370px) {
+  .title-lockup h1 {
+    font-size: 2.6rem !important;
+  }
+  .title-lockup .palm {
+    width: 32px !important;
+  }
+}
