@@ -3,26 +3,25 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"><meta name="theme-color" content="#d90022">
 <meta name="description" content="Yahir-fest · 21 de noviembre de 2026, 8:00 p. m. · Quinta Aldaros, Monterrey.">
-<link rel="canonical" href="https://kezinvites.site/yahirfest/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="KezInvites">
 <meta property="og:title" content="Yahir-fest · Invitación">
 <meta property="og:description" content="21 de noviembre de 2026 · 8:00 p. m. · Quinta Aldaros, Monterrey. Confirma tu asistencia.">
-<meta property="og:url" content="https://kezinvites.site/yahirfest/">
-<meta property="og:image" content="https://kezinvites.site/yahirfest/og-yahirfest.jpg?v=20261014">
-<meta property="og:image:secure_url" content="https://kezinvites.site/yahirfest/og-yahirfest.jpg?v=20261014">
+<meta property="og:url" content="https://kezinvites.site/yahirfest/?v=5">
+<meta property="og:image" content="https://kezinvites.site/yahirfest/og-yahirfest.jpg?v=5">
+<meta property="og:image:secure_url" content="https://kezinvites.site/yahirfest/og-yahirfest.jpg?v=5">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Yahir-fest con palmeras de neón y la fecha de la fiesta">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Yahir-fest · Invitación">
 <meta name="twitter:description" content="21 de noviembre de 2026 · 8:00 p. m. · Quinta Aldaros, Monterrey.">
-<meta name="twitter:image" content="https://kezinvites.site/yahirfest/og-yahirfest.jpg?v=20261014">
-<link rel="image_src" href="https://kezinvites.site/yahirfest/og-yahirfest.jpg?v=20261014">
+<meta name="twitter:image" content="https://kezinvites.site/yahirfest/og-yahirfest.jpg?v=5">
 <title>Yahir-fest · Invitación</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./styles.css?v=20261014-v3">
+<link rel="stylesheet" href="./styles.css?v=20261013-v2">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="./supabase-config.js"></script><script src="./app.js" defer></script>
 </head>
 <body>
@@ -61,4 +60,26 @@
     <p class="countdown-caption" id="countdownCaption">21.11.2026 <span>·</span> 20:00 H · SAN NICOLÁS DE LOS GARZA</p>
   </section>
   <section class="section location-section" id="lugar">
-    <div class="location-layout"><div class="location-copy
+    <div class="location-layout"><div class="location-copy"><p class="section-kicker">TU PUNTO DE ENCUENTRO</p><h2>Quinta<br><em>Aldaros.</em></h2>
+      <div class="address-line"><span class="pin-icon" aria-hidden="true">⌖</span><p>Av. Alfonso Reyes 1676<br>Bernardo Reyes, 64280 Monterrey, N. L.</p></div>
+      <a class="button button-outline" href="https://maps.app.goo.gl/F319cz17X3pEEpgz7" target="_blank" rel="noopener noreferrer">VER UBICACIÓN EN MAPS <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="pool-art club-photo"><img id="clubPhoto" src="./foto_antro.jpg" alt="Fotografía del antro de Yahir-fest" draggable="false" loading="lazy" decoding="async"></div></div>
+  </section>
+  <section class="section rsvp-section" id="confirmar">
+    <div class="rsvp-card glass"><p class="section-kicker">CONFIRMA TU ASISTENCIA</p><h2>¿Te vemos <em>ahí?</em></h2><p class="swimsuit-note">No olvides tu traje de baño</p><p class="rsvp-intro">Confirma tu asistencia para entrar en la lista de Yahir-fest.</p>
+      <form id="rsvpForm" novalidate>
+        <div class="attendance-choice" role="group" aria-label="Selecciona tu asistencia"><button type="button" class="choice-button choice-yes" data-attending="true" aria-pressed="false"><span class="choice-icon">✦</span> SÍ VOY A IR</button><button type="button" class="choice-button choice-no" data-attending="false" aria-pressed="false"><span class="choice-icon">↗</span> NO PODRÉ IR</button></div>
+        <input type="hidden" id="attendingValue" name="attending">
+        <label class="field-label" for="guestName">ESCRIBE TU NOMBRE</label><input id="guestName" name="name" class="name-input" type="text" autocomplete="name" maxlength="80" minlength="2" placeholder="Tu nombre completo" required>
+        <button class="button button-primary submit-button" id="submitRsvp" type="submit">GUARDAR RESPUESTA <span aria-hidden="true">↗</span></button>
+        <div class="rsvp-pool-photo"><img id="poolPhoto" src="./foto_alberca.jpg" alt="Alberca de Quinta Aldaros" draggable="false" loading="lazy" decoding="async"></div>
+        <p id="rsvpStatus" class="form-status" role="status" aria-live="polite"></p><p class="privacy-note">Tu respuesta se usa únicamente para organizar la lista de invitados.</p>
+      </form>
+    </div>
+  </section>
+</main>
+<footer class="site-footer"><span>YAHIR-FEST © 2026</span><a class="creator-link" href="https://www.instagram.com/kezelvi.raw/?hl=es-la" target="_blank" rel="noopener noreferrer">Hecho por Kezelvi</a><a href="#inicio">VOLVER ARRIBA ↑</a></footer>
+<noscript><p class="noscript-message">Activa JavaScript para ver la cuenta regresiva y utilizar la confirmación de asistencia.</p></noscript>
+</body>
+</html>
