@@ -3,7 +3,7 @@
 
   const EVENT_DATE = new Date("2026-11-21T20:00:00-06:00");
   const AUDIO_URL = "./musica_yahirfest.mp3";
-  const TARGET_GAIN = 0.55;
+  const TARGET_GAIN = 0.78;
   const DEMO_KEY = "yahirfest-demo-rsvps";
   const CLIENT_ID_KEY = "yahirfest-client-id-v1";
   const SUBMITTED_KEY = "yahirfest-rsvp-submitted-v1";
@@ -36,7 +36,7 @@
     saving = false,
     manuallyPaused = false;
 
-  // Desactivar por completo la etiqueta <audio> nativa para que no duplique audio ni aparezca en iOS
+  // Desactivar la etiqueta <audio> nativa para que iOS no la registre en el Centro de Control
   if (audio) {
     try {
       audio.pause();
@@ -74,10 +74,11 @@
   window.setInterval(updateCountdown, 1000);
 
   // =========================================================================
-  // MOTOR DE AUDIO (Web Audio API) — Instancia única garantizada:
-  // - Bloqueo síncrono (isStarting) para impedir pistas simultáneas o distorsión
+  // MOTOR DE AUDIO (Web Audio API):
+  // - Se activa al hacer scroll (touchmove, wheel, scroll) o tocar/hacer clic
+  // - Bloqueo síncrono (isStarting + activeSources) que impide pistas duplicadas
   // - No aparece en el Centro de Control ni pantalla de bloqueo de iOS
-  // - Empieza en un punto aleatorio (5% a 85%) al abrir la invitación
+  // - Empieza en un punto aleatorio (5% a 85%) cada vez que abres la página
   // - Al terminar la canción, repite en bucle desde 0:00
   // =========================================================================
   const AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -121,9 +122,6 @@
       gainNode = audioCtx.createGain();
       gainNode.gain.value = TARGET_GAIN;
       gainNode.connect(audioCtx.destination);
-    }
-    if (audioCtx && audioCtx.state === "suspended") {
-      audioCtx.resume().catch(() => {});
     }
   }
 
@@ -173,6 +171,9 @@
     return decodePromise;
   }
 
+  // Pre-decodificar el archivo MP3 apenas carga el script para que esté listo al primer scroll
+  loadDecodedBuffer();
+
   function pickRandomOffset(duration) {
     if (!Number.isFinite(duration) || duration <= 4) return 0;
     const min = duration * 0.05;
@@ -182,30 +183,35 @@
 
   async function startMusicFromGesture(event) {
     if (event && event.target instanceof Element && event.target.closest("#musicToggle")) return;
-    if (manuallyPaused || isPlaying || isStarting || document.hidden) return;
+    if (manuallyPaused || isPlaying || document.hidden) return;
 
-    // Bloqueo síncrono inmediato para que ningún otro evento paralelo inicie otra pista
+    ensureAudioContext();
+    if (!audioCtx) return;
+
+    // Intentar desbloquear el contexto sincrónicamente en cada evento de scroll/toque
+    if (audioCtx.state === "suspended") {
+      audioCtx.resume().catch(() => {});
+    }
+
+    // Candado síncrono: evita que múltiples eventos de scroll/touchmove disparen pistas simultáneas
+    if (isStarting) return;
     isStarting = true;
 
     try {
-      ensureAudioContext();
-      if (!audioCtx) return;
-
-      // En iOS, disparar resume() sincrónicamente dentro del gesto del usuario
-      const resumePromise =
-        audioCtx.state === "suspended" ? audioCtx.resume().catch(() => {}) : Promise.resolve();
-
       const buffer = await loadDecodedBuffer();
-      await resumePromise;
-
       if (!buffer || manuallyPaused || isPlaying || document.hidden) return;
 
       if (audioCtx.state === "suspended") {
-        await audioCtx.resume().catch(() => {});
+        await Promise.race([
+          audioCtx.resume().catch(() => {}),
+          new Promise((resolve) => setTimeout(resolve, 120))
+        ]);
       }
-      if (audioCtx.state !== "running") return;
 
-      // Garantizar que jamás exista otro nodo sonando antes de crear el nuevo
+      // Si el navegador aún no desbloqueó el audio en este evento, liberar candado para el siguiente movimiento
+      if (audioCtx.state !== "running" || manuallyPaused || isPlaying || document.hidden) return;
+
+      // Garantizar que no exista ningún otro nodo previo antes de iniciar
       stopAllSources();
 
       if (currentOffset === null || !Number.isFinite(currentOffset)) {
@@ -221,11 +227,11 @@
       node.loopEnd = buffer.duration;
       node.connect(gainNode);
 
-      // Suavizar entrada para evitar cualquier clic o pico de volumen
+      // Rampa suave de 120ms para evitar clics o saturación al arrancar
       const now = audioCtx.currentTime;
       gainNode.gain.cancelScheduledValues(now);
       gainNode.gain.setValueAtTime(0.0001, now);
-      gainNode.gain.linearRampToValueAtTime(TARGET_GAIN, now + 0.15);
+      gainNode.gain.linearRampToValueAtTime(TARGET_GAIN, now + 0.12);
 
       startedAt = now - currentOffset;
       node.start(0, currentOffset);
@@ -277,26 +283,36 @@
     });
   }
 
-  const gestureEvents = ["pointerdown", "touchstart", "touchend", "click", "keydown"];
-  gestureEvents.forEach((type) => {
-    document.addEventListener(
-      type,
-      (event) => {
-        if (type === "keydown") {
-          if (
-            ["INPUT", "TEXTAREA"].includes(document.activeElement?.tagName) ||
-            ["Shift", "Control", "Alt", "Meta"].includes(event.key)
-          ) {
-            return;
-          }
-        }
-        startMusicFromGesture(event);
-      },
-      { passive: true, capture: true }
-    );
+  // Eventos de scroll, deslizamiento táctil, rueda de mouse, toque y teclado
+  const interactionEvents = [
+    "pointerdown",
+    "pointerup",
+    "touchstart",
+    "touchmove",
+    "touchend",
+    "wheel",
+    "scroll",
+    "click"
+  ];
+  interactionEvents.forEach((type) => {
+    window.addEventListener(type, startMusicFromGesture, { passive: true, capture: true });
+    document.addEventListener(type, startMusicFromGesture, { passive: true, capture: true });
   });
 
-  // Cortar audio al salir o minimizar el navegador y elegir otro punto aleatorio al volver
+  document.addEventListener(
+    "keydown",
+    (event) => {
+      if (
+        !["INPUT", "TEXTAREA"].includes(document.activeElement?.tagName) &&
+        !["Shift", "Control", "Alt", "Meta"].includes(event.key)
+      ) {
+        startMusicFromGesture(event);
+      }
+    },
+    { capture: true }
+  );
+
+  // Cortar audio al salir o minimizar Safari y elegir otro punto aleatorio al volver
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
       pauseMusic(true);
