@@ -3,6 +3,7 @@
 
   const EVENT_DATE = new Date("2026-11-21T20:00:00-06:00");
   const AUDIO_URL = "./musica_yahirfest.mp3";
+  const TARGET_GAIN = 0.55;
   const DEMO_KEY = "yahirfest-demo-rsvps";
   const CLIENT_ID_KEY = "yahirfest-client-id-v1";
   const SUBMITTED_KEY = "yahirfest-rsvp-submitted-v1";
@@ -35,11 +36,13 @@
     saving = false,
     manuallyPaused = false;
 
-  // Desactivar la etiqueta <audio> nativa para que iOS no la registre en el Centro de Control
+  // Desactivar por completo la etiqueta <audio> nativa para que no duplique audio ni aparezca en iOS
   if (audio) {
-    audio.pause();
-    audio.removeAttribute("src");
-    audio.load();
+    try {
+      audio.pause();
+      audio.removeAttribute("src");
+      audio.load();
+    } catch (_) {}
   }
 
   // Animación del borde en la tarjeta de fecha compatible con todos los navegadores
@@ -71,24 +74,28 @@
   window.setInterval(updateCountdown, 1000);
 
   // =========================================================================
-  // MOTOR DE AUDIO (Web Audio API):
+  // MOTOR DE AUDIO (Web Audio API) — Instancia única garantizada:
+  // - Bloqueo síncrono (isStarting) para impedir pistas simultáneas o distorsión
   // - No aparece en el Centro de Control ni pantalla de bloqueo de iOS
-  // - Empieza en un punto aleatorio (5% a 85%) cada vez que abres la página
+  // - Empieza en un punto aleatorio (5% a 85%) al abrir la invitación
   // - Al terminar la canción, repite en bucle desde 0:00
   // =========================================================================
   const AudioCtx = window.AudioContext || window.webkitAudioContext;
   let audioCtx = null;
   let audioBuffer = null;
-  let sourceNode = null;
+  let decodePromise = null;
   let gainNode = null;
-  let isPlaying = false;
-  let isLoadingBuffer = false;
-  let rawAudioDataPromise = fetch(AUDIO_URL)
-    .then((res) => res.arrayBuffer())
-    .catch(() => null);
+  let sourceNode = null;
+  const activeSources = new Set();
 
+  let isPlaying = false;
+  let isStarting = false;
   let currentOffset = null; // null = elegir punto aleatorio nuevo
   let startedAt = 0;
+
+  let rawAudioDataPromise = fetch(AUDIO_URL)
+    .then((res) => (res.ok ? res.arrayBuffer() : null))
+    .catch(() => null);
 
   function updateMusicButton(playing) {
     if (!musicToggle) return;
@@ -112,7 +119,7 @@
     if (!audioCtx && AudioCtx) {
       audioCtx = new AudioCtx();
       gainNode = audioCtx.createGain();
-      gainNode.gain.value = 0.78;
+      gainNode.gain.value = TARGET_GAIN;
       gainNode.connect(audioCtx.destination);
     }
     if (audioCtx && audioCtx.state === "suspended") {
@@ -120,27 +127,50 @@
     }
   }
 
-  async function loadDecodedBuffer() {
-    if (audioBuffer) return audioBuffer;
-    if (isLoadingBuffer) return null;
-    isLoadingBuffer = true;
-    try {
-      ensureAudioContext();
-      if (!rawAudioDataPromise) {
-        rawAudioDataPromise = fetch(AUDIO_URL).then((r) => r.arrayBuffer());
-      }
-      const arrayBuffer = await rawAudioDataPromise;
-      if (!arrayBuffer || !audioCtx) return null;
-      // Clonar el ArrayBuffer por si se necesita decodificar más de una vez
-      audioBuffer = await new Promise((resolve, reject) => {
-        audioCtx.decodeAudioData(arrayBuffer.slice(0), resolve, reject);
-      });
-      return audioBuffer;
-    } catch (_) {
-      return null;
-    } finally {
-      isLoadingBuffer = false;
+  function stopAllSources() {
+    activeSources.forEach((node) => {
+      try {
+        node.onended = null;
+        node.stop(0);
+      } catch (_) {}
+      try {
+        node.disconnect();
+      } catch (_) {}
+    });
+    activeSources.clear();
+    sourceNode = null;
+  }
+
+  function loadDecodedBuffer() {
+    if (audioBuffer) return Promise.resolve(audioBuffer);
+    if (decodePromise) return decodePromise;
+
+    ensureAudioContext();
+    if (!audioCtx) return Promise.resolve(null);
+
+    if (!rawAudioDataPromise) {
+      rawAudioDataPromise = fetch(AUDIO_URL)
+        .then((r) => (r.ok ? r.arrayBuffer() : null))
+        .catch(() => null);
     }
+
+    decodePromise = rawAudioDataPromise
+      .then((arrayBuffer) => {
+        if (!arrayBuffer || !audioCtx) return null;
+        return new Promise((resolve, reject) => {
+          audioCtx.decodeAudioData(arrayBuffer.slice(0), resolve, reject);
+        });
+      })
+      .then((decoded) => {
+        if (decoded) audioBuffer = decoded;
+        return audioBuffer;
+      })
+      .catch(() => null)
+      .finally(() => {
+        decodePromise = null;
+      });
+
+    return decodePromise;
   }
 
   function pickRandomOffset(duration) {
@@ -152,52 +182,81 @@
 
   async function startMusicFromGesture(event) {
     if (event && event.target instanceof Element && event.target.closest("#musicToggle")) return;
-    if (manuallyPaused || isPlaying) return;
+    if (manuallyPaused || isPlaying || isStarting || document.hidden) return;
 
-    ensureAudioContext();
-    const buffer = await loadDecodedBuffer();
-    if (!buffer || manuallyPaused || isPlaying || document.hidden) return;
+    // Bloqueo síncrono inmediato para que ningún otro evento paralelo inicie otra pista
+    isStarting = true;
 
     try {
-      if (audioCtx.state === "suspended") await audioCtx.resume();
+      ensureAudioContext();
+      if (!audioCtx) return;
 
-      if (currentOffset === null) {
+      // En iOS, disparar resume() sincrónicamente dentro del gesto del usuario
+      const resumePromise =
+        audioCtx.state === "suspended" ? audioCtx.resume().catch(() => {}) : Promise.resolve();
+
+      const buffer = await loadDecodedBuffer();
+      await resumePromise;
+
+      if (!buffer || manuallyPaused || isPlaying || document.hidden) return;
+
+      if (audioCtx.state === "suspended") {
+        await audioCtx.resume().catch(() => {});
+      }
+      if (audioCtx.state !== "running") return;
+
+      // Garantizar que jamás exista otro nodo sonando antes de crear el nuevo
+      stopAllSources();
+
+      if (currentOffset === null || !Number.isFinite(currentOffset)) {
         currentOffset = pickRandomOffset(buffer.duration);
+      } else {
+        currentOffset = currentOffset % buffer.duration;
       }
 
-      sourceNode = audioCtx.createBufferSource();
-      sourceNode.buffer = buffer;
-      sourceNode.loop = true;
-      sourceNode.loopStart = 0;
-      sourceNode.loopEnd = buffer.duration;
-      sourceNode.connect(gainNode);
+      const node = audioCtx.createBufferSource();
+      node.buffer = buffer;
+      node.loop = true;
+      node.loopStart = 0;
+      node.loopEnd = buffer.duration;
+      node.connect(gainNode);
 
-      startedAt = audioCtx.currentTime - currentOffset;
-      sourceNode.start(0, currentOffset);
+      // Suavizar entrada para evitar cualquier clic o pico de volumen
+      const now = audioCtx.currentTime;
+      gainNode.gain.cancelScheduledValues(now);
+      gainNode.gain.setValueAtTime(0.0001, now);
+      gainNode.gain.linearRampToValueAtTime(TARGET_GAIN, now + 0.15);
+
+      startedAt = now - currentOffset;
+      node.start(0, currentOffset);
+
+      sourceNode = node;
+      activeSources.add(node);
       isPlaying = true;
       clearSystemMediaControls();
       updateMusicButton(true);
     } catch (_) {
+      stopAllSources();
+      isPlaying = false;
       updateMusicButton(false);
+    } finally {
+      isStarting = false;
     }
   }
 
   function pauseMusic(resetRandomPoint) {
-    if (sourceNode) {
-      try {
-        if (isPlaying && audioCtx && audioBuffer) {
-          const elapsed = audioCtx.currentTime - startedAt;
-          currentOffset = elapsed % audioBuffer.duration;
-        }
-        sourceNode.stop();
-        sourceNode.disconnect();
-      } catch (_) {}
-      sourceNode = null;
+    if (isPlaying && audioCtx && audioBuffer) {
+      const elapsed = Math.max(0, audioCtx.currentTime - startedAt);
+      currentOffset = elapsed % audioBuffer.duration;
     }
+    stopAllSources();
+
     if (resetRandomPoint) {
       currentOffset = null;
     }
     isPlaying = false;
+    isStarting = false;
+
     if (audioCtx && audioCtx.state === "running") {
       audioCtx.suspend().catch(() => {});
     }
@@ -206,8 +265,9 @@
   }
 
   if (musicToggle) {
-    musicToggle.addEventListener("click", () => {
-      if (isPlaying) {
+    musicToggle.addEventListener("click", (event) => {
+      event.stopPropagation();
+      if (isPlaying || isStarting) {
         manuallyPaused = true;
         pauseMusic(false);
       } else {
@@ -217,24 +277,26 @@
     });
   }
 
-  document.addEventListener("pointerdown", startMusicFromGesture, { passive: true, capture: true });
-  document.addEventListener("touchstart", startMusicFromGesture, { passive: true, capture: true });
-  document.addEventListener("touchmove", startMusicFromGesture, { passive: true, capture: true });
-  document.addEventListener("wheel", startMusicFromGesture, { passive: true, capture: true });
-  document.addEventListener(
-    "keydown",
-    (event) => {
-      if (
-        !["INPUT", "TEXTAREA"].includes(document.activeElement?.tagName) &&
-        !["Shift", "Control", "Alt", "Meta"].includes(event.key)
-      ) {
+  const gestureEvents = ["pointerdown", "touchstart", "touchend", "click", "keydown"];
+  gestureEvents.forEach((type) => {
+    document.addEventListener(
+      type,
+      (event) => {
+        if (type === "keydown") {
+          if (
+            ["INPUT", "TEXTAREA"].includes(document.activeElement?.tagName) ||
+            ["Shift", "Control", "Alt", "Meta"].includes(event.key)
+          ) {
+            return;
+          }
+        }
         startMusicFromGesture(event);
-      }
-    },
-    { capture: true }
-  );
+      },
+      { passive: true, capture: true }
+    );
+  });
 
-  // Cortar audio al salir o minimizar Safari y elegir otro punto aleatorio al volver
+  // Cortar audio al salir o minimizar el navegador y elegir otro punto aleatorio al volver
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
       pauseMusic(true);
