@@ -1,0 +1,1116 @@
+/* ==========================================================================
+   Cuando te veo canto ♥ — Kezelvi | Hoja de Estilos Principal (styles.css)
+   Recreación fiel de interfaz estilo ventana macOS sobre papel artesanal,
+   glassmorphism esmerilado, vinilo animado, stickers troquelados y onda crayón.
+   ========================================================================== */
+
+:root {
+  --bg-outer-dark: #121620;
+  --bg-outer-mid: #1a202e;
+  --paper-base: #e6e5e0;
+  --paper-highlight: #f3f2ee;
+  --paper-border: rgba(255, 255, 255, 0.82);
+  --text-dark: #151515;
+  --text-muted: #6e706b;
+  --glass-sleeve-bg: rgba(232, 241, 248, 0.44);
+  --glass-sleeve-border: rgba(255, 255, 255, 0.72);
+  --lyrics-card-top: rgba(226, 227, 224, 0.88);
+  --lyrics-card-mid: rgba(162, 164, 159, 0.82);
+  --lyrics-card-bot: rgba(214, 215, 211, 0.88);
+  --bottom-bar-bg: rgba(232, 236, 234, 0.66);
+  --sticker-outline: #f6f5f0;
+  --accent-red: #fb3858;
+  --accent-sky: #02d4f9;
+  --accent-sun: #f5ee02;
+  --shadow-window: 0 30px 70px rgba(0, 0, 0, 0.58), 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background: radial-gradient(circle at 50% 42%, var(--bg-outer-mid) 0%, var(--bg-outer-dark) 75%, #0b0e15 100%);
+  font-family: 'DM Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-x: hidden;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Modo oscuro opcional para el marco de papel */
+body.dark-paper-mode {
+  --paper-base: #262933;
+  --paper-highlight: #303440;
+  --paper-border: rgba(255, 255, 255, 0.16);
+  --text-dark: #f2f2f0;
+  --text-muted: #b0b3ab;
+  --lyrics-card-top: rgba(54, 58, 70, 0.88);
+  --lyrics-card-mid: rgba(40, 44, 54, 0.86);
+  --lyrics-card-bot: rgba(52, 56, 68, 0.88);
+  --bottom-bar-bg: rgba(42, 46, 56, 0.72);
+}
+
+/* ==========================================================================
+   Ventana Principal Estilo macOS con Textura de Papel Artesanal
+   ========================================================================== */
+.app-window {
+  position: relative;
+  width: 100%;
+  max-width: 980px;
+  background: linear-gradient(165deg, var(--paper-highlight) 0%, var(--paper-base) 55%, #dcdbd6 100%);
+  border-radius: 20px;
+  border: 1.5px solid var(--paper-border);
+  box-shadow: var(--shadow-window), inset 0 1px 2px rgba(255, 255, 255, 0.9);
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease;
+}
+
+body.dark-paper-mode .app-window {
+  background: linear-gradient(165deg, #323644 0%, #252832 60%, #1e212a 100%);
+}
+
+/* Textura sutil de fibras de papel en superposición */
+.paper-grain-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.35;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 0),
+                    radial-gradient(rgba(255, 255, 255, 0.5) 1px, transparent 0);
+  background-size: 16px 16px;
+  background-position: 0 0, 8px 8px;
+}
+
+/* ==========================================================================
+   Barra Superior (Titlebar & Navegación)
+   ========================================================================== */
+.window-topbar {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  padding: 0 24px;
+}
+
+.window-dots {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 90px;
+}
+
+.win-dot {
+  width: 12.5px;
+  height: 12.5px;
+  border-radius: 50%;
+  border: none;
+  background: #7c7c7a;
+  cursor: pointer;
+  transition: transform 0.18s ease, background-color 0.2s ease;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.win-dot:nth-child(2) {
+  background: #878785;
+}
+
+.win-dot:nth-child(3) {
+  background: #8f8f8d;
+}
+
+.win-dot:hover {
+  transform: scale(1.18);
+}
+
+.win-dot.dot-close:hover { background: #ff5f56; }
+.win-dot.dot-min:hover   { background: #ffbd2e; }
+.win-dot.dot-max:hover   { background: #27c93f; }
+
+.top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 15.5px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--text-dark);
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  position: relative;
+  transition: opacity 0.2s ease, background-color 0.2s ease, transform 0.15s ease;
+}
+
+.nav-link:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.nav-link.active {
+  font-weight: 700;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--text-dark);
+  opacity: 0.75;
+}
+
+.nav-dot {
+  font-size: 13px;
+  color: var(--text-dark);
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.topbar-right {
+  min-width: 90px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.code-pill-btn {
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-dark);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(6px);
+}
+
+.code-pill-btn:hover {
+  background: rgba(255, 255, 255, 0.88);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   Área Central: Escenario Ilustrado (Izquierda) + Panel Lyrics (Derecha)
+   ========================================================================== */
+.window-body {
+  position: relative;
+  z-index: 3;
+  padding: 0 22px 20px 22px;
+}
+
+.view-panel {
+  display: none;
+}
+
+.view-panel.active-view {
+  display: block;
+  animation: fadeInView 0.28s ease out;
+}
+
+@keyframes fadeInView {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.music-workspace-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 242px;
+  gap: 18px;
+  align-items: stretch;
+}
+
+/* Escenario Principal (Ilustración + Vinilo + Tarjeta Esmerilada + Stickers) */
+.stage-container {
+  position: relative;
+  height: 366px;
+  border-radius: 14px 14px 0 0;
+  overflow: visible;
+  z-index: 2;
+}
+
+/* Lienzo de la ilustración que se extiende ligeramente debajo de la barra inferior
+   para que el pasto verde y el río se difuminen detrás del cristal inferior */
+.stage-artwork-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 416px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+  background: #02d4f9;
+}
+
+.stage-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+  display: block;
+  transform: scale(1.01);
+  transition: transform 0.6s ease, filter 0.4s ease;
+}
+
+/* Capa de brillos y nubes animadas suaves sobre el paisaje */
+.stage-ambient-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.sun-rays-anim {
+  transform-origin: 92% 14%;
+  animation: pulseSun 7s ease-in-out infinite alternate;
+}
+
+@keyframes pulseSun {
+  0%   { transform: scale(1) rotate(0deg); opacity: 0.45; }
+  100% { transform: scale(1.06) rotate(4deg); opacity: 0.85; }
+}
+
+/* ==========================================================================
+   Disco de Vinilo Giratorio (Situado DETRÁS del cristal esmerilado)
+   ========================================================================== */
+.vinyl-assembly {
+  position: absolute;
+  left: 148px;
+  top: 52px;
+  width: 256px;
+  height: 256px;
+  z-index: 3;
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  filter: drop-shadow(8px 12px 18px rgba(0, 0, 0, 0.42));
+}
+
+.vinyl-assembly:hover {
+  transform: translateX(6px) scale(1.015);
+}
+
+.vinyl-disc {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  /* Reflejos especulares cónicos + surcos concéntricos realistas */
+  background:
+    radial-gradient(circle at center, transparent 33%, rgba(255, 255, 255, 0.05) 34%, transparent 35%),
+    repeating-radial-gradient(
+      circle at center,
+      rgba(16, 16, 18, 0.96) 0px,
+      rgba(16, 16, 18, 0.96) 2.2px,
+      rgba(42, 43, 46, 0.94) 2.8px,
+      rgba(12, 12, 14, 0.98) 4.2px
+    );
+  box-shadow:
+    inset 0 0 0 3px #111,
+    inset 0 0 18px rgba(255, 255, 255, 0.14);
+  animation: rotateVinyl 6.5s linear infinite;
+  animation-play-state: paused;
+}
+
+.vinyl-disc.is-spinning {
+  animation-play-state: running;
+}
+
+/* Brillo diagonal blanco realista sobre el vinilo */
+.vinyl-disc::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 28deg,
+    transparent 0deg,
+    rgba(255, 255, 255, 0.28) 22deg,
+    rgba(255, 255, 255, 0.52) 34deg,
+    rgba(255, 255, 255, 0.24) 46deg,
+    transparent 72deg,
+    transparent 185deg,
+    rgba(255, 255, 255, 0.22) 205deg,
+    rgba(255, 255, 255, 0.44) 216deg,
+    rgba(255, 255, 255, 0.18) 228deg,
+    transparent 255deg,
+    transparent 360deg
+  );
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+/* Etiqueta central del vinilo (Cielo azul, sol amarillo con rayos y nubes) */
+.vinyl-center-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 92px;
+  height: 92px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  overflow: hidden;
+  background: #05c7fa;
+  border: 2.5px solid #161616;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.28);
+}
+
+.vinyl-center-label svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Agujero central del vinilo */
+.vinyl-spindle-hole {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 11px;
+  height: 11px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #2b2d30;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.85);
+}
+
+@keyframes rotateVinyl {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   Tarjeta Funda Glassmorphism (Cubre la mitad izquierda del vinilo)
+   ========================================================================== */
+.glass-sleeve {
+  position: absolute;
+  left: -10px;
+  top: 38px;
+  width: 286px;
+  height: 280px;
+  z-index: 4;
+  background: linear-gradient(
+    135deg,
+    rgba(235, 245, 252, 0.58) 0%,
+    rgba(222, 234, 242, 0.42) 55%,
+    rgba(210, 224, 232, 0.36) 100%
+  );
+  backdrop-filter: blur(11px) saturate(118%);
+  -webkit-backdrop-filter: blur(11px) saturate(118%);
+  border: 1.5px solid var(--glass-sleeve-border);
+  border-left: none;
+  border-radius: 0 12px 12px 0;
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.14),
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.85);
+  padding: 44px 22px 24px 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.song-title {
+  font-family: 'Caveat Brush', 'Permanent Marker', cursive;
+  font-size: 51px;
+  line-height: 0.98;
+  font-weight: 400;
+  color: #121314;
+  letter-spacing: 0.01em;
+  margin-bottom: 14px;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.35);
+  filter: url(#marker-ink-filter);
+}
+
+.heart-o {
+  display: inline-block;
+  font-size: 0.78em;
+  vertical-align: -2px;
+  margin-left: 1px;
+  color: #111;
+  transform: rotate(-5deg);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s ease;
+  cursor: pointer;
+}
+
+.glass-sleeve:hover .heart-o {
+  transform: scale(1.18) rotate(6deg);
+  color: var(--accent-red);
+}
+
+.song-artist {
+  font-family: 'DM Sans', 'Inter', sans-serif;
+  font-size: 27px;
+  font-weight: 400;
+  color: #161616;
+  letter-spacing: -0.01em;
+}
+
+/* ==========================================================================
+   Stickers Troquelados de Flores (Tulipanes, Loto y Margaritas)
+   ========================================================================== */
+.sticker-btn {
+  position: absolute;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 5;
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.32));
+}
+
+.sticker-btn:hover {
+  transform: translateY(-5px) scale(1.05) rotate(-2deg);
+}
+
+.sticker-btn:active {
+  transform: scale(0.95);
+}
+
+.sticker-tulip-left {
+  left: 6px;
+  bottom: -44px;
+  width: 96px;
+  height: 164px;
+}
+
+.sticker-tulip-right {
+  left: 114px;
+  bottom: -46px;
+  width: 88px;
+  height: 142px;
+}
+
+.sticker-lotus-group {
+  right: 6px;
+  bottom: 8px;
+  width: 205px;
+  height: 195px;
+}
+
+/* Partículas musicales flotantes al interactuar con stickers o vinilo */
+.floating-notes-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 8;
+  overflow: hidden;
+}
+
+.music-particle {
+  position: absolute;
+  font-size: 20px;
+  font-weight: 700;
+  pointer-events: none;
+  animation: floatUpNote 1.4s ease-out forwards;
+}
+
+@keyframes floatUpNote {
+  0%   { opacity: 1; transform: translateY(0) scale(0.7) rotate(0deg); }
+  100% { opacity: 0; transform: translateY(-75px) scale(1.25) rotate(18deg); }
+}
+
+/* ==========================================================================
+   Panel Derecho: Tarjeta de Letras (Lyrics)
+   ========================================================================== */
+.lyrics-card {
+  position: relative;
+  height: 366px;
+  border-radius: 15px;
+  background: linear-gradient(
+    180deg,
+    var(--lyrics-card-top) 0%,
+    var(--lyrics-card-mid) 56%,
+    var(--lyrics-card-bot) 100%
+  );
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid rgba(255, 255, 255, 0.78);
+  box-shadow:
+    0 12px 26px rgba(0, 0, 0, 0.08),
+    inset 0 1px 2px rgba(255, 255, 255, 0.92);
+  padding: 20px 14px 18px 20px;
+  display: flex;
+  flex-direction: column;
+  z-index: 4;
+}
+
+.lyrics-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-right: 8px;
+}
+
+.lyrics-title {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text-dark);
+  letter-spacing: -0.01em;
+}
+
+.lyrics-sync-badge {
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 7px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.55);
+  color: #333;
+}
+
+.lyrics-scroll-area {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  scroll-behavior: smooth;
+  mask-image: linear-gradient(to bottom, #000 0%, #000 82%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 82%, transparent 100%);
+}
+
+/* Barra de desplazamiento minimalista idéntica a la imagen */
+.lyrics-scroll-area::-webkit-scrollbar {
+  width: 6px;
+}
+
+.lyrics-scroll-area::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.lyrics-scroll-area::-webkit-scrollbar-thumb {
+  background: rgba(112, 114, 110, 0.72);
+  border-radius: 99px;
+}
+
+.lyric-line {
+  font-size: 19.5px;
+  line-height: 1.26;
+  font-weight: 400;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.25s ease, transform 0.25s ease, text-shadow 0.25s ease;
+  text-align: left;
+  background: none;
+  border: none;
+  font-family: inherit;
+  padding: 2px 0;
+}
+
+.lyric-line:hover {
+  color: #3a3b38;
+  transform: translateX(2px);
+}
+
+.lyric-line.active-lyric {
+  color: #ffffff;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+  transform: scale(1.01);
+}
+
+/* ==========================================================================
+   Barra de Reproducción Inferior (Frosted Glass + Onda Crayón Arcoíris)
+   ========================================================================== */
+.player-bar {
+  position: relative;
+  z-index: 6;
+  margin-top: 8px;
+  height: 76px;
+  border-radius: 15px;
+  background: var(--bottom-bar-bg);
+  backdrop-filter: blur(16px) saturate(135%);
+  -webkit-backdrop-filter: blur(16px) saturate(135%);
+  border: 1.5px solid rgba(255, 255, 255, 0.82);
+  box-shadow:
+    0 10px 26px rgba(0, 0, 0, 0.12),
+    inset 0 1px 2px rgba(255, 255, 255, 0.92);
+  padding: 0 22px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Controles Izquierdos (Prev, Play/Pause, Next + Tiempo) */
+.player-transport {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.transport-btn {
+  background: none;
+  border: none;
+  color: var(--text-dark);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 8px;
+  transition: transform 0.15s ease, background-color 0.2s ease;
+}
+
+.transport-btn:hover {
+  background: rgba(0, 0, 0, 0.07);
+  transform: scale(1.08);
+}
+
+.transport-btn:active {
+  transform: scale(0.94);
+}
+
+.transport-btn.play-pause-btn {
+  width: 40px;
+  height: 40px;
+}
+
+.time-display {
+  font-size: 14.5px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-dark);
+  letter-spacing: 0.01em;
+  min-width: 92px;
+  margin-left: 4px;
+}
+
+/* Scrubber Central: Onda de Crayón Azul y Arcoíris */
+.waveform-wrapper {
+  position: relative;
+  flex: 1;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  min-width: 180px;
+}
+
+#rainbowWaveCanvas {
+  width: 100%;
+  height: 58px;
+  display: block;
+}
+
+.waveform-tooltip {
+  position: absolute;
+  top: -24px;
+  transform: translateX(-50%);
+  background: rgba(20, 22, 30, 0.86);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 6px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  font-variant-numeric: tabular-nums;
+}
+
+.waveform-wrapper:hover .waveform-tooltip {
+  opacity: 1;
+}
+
+.duration-end-label {
+  font-size: 14.5px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-dark);
+  flex-shrink: 0;
+  margin-right: 4px;
+}
+
+/* Controles Derechos (Volumen, Lista de reproducción, Letras/Comentarios) */
+.player-utilities {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.utility-btn {
+  background: none;
+  border: none;
+  color: var(--text-dark);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.utility-btn:hover,
+.utility-btn.active-util {
+  background: rgba(0, 0, 0, 0.08);
+  transform: scale(1.07);
+}
+
+/* Popover de Volumen y Lista de Canciones */
+.popover-card {
+  position: absolute;
+  bottom: 64px;
+  right: 0;
+  background: rgba(246, 246, 243, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  border-radius: 14px;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
+  padding: 14px 16px;
+  z-index: 30;
+  display: none;
+  color: #161616;
+}
+
+.popover-card.open {
+  display: block;
+  animation: fadeInView 0.2s ease out;
+}
+
+.volume-popover {
+  width: 210px;
+}
+
+.volume-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.volume-slider {
+  flex: 1;
+  accent-color: #1d63c2;
+  cursor: pointer;
+}
+
+.queue-popover {
+  width: 310px;
+}
+
+.queue-title {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #555;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.queue-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.queue-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border-radius: 9px;
+  border: none;
+  background: rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: background-color 0.18s ease;
+}
+
+.queue-item:hover {
+  background: rgba(0, 0, 0, 0.09);
+}
+
+.queue-item.active-track {
+  background: #1d63c2;
+  color: #fff;
+}
+
+.queue-item-name {
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.queue-item-time {
+  font-size: 12px;
+  opacity: 0.8;
+  font-variant-numeric: tabular-nums;
+}
+
+.upload-audio-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 7px 10px;
+  border-radius: 8px;
+  border: 1px dashed rgba(0, 0, 0, 0.28);
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.6);
+  transition: background-color 0.2s ease;
+}
+
+.upload-audio-label:hover {
+  background: #fff;
+}
+
+/* ==========================================================================
+   Vistas Secundarias de Navegación (LYRICS, GALLERY, ABOUT & CÓDIGO FUENTE)
+   ========================================================================== */
+.secondary-card {
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(14px);
+  border: 1.5px solid rgba(255, 255, 255, 0.82);
+  border-radius: 15px;
+  padding: 24px 28px;
+  min-height: 366px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.karaoke-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 24px;
+  align-items: center;
+}
+
+.karaoke-Main-verses {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-height: 318px;
+  overflow-y: auto;
+  padding-right: 12px;
+}
+
+.karaoke-verse-btn {
+  text-align: left;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-family: inherit;
+  font-size: 18px;
+  color: #444;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.karaoke-verse-btn.active-lyric {
+  background: linear-gradient(135deg, #02d4f9 0%, #1d63c2 100%);
+  color: #fff;
+  font-weight: 700;
+  transform: translateX(4px);
+  box-shadow: 0 6px 16px rgba(29, 99, 194, 0.28);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 14px;
+}
+
+.gallery-item {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gallery-preview-box {
+  height: 150px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eef4f8;
+  position: relative;
+}
+
+.gallery-preview-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Visor de Archivos Fuente (index.html, styles.css, app.js) en pestaña ABOUT */
+.source-viewer-tabs {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.source-tab-btn {
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  background: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: monospace;
+}
+
+.source-tab-btn.active {
+  background: #161a25;
+  color: #fff;
+}
+
+.source-code-box {
+  background: #141824;
+  color: #e6edf3;
+  border-radius: 10px;
+  padding: 14px;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  max-height: 195px;
+  overflow: auto;
+  white-space: pre;
+  user-select: text;
+}
+
+/* Toast de notificación interna */
+.toast-banner {
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(20, 24, 36, 0.92);
+  color: #fff;
+  padding: 9px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s ease;
+  z-index: 100;
+}
+
+.toast-banner.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ==========================================================================
+   Adaptabilidad Responsiva (Tablet y Móvil)
+   ========================================================================== */
+@media (max-width: 860px) {
+  .music-workspace-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lyrics-card {
+    height: 220px;
+    margin-top: 28px;
+  }
+
+  .karaoke-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .player-bar {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 12px 16px;
+    gap: 10px;
+  }
+
+  .waveform-wrapper {
+    order: 3;
+    width: 100%;
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  body {
+    padding: 8px;
+  }
+
+  .window-topbar {
+    padding: 0 12px;
+  }
+
+  .window-dots, .topbar-right {
+    min-width: auto;
+  }
+
+  .code-pill-btn span {
+    display: none;
+  }
+
+  .glass-sleeve {
+    width: 220px;
+    height: 250px;
+    padding: 32px 16px 18px 18px;
+  }
+
+  .song-title {
+    font-size: 40px;
+  }
+
+  .vinyl-assembly {
+    left: 105px;
+    top: 56px;
+    width: 220px;
+    height: 220px;
+  }
+}

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuando te veo canto ♥ — Kezelvi | Music Player</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Filtros SVG globales para textura de marcador artesanal en el título -->
+  <svg width="0" height="0" style="position:absolute;pointer-events:none;" aria-hidden="true">
+    <defs>
+      <filter id="marker-ink-filter" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="3" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.4" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Ventana Principal Estilo macOS sobre Papel Artesanal -->
+  <main class="app-window" role="main">
+    <div class="paper-grain-overlay" aria-hidden="true"></div>
+
+    <!-- Barra Superior con Controles de Ventana y Menú MUSIC • LYRICS • GALLERY • ABOUT -->
+    <header class="window-topbar">
+      <div class="window-dots" aria-label="Controles de ventana">
+        <button type="button" class="win-dot dot-close" id="winDotClose" title="Restaurar estado original (01:14)"></button>
+        <button type="button" class="win-dot dot-min" id="winDotMin" title="Alternar tema de papel claro/oscuro"></button>
+        <button type="button" class="win-dot dot-max" id="winDotMax" title="Reproducir / Pausar música"></button>
+      </div>
+
+      <nav class="top-nav" aria-label="Navegación principal">
+        <button type="button" class="nav-link active" data-view="music">MUSIC</button>
+        <span class="nav-dot" aria-hidden="true">•</span>
+        <button type="button" class="nav-link" data-view="lyrics">LYRICS</button>
+        <span class="nav-dot" aria-hidden="true">•</span>
+        <button type="button" class="nav-link" data-view="gallery">GALLERY</button>
+        <span class="nav-dot" aria-hidden="true">•</span>
+        <button type="button" class="nav-link" data-view="about">ABOUT</button>
+      </nav>
+
+      <div class="topbar-right">
+        <button type="button" class="code-pill-btn" id="openSourceFilesBtn" title="Ver estructura index.html, styles.css y app.js">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+          <span>Archivos</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Cuerpo Principal -->
+    <div class="window-body">
+
+      <!-- ===================================================================
+           VISTA 1: MUSIC (Diseño principal exacto de la imagen de referencia)
+           =================================================================== -->
+      <section class="view-panel active-view" id="view-music" aria-label="Reproductor musical">
+        <div class="music-workspace-grid">
+
+          <!-- Escenario Izquierdo: Paisaje Crayón + Vinilo + Funda Glassmorphism + Stickers -->
+          <div class="stage-container">
+            <div class="stage-artwork-frame">
+              <img
+                src="assets/landscape.jpg"
+                alt="Ilustración en crayón de paisaje con arcoíris, árbol de manzanas, sol y río"
+                class="stage-bg-image"
+              >
+              <!-- Destellos suaves animados sobre el sol -->
+              <svg class="stage-ambient-svg" viewBox="0 0 700 420" preserveAspectRatio="none" aria-hidden="true">
+                <g class="sun-rays-anim">
+                  <circle cx="650" cy="48" r="54" fill="rgba(255, 250, 110, 0.16)" />
+                </g>
+              </svg>
+            </div>
+
+            <!-- Capa para partículas musicales al hacer clic en el vinilo o los stickers -->
+            <div class="floating-notes-layer" id="floatingNotesLayer" aria-hidden="true"></div>
+
+            <!-- Disco de Vinilo (Situado detrás de la tarjeta de vidrio esmerilado para que su mitad izquierda se vea difuminada) -->
+            <div class="vinyl-assembly" id="vinylAssembly" title="Haz clic para girar o pausar el vinilo">
+              <div class="vinyl-disc" id="vinylDisc">
+                <div class="vinyl-center-label">
+                  <!-- Etiqueta central del vinilo con cielo azul, sol radiante y nubes blancas -->
+                  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="100" height="100" fill="#04c8f9" />
+                    <!-- Rayos amarillos tipo crayón alrededor del borde -->
+                    <g stroke="#f6eb14" stroke-width="3.6" stroke-linecap="round">
+                      <line x1="50" y1="6" x2="50" y2="17" />
+                      <line x1="50" y1="83" x2="50" y2="94" />
+                      <line x1="6" y1="50" x2="17" y2="50" />
+                      <line x1="83" y1="50" x2="94" y2="50" />
+                      <line x1="18" y1="18" x2="27" y2="27" />
+                      <line x1="73" y1="73" x2="82" y2="82" />
+                      <line x1="82" y1="18" x2="73" y2="27" />
+                      <line x1="27" y1="73" x2="18" y2="82" />
+                      <line x1="33" y1="9" x2="37" y2="19" />
+                      <line x1="67" y1="9" x2="63" y2="19" />
+                      <line x1="91" y1="33" x2="81" y2="37" />
+                      <line x1="91" y1="67" x2="81" y2="63" />
+                    </g>
+                    <!-- Sol amarillo central -->
+                    <circle cx="50" cy="48" r="22" fill="#f7ee12" />
+                    <!-- Nubes blancas esponjosas en la etiqueta -->
+                    <g fill="#ffffff">
+                      <circle cx="28" cy="65" r="10" />
+                      <circle cx="38" cy="63" r="12" />
+                      <circle cx="48" cy="67" r="9" />
+                      <circle cx="64" cy="69" r="11" />
+                      <circle cx="75" cy="66" r="10" />
+                    </g>
+                  </svg>
+                  <div class="vinyl-spindle-hole"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tarjeta Funda Glassmorphism Izquierda -->
+            <div class="glass-sleeve">
+              <h1 class="song-title" id="stageSongTitle">
+                Cuando te<br>
+                veo cant<span class="heart-o" aria-label="o">🖤</span>
+              </h1>
+              <p class="song-artist" id="stageSongArtist">Kezelvi</p>
+            </div>
+
+            <!-- Sticker Troquelado: Tulipán Rojo Izquierdo -->
+            <button type="button" class="sticker-btn sticker-tulip-left" title="Sticker de tulipán">
+              <svg viewBox="0 0 120 195" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <!-- Borde blanco troquelado del sticker -->
+                <g stroke="#f5f4ee" stroke-width="13" stroke-linejoin="round" stroke-linecap="round" fill="#f5f4ee">
+                  <path d="M58 95 L58 182" />
+                  <path d="M58 180 C34 176 20 144 22 108 C36 122 48 148 58 176 Z" />
+                  <path d="M58 180 C82 176 96 144 94 110 C80 124 68 148 58 176 Z" />
+                  <path d="M24 56 C20 26 36 16 44 34 C50 16 68 16 74 34 C82 16 98 26 94 56 C90 84 76 96 59 96 C42 96 28 84 24 56 Z" />
+                </g>
+                <!-- Tallo y hojas verdes -->
+                <path d="M58 92 L58 182" stroke="#467c25" stroke-width="8" stroke-linecap="round" />
+                <path d="M58 182 C34 176 20 144 22 108 C38 124 49 150 58 178 Z" fill="#548c2f" stroke="#3c6b1e" stroke-width="2" />
+                <path d="M58 182 C82 176 96 144 94 110 C78 126 67 150 58 178 Z" fill="#5d9636" stroke="#3c6b1e" stroke-width="2" />
+                <!-- Pétalos rojos/coral del tulipán -->
+                <path d="M24 56 C20 26 36 16 44 34 C50 16 68 16 74 34 C82 16 98 26 94 56 C90 84 76 96 59 96 C42 96 28 84 24 56 Z" fill="#fb3654" />
+                <path d="M42 33 C48 54 48 76 58 94" stroke="#d91e3b" stroke-width="2.2" fill="none" opacity="0.55" />
+                <path d="M75 33 C69 54 69 76 59 94" stroke="#d91e3b" stroke-width="2.2" fill="none" opacity="0.55" />
+              </svg>
+            </button>
+
+            <!-- Sticker Troquelado: Tulipán Rojo Derecho -->
+            <button type="button" class="sticker-btn sticker-tulip-right" title="Sticker de tulipán">
+              <svg viewBox="0 0 120 185" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <g stroke="#f5f4ee" stroke-width="13" stroke-linejoin="round" stroke-linecap="round" fill="#f5f4ee">
+                  <path d="M60 96 L60 175" />
+                  <path d="M60 174 C36 170 22 142 24 110 C38 124 50 146 60 172 Z" />
+                  <path d="M60 174 C84 170 98 142 96 112 C82 126 70 146 60 172 Z" />
+                  <path d="M26 58 C22 30 38 20 46 36 C52 20 68 20 74 36 C82 20 98 30 94 58 C90 84 76 96 60 96 C44 96 30 84 26 58 Z" />
+                </g>
+                <path d="M60 94 L60 175" stroke="#467c25" stroke-width="8" stroke-linecap="round" />
+                <path d="M60 174 C36 170 22 142 24 110 C38 124 50 146 60 172 Z" fill="#548c2f" stroke="#3c6b1e" stroke-width="2" />
+                <path d="M60 174 C84 170 98 142 96 112 C82 126 70 146 60 172 Z" fill="#5d9636" stroke="#3c6b1e" stroke-width="2" />
+                <path d="M26 58 C22 30 38 20 46 36 C52 20 68 20 74 36 C82 20 98 30 94 58 C90 84 76 96 60 96 C44 96 30 84 26 58 Z" fill="#fc3c59" />
+                <path d="M45 36 C50 56 50 76 60 94" stroke="#d91e3b" stroke-width="2.2" fill="none" opacity="0.55" />
+                <path d="M75 36 C70 56 70 76 60 94" stroke="#d91e3b" stroke-width="2.2" fill="none" opacity="0.55" />
+              </svg>
+            </button>
+
+            <!-- Sticker Troquelado Derecha: Flor de Loto Rosa sobre Nenúfar + Margaritas Blancas -->
+            <button type="button" class="sticker-btn sticker-lotus-group" title="Sticker de flor de loto y margaritas">
+              <svg viewBox="0 0 230 215" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <!-- Margarita blanca superior derecha -->
+                <g>
+                  <path d="M180 65 L176 155" stroke="#f6f5f0" stroke-width="16" stroke-linecap="round" />
+                  <path d="M176 142 C158 134 152 118 164 114 C172 118 176 130 176 142 Z" stroke="#f6f5f0" stroke-width="12" fill="#f6f5f0" />
+                  <path d="M176 142 C194 134 202 118 190 114 C182 118 176 130 176 142 Z" stroke="#f6f5f0" stroke-width="12" fill="#f6f5f0" />
+                  <path d="M180 65 L176 155" stroke="#538d2d" stroke-width="6.5" stroke-linecap="round" />
+                  <path d="M176 142 C158 134 152 118 164 114 C172 118 176 130 176 142 Z" fill="#5b9734" />
+                  <path d="M176 142 C194 134 202 118 190 114 C182 118 176 130 176 142 Z" fill="#5b9734" />
+                  <!-- Pétalos blancos de la margarita -->
+                  <g fill="#f8f8f5" stroke="#ecebe4" stroke-width="1.5">
+                    <circle cx="180" cy="30" r="14" />
+                    <circle cx="202" cy="40" r="14" />
+                    <circle cx="208" cy="62" r="14" />
+                    <circle cx="198" cy="82" r="14" />
+                    <circle cx="176" cy="88" r="14" />
+                    <circle cx="156" cy="78" r="14" />
+                    <circle cx="152" cy="56" r="14" />
+                    <circle cx="162" cy="36" r="14" />
+                  </g>
+                  <circle cx="180" cy="60" r="12" fill="#f3c622" />
+                </g>
+
+                <!-- Flor de Loto Rosa sobre hoja de nenúfar con borde blanco troquelado -->
+                <g>
+                  <!-- Contorno blanco grueso troquelado -->
+                  <ellipse cx="96" cy="166" rx="76" ry="30" fill="#f6f5f0" stroke="#f6f5f0" stroke-width="13" />
+                  <path d="M26 148 C18 112 42 86 64 98 C74 74 116 74 126 98 C148 86 172 112 164 148 Z" fill="#f6f5f0" stroke="#f6f5f0" stroke-width="14" stroke-linejoin="round" />
+                  <!-- Hoja de nenúfar verde -->
+                  <ellipse cx="96" cy="166" rx="72" ry="25" fill="#6b933b" />
+                  <ellipse cx="96" cy="163" rx="64" ry="20" fill="#7ca548" />
+                  <!-- Pétalos exteriores del loto -->
+                  <path d="M28 152 C20 118 44 96 68 112 C56 132 44 148 28 152 Z" fill="#d48790" />
+                  <path d="M164 152 C172 118 148 96 124 112 C136 132 148 148 164 152 Z" fill="#d48790" />
+                  <path d="M44 156 C38 114 64 86 96 86 C128 86 154 114 148 156 C126 168 66 168 44 156 Z" fill="#df959e" />
+                  <!-- Estambres amarillos centrales -->
+                  <circle cx="88" cy="112" r="4" fill="#f5d126" />
+                  <circle cx="96" cy="108" r="4.5" fill="#f5d126" />
+                  <circle cx="104" cy="112" r="4" fill="#f5d126" />
+                  <!-- Pétalos frontales suaves -->
+                  <path d="M62 158 C56 122 76 96 96 96 C116 96 136 122 130 158 C112 166 80 166 62 158 Z" fill="#e8a4ad" />
+                  <path d="M78 160 C76 130 86 108 96 108 C106 108 116 130 114 160 Z" fill="#eeb2ba" />
+                </g>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Panel Derecho: Lyrics Card -->
+          <aside class="lyrics-card" aria-label="Letra de la canción">
+            <div class="lyrics-header">
+              <h2 class="lyrics-title">Lyrics</h2>
+              <span class="lyrics-sync-badge">Sync</span>
+            </div>
+            <div class="lyrics-scroll-area" id="lyricsScrollArea">
+              <!-- Rellenado dinámicamente desde app.js -->
+            </div>
+          </aside>
+
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           VISTA 2: LYRICS (Modo Karaoke Expandido)
+           =================================================================== -->
+      <section class="view-panel" id="view-lyrics" aria-label="Vista completa de letras">
+        <div class="secondary-card">
+          <div class="karaoke-grid">
+            <div>
+              <h2 style="font-size:24px;margin-bottom:6px;">Letra Sincronizada — Modo Estudio</h2>
+              <p style="font-size:14px;color:#555;margin-bottom:14px;">Haz clic en cualquier verso para saltar directamente a ese momento de la canción.</p>
+              <div class="karaoke-Main-verses" id="karaokeVersesList"></div>
+            </div>
+            <div style="background:rgba(255,255,255,0.75);padding:18px;border-radius:14px;border:1px solid #fff;">
+              <h3 style="font-size:16px;margin-bottom:8px;">Sobre la canción</h3>
+              <p style="font-size:13.5px;line-height:1.55;color:#444;margin-bottom:12px;">
+                <strong>"Cuando te veo canto ♥"</strong> de <strong>Kezelvi</strong> combina una estética artesanal de crayón y papel con texturas cálidas indie-pop.
+              </p>
+              <p style="font-size:13px;color:#666;">
+                Tonalidad: Do Mayor (C Major)<br>
+                Tempo: 108 BPM<br>
+                Duración: 03:22
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           VISTA 3: GALLERY (Arte y Stickers de la Colección)
+           =================================================================== -->
+      <section class="view-panel" id="view-gallery" aria-label="Galería de arte y stickers">
+        <div class="secondary-card">
+          <h2 style="font-size:22px;margin-bottom:4px;">Galería Visual &amp; Stickers Artesanales</h2>
+          <p style="font-size:14px;color:#555;">Ilustraciones en crayón, etiquetas de vinilo y stickers troquelados incluidos en el diseño.</p>
+          <div class="gallery-grid">
+            <div class="gallery-item">
+              <div class="gallery-preview-box">
+                <img src="assets/landscape.jpg" alt="Paisaje en crayón">
+              </div>
+              <strong style="font-size:14px;">Paisaje de Crayón &amp; Arcoíris</strong>
+              <span style="font-size:12.5px;color:#666;">Fondo principal pintado con textura de cera y pastel al óleo.</span>
+            </div>
+            <div class="gallery-item">
+              <div class="gallery-preview-box">
+                <img src="assets/reference.jpg" alt="Diseño de referencia original">
+              </div>
+              <strong style="font-size:14px;">Concepto Original (Referencia)</strong>
+              <span style="font-size:12.5px;color:#666;">Composición original de ventana con funda esmerilada y onda arcoíris.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           VISTA 4: ABOUT (Créditos e Inspector de Archivos HTML / CSS / JS)
+           =================================================================== -->
+      <section class="view-panel" id="view-about" aria-label="Acerca del proyecto y archivos fuente">
+        <div class="secondary-card">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+            <div>
+              <h2 style="font-size:22px;">Arquitectura del Proyecto Web (Kezelvi)</h2>
+              <p style="font-size:13.5px;color:#555;">Separado modularmente en <code>index.html</code>, <code>styles.css</code> y <code>app.js</code>.</p>
+            </div>
+            <div style="display:flex;gap:8px;">
+              <button type="button" class="code-pill-btn" id="copySourceCodeBtn" style="padding:7px 14px;font-size:12.5px;">
+                Copiar archivo completo
+              </button>
+              <button type="button" class="code-pill-btn" id="downloadSourceFileBtn" style="padding:7px 14px;font-size:12.5px;">
+                Descargar archivo
+              </button>
+            </div>
+          </div>
+
+          <div class="source-viewer-tabs">
+            <button type="button" class="source-tab-btn active" data-file="index.html">index.html</button>
+            <button type="button" class="source-tab-btn" data-file="styles.css">styles.css</button>
+            <button type="button" class="source-tab-btn" data-file="app.js">app.js</button>
+          </div>
+
+          <pre class="source-code-box" id="sourceCodeDisplay">&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Cuando te veo canto ♥ — Kezelvi&lt;/title&gt;
+  &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;main class="app-window"&gt;
+    &lt;!-- Barra superior macOS + Navegación MUSIC • LYRICS • GALLERY • ABOUT --&gt;
+    &lt;!-- Escenario ilustrado + Vinilo giratorio + Funda Glassmorphism + Stickers --&gt;
+    &lt;!-- Panel de Letras sincronizadas + Barra inferior con onda arcoíris --&gt;
+  &lt;/main&gt;
+  &lt;script src="app.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           BARRA DE REPRODUCCIÓN INFERIOR (Controles + Onda Crayón Arcoíris)
+           =================================================================== -->
+      <footer class="player-bar" aria-label="Controles de reproducción">
+
+        <!-- Controles Izquierdos: Anterior, Pausa/Play, Siguiente, Tiempo -->
+        <div class="player-transport">
+          <button type="button" class="transport-btn" id="prevTrackBtn" title="Pista anterior / Reiniciar">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6 5h2.5v14H6V5zm4.5 7 9.5 7V5l-9.5 7z" />
+            </svg>
+          </button>
+
+          <button type="button" class="transport-btn play-pause-btn" id="playPauseBtn" title="Reproducir / Pausar">
+            <!-- Por defecto muestra el icono de dos barras verticales como en la captura, y alterna al reproducir -->
+            <svg id="pauseIconSvg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+              <rect x="6" y="4" width="4.2" height="16" rx="1" />
+              <rect x="13.8" y="4" width="4.2" height="16" rx="1" />
+            </svg>
+            <svg id="playIconSvg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+              <path d="M7 4.5v15l12-7.5-12-7.5z" />
+            </svg>
+          </button>
+
+          <button type="button" class="transport-btn" id="nextTrackBtn" title="Siguiente pista">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M15.5 5H18v14h-2.5V5zM6 19l9.5-7L6 5v14z" />
+            </svg>
+          </button>
+
+          <span class="time-display" id="timeDisplay">01:14 / 03:22</span>
+        </div>
+
+        <!-- Barra de Progreso Central: Onda de Crayón Azul y Arcoíris -->
+        <div class="waveform-wrapper" id="waveformWrapper" title="Haz clic o arrastra sobre la onda arcoíris para adelantar o retroceder">
+          <div class="waveform-tooltip" id="waveformTooltip">01:14</div>
+          <canvas id="rainbowWaveCanvas" width="480" height="58"></canvas>
+        </div>
+
+        <span class="duration-end-label" id="durationEnd">/ 03:22</span>
+
+        <!-- Iconos de Utilidades Derechos: Volumen, Lista y Letras -->
+        <div class="player-utilities">
+          <button type="button" class="utility-btn" id="volumeToggleBtn" title="Control de volumen">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+            </svg>
+          </button>
+
+          <button type="button" class="utility-btn" id="queueToggleBtn" title="Lista de reproducción y carga de MP3">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="8" y1="6" x2="21" y2="6"></line>
+              <line x1="8" y1="12" x2="21" y2="12"></line>
+              <line x1="8" y1="18" x2="21" y2="18"></line>
+              <line x1="3" y1="6" x2="3.01" y2="6"></line>
+              <line x1="3" y1="12" x2="3.01" y2="12"></line>
+              <line x1="3" y1="18" x2="3.01" y2="18"></line>
+            </svg>
+          </button>
+
+          <button type="button" class="utility-btn" id="lyricsModeBtn" title="Alternar vista expandida de letras">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              <line x1="7" y1="8" x2="17" y2="8"></line>
+              <line x1="7" y1="12" x2="13" y2="12"></line>
+            </svg>
+          </button>
+
+          <!-- Popover de Volumen -->
+          <div class="popover-card volume-popover" id="volumePopover">
+            <div class="volume-row">
+              <button type="button" class="utility-btn" id="muteQuickBtn" title="Silenciar / Activar" style="padding:2px;">🔊</button>
+              <input type="range" class="volume-slider" id="volumeRangeSlider" min="0" max="1" step="0.02" value="0.8">
+            </div>
+          </div>
+
+          <!-- Popover de Lista de Canciones + Carga de MP3 -->
+          <div class="popover-card queue-popover" id="queuePopover">
+            <div class="queue-title">
+              <span>Canciones — Kezelvi</span>
+              <span>3 pistas</span>
+            </div>
+            <div class="queue-list" id="queueListContainer"></div>
+            <label class="upload-audio-label" for="customAudioInput">
+              <span>+ Cargar archivo MP3 / WAV propio</span>
+              <input type="file" id="customAudioInput" accept="audio/*" style="display:none;">
+            </label>
+          </div>
+        </div>
+
+      </footer>
+
+    </div>
+  </main>
+
+  <div class="toast-banner" id="toastBanner" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
